@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BC322B6A-ADC3-4050-8800-EBCEF0FD779F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{01A1DD6F-2073-4833-B996-77C56ACCFB66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotCli.Cli", "src\SpotCli.Cli\SpotCli.Cli.csproj", "{3EAF6BCC-DF92-4850-BFFD-434D2DA01885}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EAF6BCC-DF92-4850-BFFD-434D2DA01885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EAF6BCC-DF92-4850-BFFD-434D2DA01885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EAF6BCC-DF92-4850-BFFD-434D2DA01885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EAF6BCC-DF92-4850-BFFD-434D2DA01885}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3EAF6BCC-DF92-4850-BFFD-434D2DA01885} = {BC322B6A-ADC3-4050-8800-EBCEF0FD779F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {561E3CCC-B027-4BFC-BA6C-4CE92A8FD14B}
+	EndGlobalSection
+EndGlobal
