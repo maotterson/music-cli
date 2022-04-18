@@ -25,6 +25,6 @@ services.AddRefitClient<ISpotifyApi>()
 var client = services.BuildServiceProvider()
     .GetRequiredService<ISpotifyApi>();
 
-var response = await client.GetTokenAsync();
+var response = await client.GetCurrentlyPlaying();
 Console.WriteLine(response);
 

@@ -9,6 +9,6 @@ namespace SpotCli.Cli.Spotify.Api;
 
 public interface ISpotifyApi
 {
-    [Get("/albums/4aawyAB9vmqN3uQ7FjRGTy")]
-    Task<string> GetTokenAsync();
+    [Get("/me/player/currently-playing")]
+    Task<string> GetCurrentlyPlaying();
 }
