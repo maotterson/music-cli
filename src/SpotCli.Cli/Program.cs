@@ -28,8 +28,10 @@ var client = services.BuildServiceProvider()
     .GetRequiredService<ISpotifyApi>();
 
 // testing seeing a response
-//var response = await client.GetCurrentlyPlaying();
-//Console.WriteLine(response);
+var refreshRequest = new GetNewAccessTokenRequest(configuration.RefreshToken);
+var refreshHeader = new Base64ClientSecretAuthHeader(configuration.ClientSecret, configuration.ClientId);
+var response = await client.GetNewAccessToken(refreshHeader.Get(), refreshRequest);
+Console.WriteLine(response);
 
 // testing saving
 var saver = services.BuildServiceProvider()

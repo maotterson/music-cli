@@ -4,4 +4,5 @@
 - Microsoft DependencyInjection Extensions
 - Microsoft Configuration Extensions
 - CommandLineParser
-- Refit (API Wrapper)
+- Refit
+- Newtonsoft JSON

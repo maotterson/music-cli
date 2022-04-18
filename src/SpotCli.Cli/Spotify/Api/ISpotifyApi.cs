@@ -1,4 +1,5 @@
 ﻿using Refit;
+using SpotCli.Cli.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ public interface ISpotifyApi
     Task<string> GetCurrentlyPlaying();
 
     [Post("/api/token")]
-    Task<string> GetNewAccessToken();
+    [Headers("Content-Type: application/x-www-form-urlencoded")]
+    Task<string> GetNewAccessToken([Header("Authorization")] string base64ClientSecretHeader, [Body(BodySerializationMethod.UrlEncoded)] GetNewAccessTokenRequest request);
 }
