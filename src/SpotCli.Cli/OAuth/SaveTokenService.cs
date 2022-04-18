@@ -11,10 +11,10 @@ public class SaveTokenService : ISaveTokenService
 {
     public string Save(string token)
     {
-        using (FileStream fs = File.Create("token.txt"))
+        using (StreamWriter sw = new StreamWriter(File.Create("token.json")))
         {
-            var sw = new StreamWriter(fs);
-            sw.Write(token);
+            var tokenJson = "{\"BearerToken\":\"" + token + "\"}";
+            sw.WriteLine(tokenJson);
         }
         return $"New token saved.";
     }

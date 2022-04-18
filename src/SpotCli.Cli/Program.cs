@@ -27,6 +27,11 @@ services.AddSingleton<ISaveTokenService, SaveTokenService>();
 var client = services.BuildServiceProvider()
     .GetRequiredService<ISpotifyApi>();
 
-var response = await client.GetCurrentlyPlaying();
-Console.WriteLine(response);
+// testing seeing a response
+//var response = await client.GetCurrentlyPlaying();
+//Console.WriteLine(response);
 
+// testing saving
+var saver = services.BuildServiceProvider()
+    .GetRequiredService<ISaveTokenService>();
+var test = saver.Save("test");
