@@ -15,7 +15,8 @@ public class SpotifyApiConfiguration
     {
         _configuration = configuration;
     }
-
+    public string BearerToken => _configuration["BearerToken"];
+    public string RefreshToken => _configuration["RefreshToken"];
     public string BaseAddress => _configuration["SpotifyApi:BaseAddress"];
     public string ClientId => _configuration["ClientId"];
     public string ClientSecret => _configuration["ClientSecret"];

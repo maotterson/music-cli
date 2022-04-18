@@ -4,4 +4,4 @@
 - Microsoft DependencyInjection Extensions
 - Microsoft Configuration Extensions
 - CommandLineParser
-- Refit
+- Refit (API Wrapper)
