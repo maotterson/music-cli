@@ -11,4 +11,6 @@ public interface ISpotifyApi
 {
     [Get("/me/player/currently-playing")]
     Task<string> GetCurrentlyPlaying();
+
+    Task<string> RefreshAccessToken();
 }

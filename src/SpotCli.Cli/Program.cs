@@ -5,6 +5,7 @@ using SpotCli.Cli.Configuration;
 using SpotCli.Cli.Spotify.Api;
 using IdentityModel.AspNetCore;
 using IdentityModel.Client;
+using SpotCli.Cli.OAuth;
 
 var services = new ServiceCollection();
 var configuration = new SpotifyApiConfiguration(
@@ -22,6 +23,7 @@ services.AddRefitClient<ISpotifyApi>()
         client.DefaultRequestHeaders.Add("Authorization", authHeader);
     });
 
+services.AddSingleton<ISaveTokenService, SaveTokenService>();
 var client = services.BuildServiceProvider()
     .GetRequiredService<ISpotifyApi>();
 
