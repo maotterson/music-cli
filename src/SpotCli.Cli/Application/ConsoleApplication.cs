@@ -40,13 +40,11 @@ public class ConsoleApplication : IConsoleApplication
             var refreshRequest = new GetNewAccessTokenRequest(_configuration.RefreshToken);
             var refreshHeader = new Base64ClientSecretAuthHeader(_configuration.ClientSecret, _configuration.ClientId).Get();
             var response = await _spotifyOAuthApi.GetNewAccessToken(refreshHeader, refreshRequest);
-            var content = response.Content;
-            Console.WriteLine(content.AccessToken);
-            /*
-            Console.WriteLine(response.AccessToken);
+            var token = response.Content.AccessToken!;
+            Console.WriteLine(token);
 
-            var savedMessage = _saveTokenService.Save(response.AccessToken!);
-            Console.WriteLine(savedMessage);*/
+            var savedMessage = _saveTokenService.Save(token);
+            Console.WriteLine(savedMessage);
         }
     }
 }

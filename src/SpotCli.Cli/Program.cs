@@ -27,7 +27,13 @@ public static partial class Helpers
 {
     public static void AddRefitApis(this IServiceCollection services, ISpotifyApiConfiguration configuration)
     {
-        services.AddRefitClient<ISpotifyApi>()
+        services.AddRefitClient<ISpotifyApi>(
+            new RefitSettings(
+                new NewtonsoftJsonContentSerializer(
+                    new JsonSerializerSettings
+                    {
+                        ContractResolver = new CamelCasePropertyNamesContractResolver()
+                    })))
         .ConfigureHttpClient(client =>
         {
             client.BaseAddress = new Uri(configuration.BaseAddress);
