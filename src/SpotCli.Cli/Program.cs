@@ -3,9 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using SpotCli.Cli.Configuration;
 using SpotCli.Cli.Spotify.Api;
-using IdentityModel.AspNetCore;
-using IdentityModel.Client;
 using SpotCli.Cli.OAuth;
+using SpotCli.Cli.Application;
 
 var services = new ServiceCollection();
 var configuration = new SpotifyApiConfiguration(
@@ -14,6 +13,7 @@ var configuration = new SpotifyApiConfiguration(
             .AddJsonFile("secrets.json")
             .AddJsonFile("token.json")
             .Build());
+services.AddSingleton<ISpotifyApiConfiguration, SpotifyApiConfiguration>();
 
 var authHeader = $"Bearer {configuration.BearerToken}";
 services.AddRefitClient<ISpotifyApi>()
@@ -25,10 +25,17 @@ services.AddRefitClient<ISpotifyApi>()
 services.AddRefitClient<ISpotifyOAuthApi>()
     .ConfigureHttpClient(client =>
     {
-        client.BaseAddress = new Uri("https://accounts.spotify.com");
+        client.BaseAddress = new Uri(configuration.OAuthBaseAddress);
     });
-
 services.AddSingleton<ISaveTokenService, SaveTokenService>();
+services.AddSingleton<IConsoleApplication, ConsoleApplication>();
+var app = services.BuildServiceProvider()
+    .GetRequiredService<IConsoleApplication>();
+
+await app.RunAsync(args);
+
+
+/*
 var client = services.BuildServiceProvider()
     .GetRequiredService<ISpotifyApi>();
 
@@ -44,4 +51,5 @@ Console.WriteLine(response);
 // testing saving
 var saver = services.BuildServiceProvider()
     .GetRequiredService<ISaveTokenService>();
-var test = saver.Save("test");
+var test = saver.Save(response.AccessToken!);
+*/
