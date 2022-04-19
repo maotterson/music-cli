@@ -9,17 +9,16 @@ namespace SpotCli.Cli.Configuration;
 
 public class SpotifyApiConfiguration : ISpotifyApiConfiguration
 {
-    private readonly IConfigurationRoot _configuration;
-
     public SpotifyApiConfiguration(IConfigurationRoot configuration)
     {
-        _configuration = configuration;
+        Configuration = configuration;
     }
+    public IConfigurationRoot Configuration { get; init; }
     public string BearerTokenHeader => $"Bearer {BearerToken}";
-    public string BearerToken => _configuration["BearerToken"];
-    public string RefreshToken => _configuration["RefreshToken"];
-    public string BaseAddress => _configuration["SpotifyApi:BaseAddress"];
-    public string OAuthBaseAddress => _configuration["SpotifyApi:OAuthBaseAddress"];
-    public string ClientId => _configuration["ClientId"];
-    public string ClientSecret => _configuration["ClientSecret"];
+    public string BearerToken => Configuration["BearerToken"];
+    public string RefreshToken => Configuration["RefreshToken"];
+    public string BaseAddress => Configuration["SpotifyApi:BaseAddress"];
+    public string OAuthBaseAddress => Configuration["SpotifyApi:OAuthBaseAddress"];
+    public string ClientId => Configuration["ClientId"];
+    public string ClientSecret => Configuration["ClientSecret"];
 }

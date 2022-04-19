@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace SpotCli.Cli.Configuration;
 
 public interface ISpotifyApiConfiguration
 {
+    public IConfigurationRoot Configuration { get; init; }
     public string BearerTokenHeader { get; }
     public string BearerToken { get; }
     public string RefreshToken { get; }
