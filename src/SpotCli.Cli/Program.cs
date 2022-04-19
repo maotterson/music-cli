@@ -13,14 +13,16 @@ var configuration = new SpotifyApiConfiguration(
             .AddJsonFile("secrets.json")
             .AddJsonFile("token.json")
             .Build());
-services.AddSingleton<ISpotifyApiConfiguration, SpotifyApiConfiguration>();
+services.AddSingleton<ISpotifyApiConfiguration, SpotifyApiConfiguration>(_ =>
+    {
+        return configuration;
+    });
 
-var authHeader = $"Bearer {configuration.BearerToken}";
 services.AddRefitClient<ISpotifyApi>()
     .ConfigureHttpClient(client =>
     {
         client.BaseAddress = new Uri(configuration.BaseAddress);
-        client.DefaultRequestHeaders.Add("Authorization", authHeader);
+        client.DefaultRequestHeaders.Add("Authorization", configuration.BearerTokenHeader);
     });
 services.AddRefitClient<ISpotifyOAuthApi>()
     .ConfigureHttpClient(client =>

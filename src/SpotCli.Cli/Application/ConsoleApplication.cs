@@ -23,6 +23,7 @@ public class ConsoleApplication : IConsoleApplication
 
     public async Task RunAsync(string[] args)
     {
-        
+        var response = await _spotifyApi.GetCurrentlyPlaying();
+        Console.WriteLine(response);
     }
 }
