@@ -22,15 +22,23 @@ services.AddRefitClient<ISpotifyApi>()
         client.BaseAddress = new Uri(configuration.BaseAddress);
         client.DefaultRequestHeaders.Add("Authorization", authHeader);
     });
+services.AddRefitClient<ISpotifyOAuthApi>()
+    .ConfigureHttpClient(client =>
+    {
+        client.BaseAddress = new Uri("https://accounts.spotify.com");
+    });
 
 services.AddSingleton<ISaveTokenService, SaveTokenService>();
 var client = services.BuildServiceProvider()
     .GetRequiredService<ISpotifyApi>();
 
+var oauth = services.BuildServiceProvider()
+    .GetRequiredService<ISpotifyOAuthApi>();
+
 // testing seeing a response
 var refreshRequest = new GetNewAccessTokenRequest(configuration.RefreshToken);
 var refreshHeader = new Base64ClientSecretAuthHeader(configuration.ClientSecret, configuration.ClientId);
-var response = await client.GetNewAccessToken(refreshHeader.Get(), refreshRequest);
+var response = await oauth.GetNewAccessToken(refreshHeader.Get(), refreshRequest);
 Console.WriteLine(response);
 
 // testing saving
