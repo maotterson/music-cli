@@ -32,16 +32,21 @@ public class ConsoleApplication : IConsoleApplication
         if (args[0] == "playing")
         {
             var response = await _spotifyApi.GetCurrentlyPlaying();
+            var content = response.Content;
+            Console.WriteLine(content.Item.Artists[0].Name + " - " + content.Item.Name);
         }
         else if(args[0] == "refresh")
         {
             var refreshRequest = new GetNewAccessTokenRequest(_configuration.RefreshToken);
             var refreshHeader = new Base64ClientSecretAuthHeader(_configuration.ClientSecret, _configuration.ClientId).Get();
             var response = await _spotifyOAuthApi.GetNewAccessToken(refreshHeader, refreshRequest);
+            var content = response.Content;
+            Console.WriteLine(content.AccessToken);
+            /*
             Console.WriteLine(response.AccessToken);
 
             var savedMessage = _saveTokenService.Save(response.AccessToken!);
-            Console.WriteLine(savedMessage);
+            Console.WriteLine(savedMessage);*/
         }
     }
 }

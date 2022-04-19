@@ -12,7 +12,7 @@ namespace SpotCli.Cli.Spotify.Api;
 public interface ISpotifyApi
 {
     [Get("/me/player/currently-playing")]
-    Task<CurrentlyPlayingResponse> GetCurrentlyPlaying();
+    Task<IApiResponse<CurrentlyPlayingResponse>> GetCurrentlyPlaying();
 
     
 }
