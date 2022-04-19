@@ -11,19 +11,20 @@ namespace SpotCli.Cli.Application;
 
 public class ConsoleApplication : IConsoleApplication
 {
-    private readonly ISpotifyOAuthApi _spotifyOAuthApi;
     private readonly ISpotifyApi _spotifyApi;
+    private readonly ISpotifyOAuthApi _spotifyOAuthApi;
     private readonly ISaveTokenService _saveTokenService;
     private readonly ISpotifyApiConfiguration _configuration;
 
-    public ConsoleApplication(ISpotifyOAuthApi spotifyOAuthApi, 
-        ISpotifyApi spotifyApi, 
-        ISpotifyApiConfiguration configuration,
-        ISaveTokenService saveTokenService)
+    public ConsoleApplication(
+        ISpotifyApi spotifyApi,
+        ISpotifyOAuthApi spotifyOAuthApi, 
+        ISaveTokenService saveTokenService,
+        ISpotifyApiConfiguration configuration)
     {
-        _spotifyOAuthApi = spotifyOAuthApi;
         _spotifyApi = spotifyApi;
         _configuration = configuration;
+        _spotifyOAuthApi = spotifyOAuthApi;
         _saveTokenService = saveTokenService;
     }
 
@@ -32,7 +33,14 @@ public class ConsoleApplication : IConsoleApplication
         if (args[0] == "playing")
         {
             var response = await _spotifyApi.GetCurrentlyPlaying();
+            
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("error."); //todo
+                return;
+            }
             var content = response.Content;
+
             Console.WriteLine(content.Item.Artists[0].Name + " - " + content.Item.Name);
         }
         else if(args[0] == "refresh")
@@ -40,6 +48,13 @@ public class ConsoleApplication : IConsoleApplication
             var refreshRequest = new GetNewAccessTokenRequest(_configuration.RefreshToken);
             var refreshHeader = new Base64ClientSecretAuthHeader(_configuration.ClientSecret, _configuration.ClientId).Get();
             var response = await _spotifyOAuthApi.GetNewAccessToken(refreshHeader, refreshRequest);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("error."); //todo
+                return;
+            }
+
             var token = response.Content.AccessToken!;
             Console.WriteLine(token);
 
