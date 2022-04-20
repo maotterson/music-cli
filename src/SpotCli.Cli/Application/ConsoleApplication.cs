@@ -1,38 +1,36 @@
-﻿using CommandLine;
-using SpotCli.Cli.Configuration;
-using SpotCli.Cli.OAuth;
+﻿using SpotCli.Cli.Configuration;
+using SpotCli.Cli.Spotify.OAuth;
 using SpotCli.Cli.Spotify.Api;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SpotCli.Cli.Spotify;
 
 namespace SpotCli.Cli.Application;
 
 public class ConsoleApplication : IConsoleApplication
 {
-    private readonly ISpotifyApi _spotifyApi;
+    private readonly ISpotifyWebApi _spotifyApi;
     private readonly ISpotifyOAuthApi _spotifyOAuthApi;
     private readonly ISaveTokenService _saveTokenService;
-    private readonly ISpotifyApiConfiguration _configuration;
+    private readonly IConsoleRequestFactory _consoleRequestFactory;
+    private readonly ISpotifyApiConfiguration _spotifyApiConfiguration;
 
     public ConsoleApplication(
-        ISpotifyApi spotifyApi,
-        ISpotifyOAuthApi spotifyOAuthApi, 
+        ISpotifyWebApi spotifyApi,
+        ISpotifyOAuthApi spotifyOAuthApi,
         ISaveTokenService saveTokenService,
-        ISpotifyApiConfiguration configuration)
+        IConsoleRequestFactory consoleRequestFactory,
+        ISpotifyApiConfiguration spotifyApiConfiguration)
     {
         _spotifyApi = spotifyApi;
-        _configuration = configuration;
         _spotifyOAuthApi = spotifyOAuthApi;
         _saveTokenService = saveTokenService;
+        _consoleRequestFactory = consoleRequestFactory;
+        _spotifyApiConfiguration = spotifyApiConfiguration;
     }
 
     public async Task RunAsync(string[] args)
     {
-        var command = _commandProvider.GetCommand(args);
-        var response = command.ExecuteAsync();
+        var requestObject = _consoleRequestFactory.GetRequestObject(args);
+        var response = _requestMediator.Send(requestObject);
 
         if (args[0] == "playing")
         {
@@ -49,8 +47,8 @@ public class ConsoleApplication : IConsoleApplication
         }
         else if(args[0] == "refresh")
         {
-            var refreshRequest = new GetNewAccessTokenRequest(_configuration.RefreshToken);
-            var refreshHeader = new Base64ClientSecretAuthHeader(_configuration.ClientSecret, _configuration.ClientId).Get();
+            var refreshRequest = new GetNewAccessTokenCommand(_spotifyApiConfiguration.RefreshToken);
+            var refreshHeader = new Base64ClientSecretAuthHeader(_spotifyApiConfiguration.ClientSecret, _spotifyApiConfiguration.ClientId).Get();
             var response = await _spotifyOAuthApi.GetNewAccessToken(refreshHeader, refreshRequest);
 
             if (!response.IsSuccessStatusCode)

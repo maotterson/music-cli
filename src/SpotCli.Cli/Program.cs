@@ -3,10 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using SpotCli.Cli.Configuration;
 using SpotCli.Cli.Spotify.Api;
-using SpotCli.Cli.OAuth;
 using SpotCli.Cli.Application;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using SpotCli.Cli.Spotify.OAuth;
+using SpotCli.Cli.Spotify;
 
 var services = new ServiceCollection();
 var configurationBuilder = new ConfigurationBuilder()
@@ -27,7 +28,7 @@ public static partial class Helpers
 {
     public static void AddRefitApis(this IServiceCollection services, ISpotifyApiConfiguration configuration)
     {
-        services.AddRefitClient<ISpotifyApi>(
+        services.AddRefitClient<ISpotifyWebApi>(
             new RefitSettings(
                 new NewtonsoftJsonContentSerializer(
                     new JsonSerializerSettings
@@ -54,6 +55,7 @@ public static partial class Helpers
     {
         services.AddSingleton<ISaveTokenService, SaveTokenService>();
         services.AddSingleton<IConsoleApplication, ConsoleApplication>();
+        services.AddSingleton<IConsoleRequestFactory, ConsoleRequestFactory>();
         services.AddSingleton<ISpotifyApiConfiguration, SpotifyApiConfiguration>(_ =>
         {
             return new(configuration.Configuration);

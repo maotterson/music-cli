@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpotCli.Cli.Spotify.Responses;
 
-public record CurrentlyPlayingResponse
+public record GetCurrentlyPlayingResponse
 {
     [JsonProperty("item")]
     public ResponseItem Item { get; set; }

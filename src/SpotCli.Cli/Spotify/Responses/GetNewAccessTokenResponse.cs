@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpotCli.Cli.OAuth;
+namespace SpotCli.Cli.Spotify.OAuth;
 public record GetNewAccessTokenResponse
 {
     [JsonProperty(PropertyName = "access_token")]

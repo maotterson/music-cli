@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpotCli.Cli.Commands;
+namespace SpotCli.Cli.Spotify.Handlers;
 
-public interface ICommandFactory<T>
+internal interface GetNewAccessTokenCommandHandler
 {
-    public IConsoleCommand CreateCommand(string[] args);
 }
