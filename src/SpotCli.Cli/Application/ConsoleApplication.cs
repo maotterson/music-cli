@@ -1,4 +1,5 @@
-﻿using SpotCli.Cli.Configuration;
+﻿using CommandLine;
+using SpotCli.Cli.Configuration;
 using SpotCli.Cli.OAuth;
 using SpotCli.Cli.Spotify.Api;
 using System;
@@ -30,6 +31,9 @@ public class ConsoleApplication : IConsoleApplication
 
     public async Task RunAsync(string[] args)
     {
+        var command = _commandProvider.GetCommand(args);
+        var response = command.ExecuteAsync();
+
         if (args[0] == "playing")
         {
             var response = await _spotifyApi.GetCurrentlyPlaying();
