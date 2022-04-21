@@ -6,7 +6,7 @@ using SpotCli.Cli.Spotify.Responses;
 
 namespace SpotCli.Cli.Spotify.Handlers;
 
-public class GetCurrentlyPlayingCommandHandler : IRequestHandler<GetCurrentlyPlayingCommand, IApiResponse<GetCurrentlyPlayingResponse>>
+public class GetCurrentlyPlayingCommandHandler : IRequestHandler<GetCurrentlyPlayingCommand, GetCurrentlyPlayingResponse>
 {
     private readonly ISpotifyWebApi _spotifyWebApi;
     public GetCurrentlyPlayingCommandHandler(ISpotifyWebApi spotifyWebApi)
@@ -14,8 +14,9 @@ public class GetCurrentlyPlayingCommandHandler : IRequestHandler<GetCurrentlyPla
         _spotifyWebApi = spotifyWebApi;
     }
 
-    public async Task<IApiResponse<GetCurrentlyPlayingResponse>> Handle(GetCurrentlyPlayingCommand request, CancellationToken cancellationToken)
+    public async Task<GetCurrentlyPlayingResponse> Handle(GetCurrentlyPlayingCommand request, CancellationToken cancellationToken)
     {
-        return await _spotifyWebApi.GetCurrentlyPlaying();
+        var response = await _spotifyWebApi.GetCurrentlyPlaying();
+        return response.Content;
     }
 }

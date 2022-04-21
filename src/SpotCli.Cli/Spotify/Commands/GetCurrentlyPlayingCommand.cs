@@ -4,7 +4,6 @@ using SpotCli.Cli.Spotify.Responses;
 
 namespace SpotCli.Cli.Spotify.Commands;
 
-public class GetCurrentlyPlayingCommand : IConsoleVerb, IRequest<IApiResponse<GetCurrentlyPlayingResponse>>
+public class GetCurrentlyPlayingCommand : IRequest<GetCurrentlyPlayingResponse>, IValidCommand
 {
-    public string ConsoleArgument => "playing";
 }

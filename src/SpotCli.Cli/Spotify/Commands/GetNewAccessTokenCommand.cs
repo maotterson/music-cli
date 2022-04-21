@@ -4,7 +4,7 @@ using SpotCli.Cli.Spotify.OAuth;
 
 namespace SpotCli.Cli.Spotify.Commands;
 
-public record GetNewAccessTokenCommand : IConsoleVerb, IRequest<IApiResponse<GetNewAccessTokenResponse>>
+public record GetNewAccessTokenCommand : IRequest<GetNewAccessTokenResponse>, IValidCommand
 {
     public GetNewAccessTokenCommand(string refreshToken)
     {
@@ -16,5 +16,4 @@ public record GetNewAccessTokenCommand : IConsoleVerb, IRequest<IApiResponse<Get
     [AliasAs("refresh_token")]
     public string RefreshToken { get; init; }
 
-    public string ConsoleArgument => "refresh";
 }

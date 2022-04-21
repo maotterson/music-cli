@@ -7,7 +7,7 @@ using Refit;
 
 namespace SpotCli.Cli.Spotify.Handlers;
 
-public class GetNewAccessTokenCommandHandler : IRequestHandler<GetNewAccessTokenCommand, IApiResponse<GetNewAccessTokenResponse>>
+public class GetNewAccessTokenCommandHandler : IRequestHandler<GetNewAccessTokenCommand, GetNewAccessTokenResponse>
 {
     private readonly ISpotifyOAuthApi _api;
     private readonly ISpotifyApiConfiguration _configuration;
@@ -18,7 +18,7 @@ public class GetNewAccessTokenCommandHandler : IRequestHandler<GetNewAccessToken
         _configuration = configuration;
         _saveTokenService = saveTokenService;
     }
-    public async Task<IApiResponse<GetNewAccessTokenResponse>> Handle(GetNewAccessTokenCommand request, CancellationToken cancellationToken)
+    public async Task<GetNewAccessTokenResponse> Handle(GetNewAccessTokenCommand request, CancellationToken cancellationToken)
     {
         var header = new Base64ClientSecretAuthHeader(_configuration.ClientSecret, _configuration.ClientId).Get();
         var response = await _api.GetNewAccessToken(header, request);
@@ -27,6 +27,6 @@ public class GetNewAccessTokenCommandHandler : IRequestHandler<GetNewAccessToken
             _saveTokenService.Save(response.Content.AccessToken);
         }
 
-        return response;
+        return response.Content;
     }
 }

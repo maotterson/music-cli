@@ -7,7 +7,7 @@ using Refit;
 
 namespace SpotCli.Cli.Spotify.Factories;
 
-public class ConsoleCommandFactory : IConsoleCommandFactory
+public class ConsoleCommandFactory : IConsoleCommandFactory 
 {
     private readonly ISpotifyApiConfiguration _configuration;
     public ConsoleCommandFactory(ISpotifyApiConfiguration configuration)
@@ -15,15 +15,15 @@ public class ConsoleCommandFactory : IConsoleCommandFactory
         _configuration = configuration;
     }
 
-    public IRequest<IApiResponse>? BuildFromArgs(string[] args)
+    public IValidCommand? BuildFromArgs(string[] args)
     {
         var command = BuildCommand(args);
         return command;
     }
 
-    private IRequest<IApiResponse>? BuildCommand(string[] args)
+    private IValidCommand? BuildCommand(string[] args)
     {
-        IRequest<IApiResponse>? command = null;
+        IValidCommand? command = null;
         Parser.Default.ParseArguments<GetCurrentlyPlayingCommandOptions,GetNewAccessTokenCommandOptions>(args)
             .WithParsed<GetCurrentlyPlayingCommandOptions>(_ =>
             {

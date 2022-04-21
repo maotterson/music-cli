@@ -8,7 +8,7 @@ public record GetCurrentlyPlayingResponse
     public ResponseItem Item { get; set; }
     public override string ToString()
     {
-        return $"Now playing: {Item.Artists.First()} - {Item.Name} (Album: {Item.Album})";
+        return $"Now playing: {Item.Artists.First().Name} - {Item.Name} (Album: {Item.Album.Name})";
     }
 
     public struct ResponseItem
