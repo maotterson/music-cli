@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using CommandLine;
-using SpotCli.Cli.Console.Options;
+using SpotCli.Cli.Options;
 using SpotCli.Cli.Spotify.Commands;
 using SpotCli.Cli.Configuration;
 using Refit;
@@ -24,7 +24,7 @@ public class ConsoleCommandFactory : IConsoleCommandFactory
     private IRequest<IApiResponse>? BuildCommand(string[] args)
     {
         IRequest<IApiResponse>? command = null;
-        Parser.Default.ParseArguments(args)
+        Parser.Default.ParseArguments<GetCurrentlyPlayingCommandOptions,GetNewAccessTokenCommandOptions>(args)
             .WithParsed<GetCurrentlyPlayingCommandOptions>(_ =>
             {
                 command = new GetCurrentlyPlayingCommand();

@@ -14,4 +14,9 @@ public record GetNewAccessTokenResponse
 
     [JsonProperty(PropertyName = "scope")]
     public string? Scope { get; set; }
+
+    public override string ToString()
+    {
+        return $"Access Token {AccessToken} retrieved.";
+    }
 }

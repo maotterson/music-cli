@@ -6,6 +6,10 @@ public record GetCurrentlyPlayingResponse
 {
     [JsonProperty("item")]
     public ResponseItem Item { get; set; }
+    public override string ToString()
+    {
+        return $"Now playing: {Item.Artists.First()} - {Item.Name} (Album: {Item.Album})";
+    }
 
     public struct ResponseItem
     {
@@ -30,4 +34,5 @@ public record GetCurrentlyPlayingResponse
         [JsonProperty("name")]
         public string Name { get; set; }
     }
+
 }

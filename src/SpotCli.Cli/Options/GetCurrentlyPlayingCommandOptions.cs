@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpotCli.Cli.Console.Options;
+namespace SpotCli.Cli.Options;
 
 [Verb("playing")]
 public class GetCurrentlyPlayingCommandOptions : IConsoleOptions

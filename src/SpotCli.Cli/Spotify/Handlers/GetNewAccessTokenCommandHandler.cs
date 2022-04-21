@@ -11,15 +11,22 @@ public class GetNewAccessTokenCommandHandler : IRequestHandler<GetNewAccessToken
 {
     private readonly ISpotifyOAuthApi _api;
     private readonly ISpotifyApiConfiguration _configuration;
-    public GetNewAccessTokenCommandHandler(ISpotifyOAuthApi api, ISpotifyApiConfiguration configuration)
+    private readonly ISaveTokenService _saveTokenService;
+    public GetNewAccessTokenCommandHandler(ISpotifyOAuthApi api, ISpotifyApiConfiguration configuration, ISaveTokenService saveTokenService)
     {
         _api = api;
         _configuration = configuration;
+        _saveTokenService = saveTokenService;
     }
     public async Task<IApiResponse<GetNewAccessTokenResponse>> Handle(GetNewAccessTokenCommand request, CancellationToken cancellationToken)
     {
         var header = new Base64ClientSecretAuthHeader(_configuration.ClientSecret, _configuration.ClientId).Get();
         var response = await _api.GetNewAccessToken(header, request);
+        if (response.IsSuccessStatusCode && response.Content is not null && response.Content.AccessToken is not null)
+        {
+            _saveTokenService.Save(response.Content.AccessToken);
+        }
+
         return response;
     }
 }

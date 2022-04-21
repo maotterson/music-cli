@@ -19,5 +19,6 @@ public class ConsoleApplication : IConsoleApplication
         var command = _consoleCommandFactory.BuildFromArgs(args);
         if (command is null) return;
         var response = await _mediator.Send(command);
+        Console.WriteLine(response.ToString());
     }
 }

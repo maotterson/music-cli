@@ -10,6 +10,7 @@ using Newtonsoft.Json.Serialization;
 using SpotCli.Cli.Spotify.OAuth;
 using SpotCli.Cli.Spotify.Factories;
 using System.Reflection;
+using SpotCli.Cli.Spotify.Handlers;
 
 var services = new ServiceCollection();
 var configurationBuilder = new ConfigurationBuilder()
@@ -55,7 +56,11 @@ public static partial class Helpers
     }
     public static void AddSingletonServices(this IServiceCollection services, ISpotifyApiConfiguration configuration)
     {
-        services.AddMediatR(Assembly.GetExecutingAssembly());
+        services.AddScoped<GetCurrentlyPlayingCommandHandler>();
+        services.AddScoped<GetNewAccessTokenCommandHandler>();
+        var assembly = typeof(GetCurrentlyPlayingCommandHandler).Assembly;
+
+        services.AddMediatR(assembly);
         services.AddSingleton<ISaveTokenService, SaveTokenService>();
         services.AddSingleton<IConsoleApplication, ConsoleApplication>();
         services.AddSingleton<IConsoleCommandFactory, ConsoleCommandFactory>();

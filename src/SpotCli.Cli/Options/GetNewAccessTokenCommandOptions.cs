@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace SpotCli.Cli.Console.Options;
+namespace SpotCli.Cli.Options;
 
 [Verb("refresh")]
 public class GetNewAccessTokenCommandOptions : IConsoleOptions
