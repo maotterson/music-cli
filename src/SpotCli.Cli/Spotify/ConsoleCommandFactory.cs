@@ -1,36 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SpotCli.Cli.Spotify.Commands;
 
 namespace SpotCli.Cli.Spotify;
 
-public class ConsoleRequestFactory : IConsoleRequestFactory
+public class ConsoleCommandFactory : IConsoleCommandFactory
 {
-    private readonly Dictionary<string, IConsoleRequest> _dictionary;
-    public ConsoleRequestFactory()
+    private readonly Dictionary<string, IConsoleCommand> _dictionary;
+    public ConsoleCommandFactory()
     {
         _dictionary = InitializeDictionaryUsingActivator();
     }
 
-    public IConsoleRequest GetRequestObject(string[] args)
+    public IConsoleCommand GetRequestObject(string[] args)
     {
         string argument = args[0].ToLower();
         var request = _dictionary[argument];
         return request;
     }
 
-    private Dictionary<string, IConsoleRequest> InitializeDictionaryUsingActivator()
+    private Dictionary<string, IConsoleCommand> InitializeDictionaryUsingActivator()
     {
-        var commandInterfaceType = typeof(IConsoleRequest);
+        var commandInterfaceType = typeof(IConsoleCommand);
         var dict = commandInterfaceType.Assembly.ExportedTypes
             .Where(type => commandInterfaceType.IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract)
             .Select(type =>
             {
                 return Activator.CreateInstance(type);
             })
-            .Cast<IConsoleRequest>()
+            .Cast<IConsoleCommand>()
             .ToDictionary(request => request.ConsoleArgument, command => command);
         return dict;
     }

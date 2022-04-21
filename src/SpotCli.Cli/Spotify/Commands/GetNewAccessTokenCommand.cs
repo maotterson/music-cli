@@ -1,8 +1,10 @@
-﻿using Refit;
+﻿using MediatR;
+using Refit;
+using SpotCli.Cli.Spotify.OAuth;
 
 namespace SpotCli.Cli.Spotify.Commands;
 
-public record GetNewAccessTokenCommand : IConsoleCommand
+public record GetNewAccessTokenCommand : IConsoleVerb, IRequest<IApiResponse<GetNewAccessTokenResponse>>
 {
     public GetNewAccessTokenCommand(string refreshToken)
     {

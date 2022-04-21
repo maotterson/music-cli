@@ -10,14 +10,14 @@ public class ConsoleApplication : IConsoleApplication
     private readonly ISpotifyWebApi _spotifyApi;
     private readonly ISpotifyOAuthApi _spotifyOAuthApi;
     private readonly ISaveTokenService _saveTokenService;
-    private readonly IConsoleRequestFactory _consoleRequestFactory;
+    private readonly IConsoleCommandFactory _consoleRequestFactory;
     private readonly ISpotifyApiConfiguration _spotifyApiConfiguration;
 
     public ConsoleApplication(
         ISpotifyWebApi spotifyApi,
         ISpotifyOAuthApi spotifyOAuthApi,
         ISaveTokenService saveTokenService,
-        IConsoleRequestFactory consoleRequestFactory,
+        IConsoleCommandFactory consoleRequestFactory,
         ISpotifyApiConfiguration spotifyApiConfiguration)
     {
         _spotifyApi = spotifyApi;
