@@ -1,8 +1,7 @@
 {
   "profiles": {
     "SpotCli.Cli": {
-      "commandName": "Project",
-      "commandLineArgs": "resume"
+      "commandName": "Project"
     }
   }
 }

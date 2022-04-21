@@ -26,9 +26,14 @@ public class ConsoleCommandFactory : IConsoleCommandFactory
         IValidCommand? command = null;
         Parser.Default
             .ParseArguments<
-                GetCurrentlyPlayingCommandOptions,
+                PausePlaybackCommandOptions,
                 GetNewAccessTokenCommandOptions,
+                GetCurrentlyPlayingCommandOptions,
                 StartOrResumePlaybackCommandOptions>(args)
+            .WithParsed<PausePlaybackCommandOptions>(_ =>
+            {
+                command = new PausePlaybackCommand();
+            })
             .WithParsed<GetCurrentlyPlayingCommandOptions>(_ =>
             {
                 command = new GetCurrentlyPlayingCommand();

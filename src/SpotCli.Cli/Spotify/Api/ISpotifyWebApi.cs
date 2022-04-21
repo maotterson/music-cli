@@ -16,5 +16,8 @@ public interface ISpotifyWebApi
 
     [Put("/me/player/play")]
     Task<IApiResponse<StartOrResumePlaybackResponse>> StartOrResumePlayback();
-    
+
+    [Put("/me/player/pause")]
+    Task<IApiResponse<PausePlaybackResponse>> PausePlayback();
+
 }

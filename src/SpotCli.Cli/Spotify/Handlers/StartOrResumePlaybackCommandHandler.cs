@@ -2,11 +2,6 @@
 using SpotCli.Cli.Spotify.Api;
 using SpotCli.Cli.Spotify.Commands;
 using SpotCli.Cli.Spotify.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotCli.Cli.Spotify.Handlers;
 
