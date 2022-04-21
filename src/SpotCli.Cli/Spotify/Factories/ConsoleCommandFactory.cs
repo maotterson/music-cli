@@ -29,7 +29,8 @@ public class ConsoleCommandFactory : IConsoleCommandFactory
                 PausePlaybackCommandOptions,
                 GetNewAccessTokenCommandOptions,
                 GetCurrentlyPlayingCommandOptions,
-                StartOrResumePlaybackCommandOptions>(args)
+                StartOrResumePlaybackCommandOptions,
+                GetAvailableDevicesOptions>(args)
             .WithParsed<PausePlaybackCommandOptions>(_ =>
             {
                 command = new PausePlaybackCommand();
@@ -45,8 +46,11 @@ public class ConsoleCommandFactory : IConsoleCommandFactory
             })
             .WithParsed<StartOrResumePlaybackCommandOptions>(_ =>
             {
-                var refreshToken = _configuration.RefreshToken;
                 command = new StartOrResumePlaybackCommand();
+            })
+            .WithParsed<GetAvailableDevicesOptions>(options =>
+            {
+                command = new GetAvailableDevicesCommand(options);
             })
             .WithNotParsed(_ =>
             {

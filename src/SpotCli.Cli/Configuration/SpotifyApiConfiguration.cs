@@ -21,4 +21,5 @@ public class SpotifyApiConfiguration : ISpotifyApiConfiguration
     public string OAuthBaseAddress => Configuration["SpotifyApi:OAuthBaseAddress"];
     public string ClientId => Configuration["ClientId"];
     public string ClientSecret => Configuration["ClientSecret"];
+    public Dictionary<string, string> SpotifyDeviceSettings => Configuration.GetSection("Devices").Get<Dictionary<string, string>>();
 }

@@ -20,4 +20,7 @@ public interface ISpotifyWebApi
     [Put("/me/player/pause")]
     Task<IApiResponse<PausePlaybackResponse>> PausePlayback();
 
+    [Get("/me/player/devices")]
+    Task<IApiResponse<GetAvailableDevicesResponse>> GetAvailableDevices();
+
 }

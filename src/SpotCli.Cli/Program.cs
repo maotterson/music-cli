@@ -19,6 +19,7 @@ var configurationBuilder = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .AddJsonFile("secrets.json")
     .AddJsonFile("token.json")
+    .AddJsonFile("devices.json")
     .Build();
 var configuration = new SpotifyApiConfiguration(configurationBuilder);
 

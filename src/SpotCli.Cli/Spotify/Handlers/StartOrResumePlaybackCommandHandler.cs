@@ -16,6 +16,12 @@ public class StartOrResumePlaybackCommandHandler : IRequestHandler<StartOrResume
     public async Task<StartOrResumePlaybackResponse> Handle(StartOrResumePlaybackCommand request, CancellationToken cancellationToken)
     {
         var response = await _spotifyWebApi.StartOrResumePlayback();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return null;
+        }
+
         return new StartOrResumePlaybackResponse();
     }
 }

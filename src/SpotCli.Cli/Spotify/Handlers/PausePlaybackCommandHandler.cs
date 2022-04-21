@@ -16,6 +16,12 @@ public class PausePlaybackCommandHandler : IRequestHandler<PausePlaybackCommand,
     public async Task<PausePlaybackResponse> Handle(PausePlaybackCommand request, CancellationToken cancellationToken)
     {
         var response = await _spotifyWebApi.PausePlayback();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return null;
+        }
+
         return new PausePlaybackResponse();
     }
 }
