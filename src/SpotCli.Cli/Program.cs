@@ -69,7 +69,6 @@ public static partial class Helpers
     }
     public static void AddHandlers(this IServiceCollection services)
     {
-
         var assembly = Assembly.GetExecutingAssembly();
         services.AddMediatR(assembly);
     }

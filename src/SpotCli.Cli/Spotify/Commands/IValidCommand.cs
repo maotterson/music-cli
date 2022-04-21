@@ -8,4 +8,5 @@ namespace SpotCli.Cli.Spotify.Commands;
 
 public interface IValidCommand
 {
+    public string Description { get; }
 }

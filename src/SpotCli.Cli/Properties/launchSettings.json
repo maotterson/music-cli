@@ -2,7 +2,7 @@
   "profiles": {
     "SpotCli.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "refresh"
+      "commandLineArgs": "resume"
     }
   }
 }

@@ -24,7 +24,11 @@ public class ConsoleCommandFactory : IConsoleCommandFactory
     private IValidCommand? BuildCommand(string[] args)
     {
         IValidCommand? command = null;
-        Parser.Default.ParseArguments<GetCurrentlyPlayingCommandOptions,GetNewAccessTokenCommandOptions>(args)
+        Parser.Default
+            .ParseArguments<
+                GetCurrentlyPlayingCommandOptions,
+                GetNewAccessTokenCommandOptions,
+                StartOrResumePlaybackCommandOptions>(args)
             .WithParsed<GetCurrentlyPlayingCommandOptions>(_ =>
             {
                 command = new GetCurrentlyPlayingCommand();
@@ -33,6 +37,11 @@ public class ConsoleCommandFactory : IConsoleCommandFactory
             {
                 var refreshToken = _configuration.RefreshToken;
                 command = new GetNewAccessTokenCommand(refreshToken);
+            })
+            .WithParsed<StartOrResumePlaybackCommandOptions>(_ =>
+            {
+                var refreshToken = _configuration.RefreshToken;
+                command = new StartOrResumePlaybackCommand();
             })
             .WithNotParsed(_ =>
             {

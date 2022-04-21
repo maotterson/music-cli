@@ -14,5 +14,7 @@ public interface ISpotifyWebApi
     [Get("/me/player/currently-playing")]
     Task<IApiResponse<GetCurrentlyPlayingResponse>> GetCurrentlyPlaying();
 
+    [Put("/me/player/play")]
+    Task<IApiResponse<StartOrResumePlaybackResponse>> StartOrResumePlayback();
     
 }

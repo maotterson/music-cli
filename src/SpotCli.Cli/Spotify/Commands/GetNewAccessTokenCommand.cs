@@ -16,4 +16,5 @@ public record GetNewAccessTokenCommand : IRequest<GetNewAccessTokenResponse>, IV
     [AliasAs("refresh_token")]
     public string RefreshToken { get; init; }
 
+    public string Description => "Get new access token";
 }
