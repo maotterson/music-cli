@@ -22,11 +22,12 @@ public class GetNewAccessTokenCommandHandler : IRequestHandler<GetNewAccessToken
     {
         var header = new Base64ClientSecretAuthHeader(_configuration.ClientSecret, _configuration.ClientId).Get();
         var response = await _api.GetNewAccessToken(header, request);
-        if (response.IsSuccessStatusCode && response.Content is not null && response.Content.AccessToken is not null)
+        if(!response.IsSuccessStatusCode || response.Content is null || response.Content.AccessToken is null)
         {
-            _saveTokenService.Save(response.Content.AccessToken);
+            throw new();
         }
 
+        _saveTokenService.Save(response.Content.AccessToken);
         return response.Content;
     }
 }

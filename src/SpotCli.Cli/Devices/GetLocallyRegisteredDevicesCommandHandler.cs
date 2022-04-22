@@ -11,7 +11,7 @@ public class GetLocallyRegisteredDevicesCommandHandler : IRequestHandler<GetLoca
     {
         _configuration = configuration;
     }
-    public async Task<GetLocallyRegisteredDevicesResponse> Handle(GetLocallyRegisteredDevicesCommand request, CancellationToken cancellationToken)
+    public Task<GetLocallyRegisteredDevicesResponse> Handle(GetLocallyRegisteredDevicesCommand request, CancellationToken cancellationToken)
     {
         var deviceDictionary = _configuration.SpotifyDeviceSettings;
         var response = new GetLocallyRegisteredDevicesResponse()
@@ -25,6 +25,6 @@ public class GetLocallyRegisteredDevicesCommandHandler : IRequestHandler<GetLoca
                 .ToArray()
         };
 
-        return response;
+        return Task.FromResult(response);
     }
 }
