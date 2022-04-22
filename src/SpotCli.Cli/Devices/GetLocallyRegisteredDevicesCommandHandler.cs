@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SpotCli.Cli.Configuration;
+using SpotCli.Application.Interfaces;
 using static SpotCli.Cli.Devices.GetLocallyRegisteredDevicesResponse;
 
 namespace SpotCli.Cli.Devices;

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Refit;
 using SpotCli.Application.Api;
+using SpotCli.Application.Interfaces;
 using SpotCli.Cli.App;
 using SpotCli.Cli.Configuration;
 using SpotCli.Cli.Factories;

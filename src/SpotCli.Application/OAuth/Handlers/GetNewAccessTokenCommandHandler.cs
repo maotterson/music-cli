@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using SpotCli.Application.Api;
+using SpotCli.Application.Interfaces;
 using SpotCli.Application.OAuth.Commands;
 using SpotCli.Application.OAuth.Responses;
 using SpotCli.Application.OAuth.Utils;

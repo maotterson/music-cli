@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SpotCli.Application.Interfaces;
 
 namespace SpotCli.Cli.Configuration;
 

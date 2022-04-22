@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace SpotCli.Cli.Configuration;
+namespace SpotCli.Application.Interfaces;
 
 public interface ISpotifyApiConfiguration
 {
