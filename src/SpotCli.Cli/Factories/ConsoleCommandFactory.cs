@@ -1,12 +1,15 @@
-﻿using MediatR;
-using CommandLine;
-using SpotCli.Cli.Options;
-using SpotCli.Cli.Spotify.Commands;
+﻿using CommandLine;
+using SpotCli.Application.CurrentTrack.Commands;
+using SpotCli.Application.Devices.Commands;
+using SpotCli.Application.Interfaces;
+using SpotCli.Application.OAuth.Commands;
 using SpotCli.Cli.Configuration;
-using Refit;
-using SpotCli.Cli.Spotify.Commands.Local;
+using SpotCli.Cli.Devices;
+using SpotCli.Cli.Options.CurrentTrack;
+using SpotCli.Cli.Options.Devices;
+using SpotCli.Cli.Options.OAuth;
 
-namespace SpotCli.Cli.Spotify.Factories;
+namespace SpotCli.Cli.Factories;
 
 public class ConsoleCommandFactory : IConsoleCommandFactory 
 {

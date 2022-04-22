@@ -1,18 +1,15 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Refit;
-using MediatR;
-using SpotCli.Cli.Configuration;
-using SpotCli.Cli.Spotify.Api;
-using SpotCli.Cli.Application;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using SpotCli.Cli.Spotify.OAuth;
-using SpotCli.Cli.Spotify.Factories;
+using Refit;
+using SpotCli.Application.Api;
+using SpotCli.Cli.App;
+using SpotCli.Cli.Configuration;
+using SpotCli.Cli.Factories;
+using SpotCli.Cli.Services;
 using System.Reflection;
-using SpotCli.Cli.Spotify.Handlers;
-using SpotCli.Cli.Spotify.Commands;
-using SpotCli.Cli.Spotify.Responses;
 
 var services = new ServiceCollection();
 var configurationBuilder = new ConfigurationBuilder()

@@ -1,8 +1,6 @@
-﻿using MediatR;
-using Refit;
-using SpotCli.Cli.Spotify.Commands;
+﻿using SpotCli.Application.Interfaces;
 
-namespace SpotCli.Cli.Spotify.Factories;
+namespace SpotCli.Cli.Factories;
 
 public interface IConsoleCommandFactory
 {

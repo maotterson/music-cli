@@ -1,11 +1,7 @@
 ﻿using CommandLine;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SpotCli.Cli.Options.Interfaces;
 
-namespace SpotCli.Cli.Options;
+namespace SpotCli.Cli.Options.CurrentTrack;
 
 [Verb("resume")]
 public class StartOrResumePlaybackCommandOptions : IConsoleOptions

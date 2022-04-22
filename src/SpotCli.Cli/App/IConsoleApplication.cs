@@ -1,4 +1,4 @@
-﻿namespace SpotCli.Cli.Application;
+﻿namespace SpotCli.Cli.App;
 
 public interface IConsoleApplication
 {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SpotCli.Cli.Spotify.Responses.Local;
+﻿namespace SpotCli.Cli.Devices;
 
 public class GetLocallyRegisteredDevicesResponse
 {

@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using SpotCli.Cli.Configuration;
-using SpotCli.Cli.Spotify.Factories;
+using SpotCli.Cli.Factories;
 
-namespace SpotCli.Cli.Application;
+namespace SpotCli.Cli.App;
 
 public class ConsoleApplication : IConsoleApplication
 {

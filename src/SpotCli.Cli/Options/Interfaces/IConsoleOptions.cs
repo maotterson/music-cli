@@ -1,4 +1,4 @@
-﻿namespace SpotCli.Cli.Options;
+﻿namespace SpotCli.Cli.Options.Interfaces;
 
 public interface IConsoleOptions
 {

@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{E244
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandQueueInvoker", "samples\CommandQueueInvoker\CommandQueueInvoker.csproj", "{0ACBA5BD-2AEA-46D0-AADF-38B8A2C14669}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotCli.Application", "src\SpotCli.Application\SpotCli.Application.csproj", "{478250E5-C1FA-4546-B00B-57CD077A7CC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0ACBA5BD-2AEA-46D0-AADF-38B8A2C14669}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0ACBA5BD-2AEA-46D0-AADF-38B8A2C14669}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0ACBA5BD-2AEA-46D0-AADF-38B8A2C14669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{478250E5-C1FA-4546-B00B-57CD077A7CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{478250E5-C1FA-4546-B00B-57CD077A7CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{478250E5-C1FA-4546-B00B-57CD077A7CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{478250E5-C1FA-4546-B00B-57CD077A7CC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3EAF6BCC-DF92-4850-BFFD-434D2DA01885} = {BC322B6A-ADC3-4050-8800-EBCEF0FD779F}
 		{0ACBA5BD-2AEA-46D0-AADF-38B8A2C14669} = {E244A5C4-7770-4EEC-9214-20C98C0C207A}
+		{478250E5-C1FA-4546-B00B-57CD077A7CC8} = {BC322B6A-ADC3-4050-8800-EBCEF0FD779F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {561E3CCC-B027-4BFC-BA6C-4CE92A8FD14B}

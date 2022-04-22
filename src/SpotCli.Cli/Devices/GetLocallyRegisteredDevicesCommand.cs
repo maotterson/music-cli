@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using SpotCli.Cli.Spotify.Responses.Local;
+using SpotCli.Application.Interfaces;
 
-namespace SpotCli.Cli.Spotify.Commands.Local;
+namespace SpotCli.Cli.Devices;
 
 public class GetLocallyRegisteredDevicesCommand : IRequest<GetLocallyRegisteredDevicesResponse>, IValidCommand
 {

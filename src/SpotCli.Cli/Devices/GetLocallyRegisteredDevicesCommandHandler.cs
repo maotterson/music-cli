@@ -1,15 +1,8 @@
 ﻿using MediatR;
 using SpotCli.Cli.Configuration;
-using SpotCli.Cli.Spotify.Commands.Local;
-using SpotCli.Cli.Spotify.Responses.Local;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static SpotCli.Cli.Spotify.Responses.Local.GetLocallyRegisteredDevicesResponse;
+using static SpotCli.Cli.Devices.GetLocallyRegisteredDevicesResponse;
 
-namespace SpotCli.Cli.Spotify.Handlers.Local;
+namespace SpotCli.Cli.Devices;
 
 public class GetLocallyRegisteredDevicesCommandHandler : IRequestHandler<GetLocallyRegisteredDevicesCommand, GetLocallyRegisteredDevicesResponse>
 {
