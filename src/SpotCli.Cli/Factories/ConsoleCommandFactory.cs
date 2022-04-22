@@ -4,6 +4,7 @@ using SpotCli.Cli.Options;
 using SpotCli.Cli.Spotify.Commands;
 using SpotCli.Cli.Configuration;
 using Refit;
+using SpotCli.Cli.Spotify.Commands.Local;
 
 namespace SpotCli.Cli.Spotify.Factories;
 
@@ -50,7 +51,7 @@ public class ConsoleCommandFactory : IConsoleCommandFactory
             })
             .WithParsed<GetAvailableDevicesOptions>(options =>
             {
-                command = new GetAvailableDevicesCommand(options);
+                command = options.IsLocal ? new GetLocallyRegisteredDevicesCommand() : new GetAvailableDevicesCommand();
             })
             .WithNotParsed(_ =>
             {

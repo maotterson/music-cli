@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /src/SpotCli.Cli/secrets.json
 /src/SpotCli.Cli/token.json
+/src/SpotCli.Cli/devices.json
