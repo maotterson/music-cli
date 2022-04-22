@@ -11,12 +11,10 @@ public class GetNewAccessTokenCommandHandler : IRequestHandler<GetNewAccessToken
 {
     private readonly ISpotifyOAuthApi _api;
     private readonly ISpotifyApiConfiguration _configuration;
-    private readonly ISaveTokenService _saveTokenService;
-    public GetNewAccessTokenCommandHandler(ISpotifyOAuthApi api, ISpotifyApiConfiguration configuration, ISaveTokenService saveTokenService)
+    public GetNewAccessTokenCommandHandler(ISpotifyOAuthApi api, ISpotifyApiConfiguration configuration)
     {
         _api = api;
         _configuration = configuration;
-        _saveTokenService = saveTokenService;
     }
     public async Task<GetNewAccessTokenResponse> Handle(GetNewAccessTokenCommand request, CancellationToken cancellationToken)
     {
@@ -26,8 +24,6 @@ public class GetNewAccessTokenCommandHandler : IRequestHandler<GetNewAccessToken
         {
             throw new();
         }
-
-        _saveTokenService.Save(response.Content.AccessToken);
         return response.Content;
     }
 }
