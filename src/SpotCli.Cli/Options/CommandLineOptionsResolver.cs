@@ -19,7 +19,7 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
         _configuration = configuration;
     }
 
-    public IValidCommand? BuildFromArgs(string[] args)
+    public IValidCommand? PopulateCommandQueue(string[] args)
     {
         var command = BuildCommand(args);
         return command;

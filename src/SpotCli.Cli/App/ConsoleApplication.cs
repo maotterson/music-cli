@@ -6,13 +6,13 @@ namespace SpotCli.Cli.App;
 
 public class ConsoleApplication : IConsoleApplication
 {
-    private readonly ICommandLineOptionsResolver _consoleCommandFactory;
+    private readonly ICommandLineOptionsResolver _commandLineOptionsResolver;
     private readonly IMediator _mediator;
     private readonly ISpotifyApiConfiguration _configuration;
 
-    public ConsoleApplication(ICommandLineOptionsResolver consoleCommandFactory, IMediator mediator, ISpotifyApiConfiguration configuration)
+    public ConsoleApplication(ICommandLineOptionsResolver commandLineOptionsResolver, IMediator mediator, ISpotifyApiConfiguration configuration)
     {
-        _consoleCommandFactory = consoleCommandFactory;
+        _commandLineOptionsResolver = commandLineOptionsResolver;
         _mediator = mediator;
         _configuration = configuration;
     }
@@ -21,7 +21,7 @@ public class ConsoleApplication : IConsoleApplication
     {
         try
         {
-            var command = _consoleCommandFactory.BuildFromArgs(args);
+            var command = _commandLineOptionsResolver.PopulateCommandQueue(args);
             if (command is null)
             {
                 Console.WriteLine("Command not recognized. Please try again.");

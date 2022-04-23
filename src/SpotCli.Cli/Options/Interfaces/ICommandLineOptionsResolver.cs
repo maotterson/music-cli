@@ -4,5 +4,5 @@ namespace SpotCli.Cli.Factories;
 
 public interface ICommandLineOptionsResolver
 {
-    public IValidCommand? BuildFromArgs(string[] args);
+    public IValidCommand? PopulateCommandQueue(string[] args);
 }
