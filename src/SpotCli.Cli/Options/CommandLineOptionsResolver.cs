@@ -8,24 +8,21 @@ using SpotCli.Cli.Devices;
 using SpotCli.Cli.Options.CurrentTrack;
 using SpotCli.Cli.Options.Devices;
 using SpotCli.Cli.Options.OAuth;
+using SpotCli.Cli.Services;
 
 namespace SpotCli.Cli.Factories;
 
 public class CommandLineOptionsResolver : ICommandLineOptionsResolver
 {
     private readonly ISpotifyApiConfiguration _configuration;
-    public CommandLineOptionsResolver(ISpotifyApiConfiguration configuration)
+    private readonly ICommandQueue _commandQueue;
+    public CommandLineOptionsResolver(ISpotifyApiConfiguration configuration, ICommandQueue commandQueue)
     {
         _configuration = configuration;
+        _commandQueue = commandQueue;
     }
 
-    public IValidCommand? PopulateCommandQueue(string[] args)
-    {
-        var command = BuildCommand(args);
-        return command;
-    }
-
-    private IValidCommand? BuildCommand(string[] args)
+    public void ParseOptions(string[] args)
     {
         IValidCommand? command = null;
         Parser.Default
@@ -38,28 +35,33 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
             .WithParsed<PausePlaybackCommandOptions>(_ =>
             {
                 command = new PausePlaybackCommand();
+                _commandQueue.Enqueue(command);
+
             })
             .WithParsed<GetCurrentlyPlayingCommandOptions>(_ =>
             {
                 command = new GetCurrentlyPlayingCommand();
+                _commandQueue.Enqueue(command);
             })
             .WithParsed<GetNewAccessTokenCommandOptions>(_ =>
             {
                 var refreshToken = _configuration.RefreshToken;
                 command = new GetNewAccessTokenCommand(refreshToken);
+                _commandQueue.Enqueue(command);
             })
             .WithParsed<StartOrResumePlaybackCommandOptions>(_ =>
             {
                 command = new StartOrResumePlaybackCommand();
+                _commandQueue.Enqueue(command);
             })
             .WithParsed<GetAvailableDevicesOptions>(options =>
             {
                 command = options.IsLocal ? new GetLocallyRegisteredDevicesCommand() : new GetAvailableDevicesCommand();
+                _commandQueue.Enqueue(command);
             })
             .WithNotParsed(_ =>
             {
-                command = null;
+                throw new Exception($"Unrecognized command: {args[0]}");
             });
-        return command;
     }
 }
