@@ -1,4 +1,4 @@
-﻿namespace SpotCli.Cli.Services;
+﻿namespace SpotCli.Application.Interfaces;
 
 public interface ISaveTokenService
 {
