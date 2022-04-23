@@ -15,9 +15,9 @@ using System.Reflection;
 var services = new ServiceCollection();
 var configurationBuilder = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
-    .AddJsonFile("secrets.json")
-    .AddJsonFile("token.json")
-    .AddJsonFile("devices.json")
+    .AddJsonFile("settings/secrets.json")
+    .AddJsonFile("settings/token.json")
+    .AddJsonFile("settings/devices.json")
     .Build();
 var configuration = new SpotifyApiConfiguration(configurationBuilder);
 
