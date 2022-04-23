@@ -2,7 +2,7 @@
 
 namespace SpotCli.Cli.Factories;
 
-public interface IConsoleCommandFactory
+public interface ICommandLineOptionsResolver
 {
     public IValidCommand? BuildFromArgs(string[] args);
 }

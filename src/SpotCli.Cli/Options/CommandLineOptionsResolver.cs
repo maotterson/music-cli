@@ -11,10 +11,10 @@ using SpotCli.Cli.Options.OAuth;
 
 namespace SpotCli.Cli.Factories;
 
-public class ConsoleCommandFactory : IConsoleCommandFactory 
+public class CommandLineOptionsResolver : ICommandLineOptionsResolver
 {
     private readonly ISpotifyApiConfiguration _configuration;
-    public ConsoleCommandFactory(ISpotifyApiConfiguration configuration)
+    public CommandLineOptionsResolver(ISpotifyApiConfiguration configuration)
     {
         _configuration = configuration;
     }

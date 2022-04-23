@@ -66,7 +66,7 @@ public static partial class Helpers
     {
         services.AddSingleton<ISaveTokenService, SaveTokenService>();
         services.AddSingleton<IConsoleApplication, ConsoleApplication>();
-        services.AddSingleton<IConsoleCommandFactory, ConsoleCommandFactory>();
+        services.AddSingleton<ICommandLineOptionsResolver, CommandLineOptionsResolver>();
         services.AddSingleton<ISpotifyApiConfiguration, SpotifyApiConfiguration>(_ =>
         {
             return new(configuration.Configuration);

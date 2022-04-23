@@ -6,11 +6,11 @@ namespace SpotCli.Cli.App;
 
 public class ConsoleApplication : IConsoleApplication
 {
-    private readonly IConsoleCommandFactory _consoleCommandFactory;
+    private readonly ICommandLineOptionsResolver _consoleCommandFactory;
     private readonly IMediator _mediator;
     private readonly ISpotifyApiConfiguration _configuration;
 
-    public ConsoleApplication(IConsoleCommandFactory consoleCommandFactory, IMediator mediator, ISpotifyApiConfiguration configuration)
+    public ConsoleApplication(ICommandLineOptionsResolver consoleCommandFactory, IMediator mediator, ISpotifyApiConfiguration configuration)
     {
         _consoleCommandFactory = consoleCommandFactory;
         _mediator = mediator;
