@@ -5,6 +5,7 @@ namespace SpotCli.Application.Interfaces;
 public interface ISpotifyApiConfiguration
 {
     public IConfigurationRoot Configuration { get; init; }
+    public string? AppDataDirectory { get; }
     public string BearerTokenHeader { get; }
     public string BearerToken { get; }
     public string RefreshToken { get; }

@@ -10,6 +10,7 @@ public class SpotifyApiConfiguration : ISpotifyApiConfiguration
         Configuration = configuration;
     }
     public IConfigurationRoot Configuration { get; init; }
+    public string? AppDataDirectory => Configuration["AppDataDirectory"];
     public string BearerTokenHeader => $"Bearer {BearerToken}";
     public string BearerToken => Configuration["BearerToken"];
     public string RefreshToken => Configuration["RefreshToken"];

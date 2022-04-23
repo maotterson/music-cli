@@ -12,15 +12,16 @@ using SpotCli.Cli.Factories;
 using SpotCli.Cli.Services;
 using System.Reflection;
 
-var services = new ServiceCollection();
+var appDataDirectory = GetAppDataDirectoryFromSettings();
 var configurationBuilder = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
-    .AddJsonFile("settings/secrets.json")
-    .AddJsonFile("settings/token.json")
-    .AddJsonFile("settings/devices.json")
+    .AddJsonFile(appDataDirectory + "secrets.json")
+    .AddJsonFile(appDataDirectory + "token.json")
+    .AddJsonFile(appDataDirectory + "devices.json")
     .Build();
 var configuration = new SpotifyApiConfiguration(configurationBuilder);
 
+var services = new ServiceCollection();
 services.AddRefitApis(configuration);
 services.AddSingletonServices(configuration);
 services.AddHandlers();
@@ -28,6 +29,11 @@ services.AddHandlers();
 var app = services.BuildServiceProvider()
     .GetRequiredService<IConsoleApplication>();
 await app.RunAsync(args);
+
+string GetAppDataDirectoryFromSettings()
+{
+    return new ConfigurationBuilder().AddJsonFile("appsettings.json").Build()["AppDataDirectory"] ?? "/AppData";
+}
 
 public static partial class Helpers
 {
