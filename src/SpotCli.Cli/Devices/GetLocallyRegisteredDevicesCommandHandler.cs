@@ -19,8 +19,8 @@ public class GetLocallyRegisteredDevicesCommandHandler : IRequestHandler<GetLoca
             Devices = deviceDictionary
                 .Select(kvp => new Device()
                     {
-                        Id = kvp.Key,
-                        Name = kvp.Value
+                        Id = kvp.Value,
+                        Name = kvp.Key
                     })
                 .ToArray()
         };

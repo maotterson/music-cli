@@ -10,11 +10,11 @@ public class GetLocallyRegisteredDevicesResponse
         }
 
         string returnString = "Locally Registered Devices:\n" +
-                              "Name\t\tDeviceId" +
-                              "=======================================================\n";
+                              "Name\t\t\tDevice Id\n" +
+                              "==========\t\t===============\n";
         foreach (var device in Devices)
         {
-            returnString += $"{device.Name}\t\t{device.Id}";
+            returnString += $"{device.Name}\t\t\t{device.Id}";
         }
         return returnString;
     }
