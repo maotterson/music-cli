@@ -36,12 +36,12 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
             {
                 command = new PausePlaybackCommand
                 {
-                    DeviceId = options.DeviceName ?? null
+                    DeviceId = options.DeviceId ?? null
                 };
                 _commandQueue.Enqueue(command);
 
             })
-            .WithParsed<GetCurrentlyPlayingCommandOptions>(_ =>
+            .WithParsed<GetCurrentlyPlayingCommandOptions>(options =>
             {
                 command = new GetCurrentlyPlayingCommand();
                 _commandQueue.Enqueue(command);
@@ -52,14 +52,19 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
                 command = new GetNewAccessTokenCommand(refreshToken);
                 _commandQueue.Enqueue(command);
             })
-            .WithParsed<StartOrResumePlaybackCommandOptions>(_ =>
+            .WithParsed<StartOrResumePlaybackCommandOptions>(options =>
             {
-                command = new StartOrResumePlaybackCommand();
+                command = new StartOrResumePlaybackCommand
+                {
+                    DeviceId = options.DeviceId ?? null
+                };
                 _commandQueue.Enqueue(command);
             })
             .WithParsed<GetAvailableDevicesOptions>(options =>
             {
                 command = options.IsLocal ? new GetLocallyRegisteredDevicesCommand() : new GetAvailableDevicesCommand();
+                
+                
                 _commandQueue.Enqueue(command);
             })
             .WithNotParsed(_ =>
