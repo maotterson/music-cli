@@ -1,22 +1,23 @@
 ﻿using MediatR;
 using SpotCli.Application.Api;
 using SpotCli.Application.CurrentTrack.Commands;
+using SpotCli.Application.CurrentTrack.Requests;
 using SpotCli.Application.CurrentTrack.Responses;
 using SpotCli.Application.Exceptions;
 
 namespace SpotCli.Application.CurrentTrack.Handlers;
 
-public class StartOrResumePlaybackCommandHandler : IRequestHandler<StartOrResumePlaybackCommand, StartOrResumePlaybackResponse>
+public class StartOrResumePlaybackRequestHandler : IRequestHandler<StartOrResumePlaybackRequest, StartOrResumePlaybackResponse>
 {
     private readonly ISpotifyWebApi _spotifyWebApi;
-    public StartOrResumePlaybackCommandHandler(ISpotifyWebApi spotifyWebApi)
+    public StartOrResumePlaybackRequestHandler(ISpotifyWebApi spotifyWebApi)
     {
         _spotifyWebApi = spotifyWebApi;
     }
 
-    public async Task<StartOrResumePlaybackResponse> Handle(StartOrResumePlaybackCommand request, CancellationToken cancellationToken)
+    public async Task<StartOrResumePlaybackResponse> Handle(StartOrResumePlaybackRequest request, CancellationToken cancellationToken)
     {
-        var response = await _spotifyWebApi.StartOrResumePlayback();
+        var response = await _spotifyWebApi.StartOrResumePlayback(request.Query, request.Body);
         if (response is null)
         {
             throw new NullReferenceException();

@@ -1,5 +1,7 @@
 ﻿using CommandLine;
 using SpotCli.Application.CurrentTrack.Commands;
+using SpotCli.Application.CurrentTrack.Queries;
+using SpotCli.Application.CurrentTrack.Requests;
 using SpotCli.Application.Devices.Commands;
 using SpotCli.Application.Interfaces;
 using SpotCli.Application.OAuth.Commands;
@@ -54,11 +56,14 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
             })
             .WithParsed<StartOrResumePlaybackCommandOptions>(options =>
             {
-                command = new StartOrResumePlaybackCommand
+                var query = new StartOrResumePlaybackQuery
                 {
                     DeviceId = options.DeviceId ?? null
                 };
-                _commandQueue.Enqueue(command);
+                var body = new StartOrResumePlaybackBody();
+                var request = new StartOrResumePlaybackRequest(query, body);
+
+                _commandQueue.Enqueue(request);
             })
             .WithParsed<GetAvailableDevicesOptions>(options =>
             {

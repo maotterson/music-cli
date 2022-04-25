@@ -364,3 +364,4 @@ FodyWeavers.xsd
 /src/SpotCli.Cli/AppData/token.json
 /src/SpotCli.Cli/AppData/secrets.json
 /src/SpotCli.Cli/AppData/devices.json
+/src/SpotCli.Cli/token.json

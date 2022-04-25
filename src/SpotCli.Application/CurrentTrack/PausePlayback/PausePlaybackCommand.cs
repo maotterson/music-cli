@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Newtonsoft.Json;
 using SpotCli.Application.CurrentTrack.Responses;
 using SpotCli.Application.Interfaces;
 
@@ -8,5 +9,6 @@ public class PausePlaybackCommand : IRequest<PausePlaybackResponse>, IValidComma
 {
     public string Description => "Pause playback";
 
+    [JsonProperty(PropertyName = "device_id")]
     public string? DeviceId { get; set; }
 }
