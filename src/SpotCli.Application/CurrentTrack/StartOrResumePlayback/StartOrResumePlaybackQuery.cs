@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace SpotCli.Application.CurrentTrack.Queries;
 
-public class StartOrResumePlaybackQuery
+public record StartOrResumePlaybackQuery
 {
     [AliasAs("device_id")]
-    public string? DeviceId { get; set; }
+    public string? DeviceId { get; init; }
 }

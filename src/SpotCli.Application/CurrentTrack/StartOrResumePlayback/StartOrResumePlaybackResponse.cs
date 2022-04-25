@@ -2,8 +2,9 @@
 
 public class StartOrResumePlaybackResponse
 {
+    private readonly static string RESPONSE_MESSAGE = "Playback started.";
     public override string ToString()
     {
-        return "Playback started.";
+        return RESPONSE_MESSAGE;
     }
 }
