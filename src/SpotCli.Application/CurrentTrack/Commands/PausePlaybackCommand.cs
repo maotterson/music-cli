@@ -7,4 +7,6 @@ namespace SpotCli.Application.CurrentTrack.Commands;
 public class PausePlaybackCommand : IRequest<PausePlaybackResponse>, IValidCommand
 {
     public string Description => "Pause playback";
+
+    public string? DeviceId { get; set; }
 }

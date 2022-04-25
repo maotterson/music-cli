@@ -32,9 +32,12 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
                 GetCurrentlyPlayingCommandOptions,
                 StartOrResumePlaybackCommandOptions,
                 GetAvailableDevicesOptions>(args)
-            .WithParsed<PausePlaybackCommandOptions>(_ =>
+            .WithParsed<PausePlaybackCommandOptions>(options =>
             {
-                command = new PausePlaybackCommand();
+                command = new PausePlaybackCommand
+                {
+                    DeviceId = options.DeviceName ?? null
+                };
                 _commandQueue.Enqueue(command);
 
             })
