@@ -14,11 +14,11 @@ public class GetAvailableDevicesResponse
         }
 
         string returnString = "Devices:\n" +
-                              "Name\t\t\tDevice Id\n" +
-                              "==========\t\t===============\n";
+                              "Name\t\t\t\tDevice Id\n" +
+                              "================\t\t===============\n";
         foreach (var device in Devices)
         {
-            returnString += $"{device.Name}\t\t\t{device.Id}";
+            returnString += $"{device.Name}\t\t\t\t{device.Id}\n";
         }
         return returnString;
     }

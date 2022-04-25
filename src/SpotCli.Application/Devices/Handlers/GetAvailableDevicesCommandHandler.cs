@@ -16,13 +16,13 @@ public class GetAvailableDevicesCommandHandler : IRequestHandler<GetAvailableDev
     public async Task<GetAvailableDevicesResponse> Handle(GetAvailableDevicesCommand request, CancellationToken cancellationToken)
     {
         var response = await _api.GetAvailableDevices();
-        if(response is null || response.Content is null)
+        if(response is null)
         {
             throw new NullReferenceException();
         }
 
         response.CheckForErrorStatusCode(request);
 
-        return response.Content;
+        return response.Content!;
     }
 }
