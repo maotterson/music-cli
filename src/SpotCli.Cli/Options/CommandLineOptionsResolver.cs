@@ -56,11 +56,20 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
             })
             .WithParsed<StartOrResumePlaybackCommandOptions>(options =>
             {
+                //todo extract these resolver clauses into separate classses 
+                if(options.Query is not null)
+                {
+                    //todo enqueue look up query
+                    //todo pull out the context_uri of the track to play
+                }
                 var query = new StartOrResumePlaybackQuery
                 {
-                    DeviceId = options.DeviceId ?? null
+                    DeviceId = options.DeviceId ?? null,
                 };
-                var body = new StartOrResumePlaybackBody();
+                var body = new StartOrResumePlaybackBody
+                {
+                    // ContextUri = searchResponse.Context
+                };
                 var request = new StartOrResumePlaybackRequest(query, body);
 
                 _commandQueue.Enqueue(request);
