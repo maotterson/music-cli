@@ -12,12 +12,11 @@ public class PostProcessGetNewAccessTokenCommand : IRequestPostProcessor<GetNewA
         _saveTokenService = saveTokenService;
     }
 
-
     public Task Process(GetNewAccessTokenRequest request, GetNewAccessTokenResponse response, CancellationToken cancellationToken)
     {
         if(response.AccessToken is null)
         {
-            throw new();
+            throw new NullReferenceException();
         }
         _saveTokenService.Save(response.AccessToken);
 

@@ -8,15 +8,22 @@ namespace SpotCli.Cli.Options.Devices.GetAvailableDevices;
 public class GetAvailableDevicesOptionsMapper
 {
     private readonly IRequestQueue _commandQueue;
-    public GetAvailableDevicesOptionsMapper(IRequestQueue commandQueue)
+    private readonly ISaveDevicesService _saveDevicesService;
+    public GetAvailableDevicesOptionsMapper(IRequestQueue commandQueue, ISaveDevicesService saveDevicesService)
     {
         _commandQueue = commandQueue;
+        _saveDevicesService = saveDevicesService;
     }
     public void Map(GetAvailableDevicesOptions options)
     {
         IValidRequest request = options.IsLocal ? 
             GetLocallyRegisteredDevicesRequest() : 
             GetAvailableDevicesRequest();
+
+        if (options.IsRequestingSave)
+        {
+            _saveDevicesService.RequestSaveDevices();
+        }
 
         _commandQueue.Enqueue(request);
     }

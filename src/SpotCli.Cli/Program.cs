@@ -70,14 +70,17 @@ public static partial class Helpers
         });
     }
     public static void AddSingletonServices(this IServiceCollection services, ISpotifyApiConfiguration configuration)
-    {services.AddSingleton<ISaveTokenService, SaveTokenService>();
-        services.AddSingleton<IConsoleApplication, ConsoleApplication>();
-        services.AddSingleton<ICommandLineOptionsResolver, CommandLineOptionsResolver>();
+    {
+
         services.AddSingleton<IRequestQueue, RequestQueue>();
+        services.AddSingleton<ISaveTokenService, SaveTokenService>();
+        services.AddSingleton<ISaveDevicesService, SaveDevicesService>();
+        services.AddSingleton<IConsoleApplication, ConsoleApplication>();
         services.AddSingleton<ISpotifyApiConfiguration, SpotifyApiConfiguration>(_ =>
         {
             return new(configuration.Configuration);
-        }); 
+        });
+        services.AddSingleton<ICommandLineOptionsResolver, CommandLineOptionsResolver>();
     }
     public static void AddHandlers(this IServiceCollection services)
     {
