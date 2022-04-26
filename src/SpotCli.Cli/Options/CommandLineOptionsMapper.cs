@@ -8,7 +8,7 @@ using SpotCli.Cli.Options.OAuth.GetNewAccessToken;
 
 namespace SpotCli.Cli.Factories;
 
-public class CommandLineOptionsResolver : ICommandLineOptionsResolver
+public class CommandLineOptionsMapper : ICommandLineOptionsResolver
 {
     private readonly PausePlaybackOptionsMapper _pausePlaybackOptionsMapper;
     private readonly GetNewAccessTokenOptionsMapper _getNewAccessTokenOptionsMapper;
@@ -16,7 +16,7 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
     private readonly GetCurrentlyPlayingOptionsMapper _getCurrentlyPlayingOptionsMapper;
     private readonly StartOrResumePlaybackOptionsMapper _startOrResumePlaybackOptionsMapper;
 
-    public CommandLineOptionsResolver(
+    public CommandLineOptionsMapper(
         PausePlaybackOptionsMapper pausePlaybackOptionsMapper,
         GetNewAccessTokenOptionsMapper getNewAccessTokenOptionsMapper,
         GetAvailableDevicesOptionsMapper getAvailableDevicesOptionsMapper,

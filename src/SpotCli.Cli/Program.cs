@@ -80,7 +80,7 @@ public static partial class Helpers
         {
             return new(configuration.Configuration);
         });
-        services.AddSingleton<ICommandLineOptionsResolver, CommandLineOptionsResolver>();
+        services.AddSingleton<ICommandLineOptionsResolver, CommandLineOptionsMapper>();
     }
     public static void AddHandlers(this IServiceCollection services)
     {
