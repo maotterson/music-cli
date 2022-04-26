@@ -56,7 +56,6 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
             .WithParsed<PausePlaybackOptions>(options =>
             {
                 _pausePlaybackOptionsMapper.Map(options);
-
             })
             .WithParsed<GetCurrentlyPlayingOptions>(options =>
             {
@@ -65,35 +64,15 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
             .WithParsed<GetNewAccessTokenOptions>(options =>
             {
                 _getNewAccessTokenOptionsMapper.Map(options);
-                var refreshToken = _configuration.RefreshToken;
-                var request = new GetNewAccessTokenRequest(refreshToken);
-                _commandQueue.Enqueue(request);
             })
             .WithParsed<StartOrResumePlaybackOptions>(options =>
             {
-                //todo extract these resolver clauses into separate classses 
-                if(options.Query is not null)
-                {
-                    //todo enqueue look up query
-                    //todo pull out the context_uri of the track to play
-                }
-                var query = new StartOrResumePlaybackRequestQuery
-                {
-                    DeviceId = options.DeviceId ?? null,
-                };
-                var body = new StartOrResumePlaybackRequestBody
-                {
-                    // ContextUri = searchResponse.Context
-                };
-                var request = new StartOrResumePlaybackRequest(query, body);
-
-                _commandQueue.Enqueue(request);
+                _startOrResumePlaybackOptionsMapper.Map(options);
             })
             .WithParsed<GetAvailableDevicesOptions>(options =>
             {
-                IValidRequest request = options.IsLocal ? new GetLocallyRegisteredDevicesRequest() : new GetAvailableDevicesRequest();
+                _getAvailableDevicesOptionsMapper.Map(options);
                 
-                _commandQueue.Enqueue(request);
             })
             .WithNotParsed(_ =>
             {

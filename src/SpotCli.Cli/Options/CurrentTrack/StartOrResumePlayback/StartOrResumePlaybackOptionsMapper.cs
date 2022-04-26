@@ -12,6 +12,11 @@ public class StartOrResumePlaybackOptionsMapper
     }
     public void Map(StartOrResumePlaybackOptions options)
     {
+        if(options.Query is not null)
+        {
+            // todo look up query for track
+        }
+
         var query = new StartOrResumePlaybackRequestQuery
         {
             DeviceId = options.DeviceId
@@ -25,3 +30,4 @@ public class StartOrResumePlaybackOptionsMapper
         _commandQueue.Enqueue(request);
     }
 }
+

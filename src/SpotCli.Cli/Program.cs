@@ -10,7 +10,11 @@ using SpotCli.Cli.App;
 using SpotCli.Cli.Configuration;
 using SpotCli.Cli.Factories;
 using SpotCli.Cli.Options.CurrentTrack.GetCurrentlyPlaying;
+using SpotCli.Cli.Options.CurrentTrack.PausePlayback;
+using SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
+using SpotCli.Cli.Options.Devices.GetAvailableDevices;
 using SpotCli.Cli.Options.Interfaces;
+using SpotCli.Cli.Options.OAuth.GetNewAccessToken;
 using SpotCli.Cli.Services;
 using System.Reflection;
 
@@ -26,6 +30,7 @@ var configuration = new SpotifyApiConfiguration(configurationBuilder);
 var services = new ServiceCollection();
 services.AddRefitApis(configuration);
 services.AddSingletonServices(configuration);
+services.AddOptionsMappers();
 services.AddHandlers();
 
 var app = services.BuildServiceProvider()
@@ -65,11 +70,7 @@ public static partial class Helpers
         });
     }
     public static void AddSingletonServices(this IServiceCollection services, ISpotifyApiConfiguration configuration)
-    {
-        services.AddTransient<GetCurrentlyPlayingOptionsMapper>();
-
-
-        services.AddSingleton<ISaveTokenService, SaveTokenService>();
+    {services.AddSingleton<ISaveTokenService, SaveTokenService>();
         services.AddSingleton<IConsoleApplication, ConsoleApplication>();
         services.AddSingleton<ICommandLineOptionsResolver, CommandLineOptionsResolver>();
         services.AddSingleton<IRequestQueue, RequestQueue>();
@@ -83,5 +84,14 @@ public static partial class Helpers
         var applicationAssembly = Assembly.GetAssembly(typeof(ISpotifyWebApi))!;
         var assembly = Assembly.GetExecutingAssembly();
         services.AddMediatR(assembly, applicationAssembly);
+    }
+
+    public static void AddOptionsMappers(this IServiceCollection services)
+    {
+        services.AddTransient<PausePlaybackOptionsMapper>();
+        services.AddTransient<GetNewAccessTokenOptionsMapper>();
+        services.AddTransient<GetAvailableDevicesOptionsMapper>();
+        services.AddTransient<GetCurrentlyPlayingOptionsMapper>();
+        services.AddTransient<StartOrResumePlaybackOptionsMapper>();
     }
 }
