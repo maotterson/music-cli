@@ -4,9 +4,9 @@ namespace SpotCli.Cli.Services;
 
 public interface ICommandQueue
 {
-    public void Enqueue(IValidCommand command);
-    public IValidCommand Dequeue();
-    public IValidCommand Peek();
+    public void Enqueue(IValidRequest command);
+    public IValidRequest Dequeue();
+    public IValidRequest Peek();
 
     public int Count { get; }
 }

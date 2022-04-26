@@ -4,7 +4,7 @@ using SpotCli.Application.Interfaces;
 
 namespace SpotCli.Application.Devices.Commands;
 
-public class GetAvailableDevicesCommand : IRequest<GetAvailableDevicesResponse>, IValidCommand
+public class GetAvailableDevicesCommand : IRequest<GetAvailableDevicesResponse>, IValidRequest
 {
     public string Description => "Get all available devices";
 

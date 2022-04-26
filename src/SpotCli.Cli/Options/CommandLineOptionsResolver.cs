@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using SpotCli.Application.CurrentTrack.Commands;
+using SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
 using SpotCli.Application.CurrentTrack.Queries;
 using SpotCli.Application.CurrentTrack.Requests;
 using SpotCli.Application.Devices.Commands;
@@ -18,43 +19,46 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
 {
     private readonly ISpotifyApiConfiguration _configuration;
     private readonly ICommandQueue _commandQueue;
-    public CommandLineOptionsResolver(ISpotifyApiConfiguration configuration, ICommandQueue commandQueue)
+    private readonly GetCurrentlyPlayingOptionsMapper _getCurrentlyPlayingOptionsMapper;
+    public CommandLineOptionsResolver(
+        ISpotifyApiConfiguration configuration, 
+        ICommandQueue commandQueue,
+        GetCurrentlyPlayingOptionsMapper getCurrentlyPlayingOptionsMapper)
     {
         _configuration = configuration;
         _commandQueue = commandQueue;
+        _getCurrentlyPlayingOptionsMapper = getCurrentlyPlayingOptionsMapper;
     }
 
     public void ParseOptions(string[] args)
     {
-        IValidCommand? command = null;
         Parser.Default
             .ParseArguments<
-                PausePlaybackCommandOptions,
+                PausePlaybackRequestOptions,
                 GetNewAccessTokenCommandOptions,
-                GetCurrentlyPlayingCommandOptions,
-                StartOrResumePlaybackCommandOptions,
+                GetCurrentlyPlayingRequestOptions,
+                StartOrResumePlaybackRequestOptions,
                 GetAvailableDevicesOptions>(args)
-            .WithParsed<PausePlaybackCommandOptions>(options =>
+            .WithParsed<PausePlaybackRequestOptions>(options =>
             {
-                command = new PausePlaybackCommand
+                var request = new PausePlaybackRequest
                 {
                     DeviceId = options.DeviceId ?? null
                 };
-                _commandQueue.Enqueue(command);
+                _commandQueue.Enqueue(request);
 
             })
-            .WithParsed<GetCurrentlyPlayingCommandOptions>(options =>
+            .WithParsed<GetCurrentlyPlayingRequestOptions>(options =>
             {
-                command = new GetCurrentlyPlayingCommand();
-                _commandQueue.Enqueue(command);
+                _getCurrentlyPlayingOptionsMapper.Map(options);
             })
             .WithParsed<GetNewAccessTokenCommandOptions>(_ =>
             {
                 var refreshToken = _configuration.RefreshToken;
-                command = new GetNewAccessTokenCommand(refreshToken);
-                _commandQueue.Enqueue(command);
+                var request = new GetNewAccessTokenCommand(refreshToken);
+                _commandQueue.Enqueue(request);
             })
-            .WithParsed<StartOrResumePlaybackCommandOptions>(options =>
+            .WithParsed<StartOrResumePlaybackRequestOptions>(options =>
             {
                 //todo extract these resolver clauses into separate classses 
                 if(options.Query is not null)
@@ -62,11 +66,11 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
                     //todo enqueue look up query
                     //todo pull out the context_uri of the track to play
                 }
-                var query = new StartOrResumePlaybackQuery
+                var query = new StartOrResumePlaybackRequestQuery
                 {
                     DeviceId = options.DeviceId ?? null,
                 };
-                var body = new StartOrResumePlaybackBody
+                var body = new StartOrResumePlaybackRequestBody
                 {
                     // ContextUri = searchResponse.Context
                 };
@@ -76,10 +80,9 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
             })
             .WithParsed<GetAvailableDevicesOptions>(options =>
             {
-                command = options.IsLocal ? new GetLocallyRegisteredDevicesCommand() : new GetAvailableDevicesCommand();
+                IValidRequest request = options.IsLocal ? new GetLocallyRegisteredDevicesCommand() : new GetAvailableDevicesCommand();
                 
-                
-                _commandQueue.Enqueue(command);
+                _commandQueue.Enqueue(request);
             })
             .WithNotParsed(_ =>
             {

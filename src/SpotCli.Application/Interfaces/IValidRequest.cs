@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpotCli.Application.Interfaces;
 
-public interface IValidCommand
+public interface IValidRequest
 {
     public string Description { get; }
 }

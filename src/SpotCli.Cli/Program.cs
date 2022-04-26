@@ -9,6 +9,7 @@ using SpotCli.Application.Interfaces;
 using SpotCli.Cli.App;
 using SpotCli.Cli.Configuration;
 using SpotCli.Cli.Factories;
+using SpotCli.Cli.Options.CurrentTrack;
 using SpotCli.Cli.Services;
 using System.Reflection;
 
@@ -64,6 +65,9 @@ public static partial class Helpers
     }
     public static void AddSingletonServices(this IServiceCollection services, ISpotifyApiConfiguration configuration)
     {
+        services.AddTransient<GetCurrentlyPlayingOptionsMapper>();
+
+
         services.AddSingleton<ISaveTokenService, SaveTokenService>();
         services.AddSingleton<IConsoleApplication, ConsoleApplication>();
         services.AddSingleton<ICommandLineOptionsResolver, CommandLineOptionsResolver>();

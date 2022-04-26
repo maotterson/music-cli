@@ -6,15 +6,15 @@ using SpotCli.Application.Exceptions;
 
 namespace SpotCli.Application.CurrentTrack.Handlers;
 
-public class GetCurrentlyPlayingCommandHandler : IRequestHandler<GetCurrentlyPlayingCommand, GetCurrentlyPlayingResponse>
+public class GetCurrentlyPlayingRequestHandler : IRequestHandler<GetCurrentlyPlayingRequest, GetCurrentlyPlayingResponse>
 {
     private readonly ISpotifyWebApi _spotifyWebApi;
-    public GetCurrentlyPlayingCommandHandler(ISpotifyWebApi spotifyWebApi)
+    public GetCurrentlyPlayingRequestHandler(ISpotifyWebApi spotifyWebApi)
     {
         _spotifyWebApi = spotifyWebApi;
     }
 
-    public async Task<GetCurrentlyPlayingResponse> Handle(GetCurrentlyPlayingCommand request, CancellationToken cancellationToken)
+    public async Task<GetCurrentlyPlayingResponse> Handle(GetCurrentlyPlayingRequest request, CancellationToken cancellationToken)
     {
         var response = await _spotifyWebApi.GetCurrentlyPlaying();
         if (response is null)

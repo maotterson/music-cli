@@ -5,7 +5,7 @@ using SpotCli.Application.OAuth.Responses;
 
 namespace SpotCli.Application.OAuth.Commands;
 
-public record GetNewAccessTokenCommand : IRequest<GetNewAccessTokenResponse>, IValidCommand
+public record GetNewAccessTokenCommand : IRequest<GetNewAccessTokenResponse>, IValidRequest
 {
     public GetNewAccessTokenCommand(string refreshToken)
     {

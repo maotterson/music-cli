@@ -6,7 +6,7 @@ using SpotCli.Application.ValueObjects;
 
 namespace SpotCli.Application.CurrentTrack.Commands;
 
-public record StartOrResumePlaybackBody
+public record StartOrResumePlaybackRequestBody
 {
     [JsonProperty("context_uri")]
     public string? ContextUri { get; init; }

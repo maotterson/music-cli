@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SpotCli.Cli.Options.CurrentTrack;
 
 [Verb("playing")]
-public class GetCurrentlyPlayingCommandOptions : IConsoleOptions
+public class GetCurrentlyPlayingRequestOptions : IConsoleOptions
 {
     [Option('d', "device", Required = false, HelpText = "Device name.")]
     public string? Device { get; set; }

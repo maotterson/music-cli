@@ -4,21 +4,21 @@ namespace SpotCli.Cli.Services;
 
 public class CommandQueue : ICommandQueue
 {
-    private readonly Queue<IValidCommand> _queue = new();
+    private readonly Queue<IValidRequest> _queue = new();
 
     public int Count => _queue.Count;
 
-    public IValidCommand Dequeue()
+    public IValidRequest Dequeue()
     {
         return _queue.Dequeue();
     }
 
-    public void Enqueue(IValidCommand command)
+    public void Enqueue(IValidRequest command)
     {
         _queue.Enqueue(command);
     }
 
-    public IValidCommand Peek()
+    public IValidRequest Peek()
     {
         return _queue.Peek();
     }

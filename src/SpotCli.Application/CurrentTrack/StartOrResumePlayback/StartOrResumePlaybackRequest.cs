@@ -6,15 +6,15 @@ using SpotCli.Application.Interfaces;
 
 namespace SpotCli.Application.CurrentTrack.Requests;
 
-public class StartOrResumePlaybackRequest : IRequest<StartOrResumePlaybackResponse>, IValidCommand
+public class StartOrResumePlaybackRequest : IRequest<StartOrResumePlaybackResponse>, IValidRequest
 {
-    public StartOrResumePlaybackRequest(StartOrResumePlaybackQuery query, StartOrResumePlaybackBody body)
+    public StartOrResumePlaybackRequest(StartOrResumePlaybackRequestQuery query, StartOrResumePlaybackRequestBody body)
     {
         Body = body;
         Query = query;
     }
-    public StartOrResumePlaybackBody Body { get; init; }
-    public StartOrResumePlaybackQuery Query { get; init; }
+    public StartOrResumePlaybackRequestBody Body { get; init; }
+    public StartOrResumePlaybackRequestQuery Query { get; init; }
 
     public string Description => "Start or resume playback";
 }

@@ -6,7 +6,7 @@ using SpotCli.Application.Exceptions;
 
 namespace SpotCli.Application.CurrentTrack.Handlers;
 
-public class PausePlaybackCommandHandler : IRequestHandler<PausePlaybackCommand, PausePlaybackResponse>
+public class PausePlaybackCommandHandler : IRequestHandler<PausePlaybackRequest, PausePlaybackResponse>
 {
     private readonly ISpotifyWebApi _spotifyWebApi;
     public PausePlaybackCommandHandler(ISpotifyWebApi spotifyWebApi)
@@ -14,7 +14,7 @@ public class PausePlaybackCommandHandler : IRequestHandler<PausePlaybackCommand,
         _spotifyWebApi = spotifyWebApi;
     }
 
-    public async Task<PausePlaybackResponse> Handle(PausePlaybackCommand request, CancellationToken cancellationToken)
+    public async Task<PausePlaybackResponse> Handle(PausePlaybackRequest request, CancellationToken cancellationToken)
     {
         var response = await _spotifyWebApi.PausePlayback(request);
         if (response is null)

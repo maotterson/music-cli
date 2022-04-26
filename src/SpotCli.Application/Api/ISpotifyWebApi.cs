@@ -13,12 +13,12 @@ public interface ISpotifyWebApi
 
     [Put("/me/player/play")]
     Task<IApiResponse<StartOrResumePlaybackResponse>> StartOrResumePlayback(
-        StartOrResumePlaybackQuery query,
-        [Body(BodySerializationMethod.Serialized)] StartOrResumePlaybackBody body);
+        StartOrResumePlaybackRequestQuery query,
+        [Body(BodySerializationMethod.Serialized)] StartOrResumePlaybackRequestBody body);
 
     [Put("/me/player/pause")]
     Task<IApiResponse<PausePlaybackResponse>> PausePlayback(
-        [Body(BodySerializationMethod.Serialized)] PausePlaybackCommand command);
+        [Body(BodySerializationMethod.Serialized)] PausePlaybackRequest command);
 
     [Get("/me/player/devices")]
     Task<IApiResponse<GetAvailableDevicesResponse>> GetAvailableDevices();
