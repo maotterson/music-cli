@@ -9,7 +9,8 @@ namespace SpotCli.Application.Apis;
 public interface ISpotifyWebApi
 {
     [Get("/me/player/currently-playing")]
-    Task<IApiResponse<GetCurrentlyPlayingResponse>> GetCurrentlyPlaying();
+    Task<IApiResponse<GetCurrentlyPlayingResponse>> GetCurrentlyPlaying(
+        GetCurrentlyPlayingRequestQuery query);
 
     [Put("/me/player/play")]
     Task<IApiResponse<StartOrResumePlaybackResponse>> StartOrResumePlayback(

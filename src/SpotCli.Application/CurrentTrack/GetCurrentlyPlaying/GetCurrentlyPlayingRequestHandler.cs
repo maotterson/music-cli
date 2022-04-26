@@ -14,7 +14,7 @@ public class GetCurrentlyPlayingRequestHandler : IRequestHandler<GetCurrentlyPla
 
     public async Task<GetCurrentlyPlayingResponse> Handle(GetCurrentlyPlayingRequest request, CancellationToken cancellationToken)
     {
-        var response = await _spotifyWebApi.GetCurrentlyPlaying();
+        var response = await _spotifyWebApi.GetCurrentlyPlaying(request.Query);
         if (response is null)
         {
             throw new NullReferenceException();

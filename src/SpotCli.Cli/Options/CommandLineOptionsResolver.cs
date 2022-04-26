@@ -1,25 +1,15 @@
 ﻿using CommandLine;
-using SpotCli.Application.CurrentTrack.PausePlayback;
-using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
-using SpotCli.Application.Devices.GetAvailableDevices;
-using SpotCli.Application.Interfaces;
-using SpotCli.Application.OAuth.GetNewAccessToken;
-using SpotCli.Cli.Devices.GetLocallyRegisteredDevices;
 using SpotCli.Cli.Options.CurrentTrack.GetCurrentlyPlaying;
 using SpotCli.Cli.Options.CurrentTrack.PausePlayback;
 using SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Cli.Options.Devices.GetAvailableDevices;
 using SpotCli.Cli.Options.Interfaces;
 using SpotCli.Cli.Options.OAuth.GetNewAccessToken;
-using SpotCli.Cli.Services;
 
 namespace SpotCli.Cli.Factories;
 
 public class CommandLineOptionsResolver : ICommandLineOptionsResolver
 {
-    private readonly IRequestQueue _commandQueue;
-    private readonly ISpotifyApiConfiguration _configuration;
-
     private readonly PausePlaybackOptionsMapper _pausePlaybackOptionsMapper;
     private readonly GetNewAccessTokenOptionsMapper _getNewAccessTokenOptionsMapper;
     private readonly GetAvailableDevicesOptionsMapper _getAvailableDevicesOptionsMapper;
@@ -27,16 +17,12 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
     private readonly StartOrResumePlaybackOptionsMapper _startOrResumePlaybackOptionsMapper;
 
     public CommandLineOptionsResolver(
-        ISpotifyApiConfiguration configuration, 
-        IRequestQueue commandQueue,
         PausePlaybackOptionsMapper pausePlaybackOptionsMapper,
         GetNewAccessTokenOptionsMapper getNewAccessTokenOptionsMapper,
         GetAvailableDevicesOptionsMapper getAvailableDevicesOptionsMapper,
         GetCurrentlyPlayingOptionsMapper getCurrentlyPlayingOptionsMapper,
         StartOrResumePlaybackOptionsMapper startOrResumePlaybackOptionsMapper)
     {
-        _configuration = configuration;
-        _commandQueue = commandQueue;
         _pausePlaybackOptionsMapper = pausePlaybackOptionsMapper;
         _getNewAccessTokenOptionsMapper = getNewAccessTokenOptionsMapper;
         _getAvailableDevicesOptionsMapper = getAvailableDevicesOptionsMapper;

@@ -19,11 +19,13 @@ public class GetNewAccessTokenRequestHandler : IRequestHandler<GetNewAccessToken
     {
         var header = new Base64ClientSecretAuthHeader(_configuration.ClientSecret, _configuration.ClientId).Get();
         var response = await _api.GetNewAccessToken(header, request.Body);
-        response.CheckForErrorStatusCode(request);
-        if (response.Content is null || response.Content.AccessToken is null)
+        if(response is null)
         {
-            throw new();
+            throw new NullReferenceException();
         }
-        return response.Content;
+
+        response.CheckForErrorStatusCode(request);
+
+        return response.Content!;
     }
 }
