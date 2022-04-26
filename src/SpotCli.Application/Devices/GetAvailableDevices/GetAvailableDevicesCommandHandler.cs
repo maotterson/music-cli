@@ -1,10 +1,8 @@
 ﻿using MediatR;
-using SpotCli.Application.Api;
-using SpotCli.Application.Devices.Commands;
-using SpotCli.Application.Devices.Responses;
+using SpotCli.Application.Apis;
 using SpotCli.Application.Exceptions;
 
-namespace SpotCli.Application.Devices.Handlers;
+namespace SpotCli.Application.Devices.GetAvailableDevices;
 
 public class GetAvailableDevicesCommandHandler : IRequestHandler<GetAvailableDevicesCommand, GetAvailableDevicesResponse>
 {

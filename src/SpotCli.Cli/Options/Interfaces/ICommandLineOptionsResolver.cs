@@ -1,6 +1,4 @@
-﻿using SpotCli.Application.Interfaces;
-
-namespace SpotCli.Cli.Factories;
+﻿namespace SpotCli.Cli.Options.Interfaces;
 
 public interface ICommandLineOptionsResolver
 {

@@ -1,10 +1,6 @@
-﻿using MediatR;
-using SpotCli.Application.Api;
-using SpotCli.Application.Interfaces;
-using SpotCli.Application.OAuth.Commands;
-using SpotCli.Cli.Services;
+﻿using SpotCli.Application.Interfaces;
 using MediatR.Pipeline;
-using SpotCli.Application.OAuth.Responses;
+using SpotCli.Application.OAuth.GetNewAccessToken;
 
 namespace SpotCli.Cli.OAuth;
 

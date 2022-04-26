@@ -1,9 +1,7 @@
 ﻿using MediatR;
-using SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
-using SpotCli.Application.CurrentTrack.Responses;
 using SpotCli.Application.Interfaces;
 
-namespace SpotCli.Application.CurrentTrack.Commands;
+namespace SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
 
 public class GetCurrentlyPlayingRequest : IRequest<GetCurrentlyPlayingResponse>, IValidRequest
 {

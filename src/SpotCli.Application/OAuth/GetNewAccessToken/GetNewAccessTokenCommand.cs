@@ -1,9 +1,8 @@
 ﻿using MediatR;
 using Refit;
 using SpotCli.Application.Interfaces;
-using SpotCli.Application.OAuth.Responses;
 
-namespace SpotCli.Application.OAuth.Commands;
+namespace SpotCli.Application.OAuth.GetNewAccessToken;
 
 public record GetNewAccessTokenCommand : IRequest<GetNewAccessTokenResponse>, IValidRequest
 {

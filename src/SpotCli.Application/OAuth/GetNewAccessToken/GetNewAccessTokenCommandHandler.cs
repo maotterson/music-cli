@@ -1,11 +1,9 @@
 ﻿using MediatR;
-using SpotCli.Application.Api;
+using SpotCli.Application.Apis;
 using SpotCli.Application.Interfaces;
-using SpotCli.Application.OAuth.Commands;
-using SpotCli.Application.OAuth.Responses;
 using SpotCli.Application.OAuth.Utils;
 
-namespace SpotCli.Application.OAuth.Handlers;
+namespace SpotCli.Application.OAuth.GetNewAccessToken;
 
 public class GetNewAccessTokenCommandHandler : IRequestHandler<GetNewAccessTokenCommand, GetNewAccessTokenResponse>
 {

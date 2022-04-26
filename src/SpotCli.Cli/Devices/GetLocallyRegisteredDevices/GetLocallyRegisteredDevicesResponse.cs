@@ -1,4 +1,4 @@
-﻿namespace SpotCli.Cli.Devices;
+﻿namespace SpotCli.Cli.Devices.GetLocallyRegisteredDevices;
 
 public class GetLocallyRegisteredDevicesResponse
 {

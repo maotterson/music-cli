@@ -1,8 +1,7 @@
 ﻿using Refit;
-using SpotCli.Application.OAuth.Commands;
-using SpotCli.Application.OAuth.Responses;
+using SpotCli.Application.OAuth.GetNewAccessToken;
 
-namespace SpotCli.Application.Api;
+namespace SpotCli.Application.Apis;
 
 public interface ISpotifyOAuthApi
 {

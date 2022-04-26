@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using SpotCli.Application.Interfaces;
-using static SpotCli.Cli.Devices.GetLocallyRegisteredDevicesResponse;
+using static SpotCli.Cli.Devices.GetLocallyRegisteredDevices.GetLocallyRegisteredDevicesResponse;
 
-namespace SpotCli.Cli.Devices;
+namespace SpotCli.Cli.Devices.GetLocallyRegisteredDevices;
 
 public class GetLocallyRegisteredDevicesCommandHandler : IRequestHandler<GetLocallyRegisteredDevicesCommand, GetLocallyRegisteredDevicesResponse>
 {

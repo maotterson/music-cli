@@ -4,12 +4,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Refit;
-using SpotCli.Application.Api;
+using SpotCli.Application.Apis;
 using SpotCli.Application.Interfaces;
 using SpotCli.Cli.App;
 using SpotCli.Cli.Configuration;
 using SpotCli.Cli.Factories;
-using SpotCli.Cli.Options.CurrentTrack;
+using SpotCli.Cli.Options.CurrentTrack.GetCurrentlyPlaying;
+using SpotCli.Cli.Options.Interfaces;
 using SpotCli.Cli.Services;
 using System.Reflection;
 

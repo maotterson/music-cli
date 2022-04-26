@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SpotCli.Application.OAuth.Responses;
+namespace SpotCli.Application.OAuth.GetNewAccessToken;
 public record GetNewAccessTokenResponse
 {
     [JsonProperty(PropertyName = "access_token")]

@@ -1,12 +1,7 @@
 ﻿using CommandLine;
 using SpotCli.Cli.Options.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SpotCli.Cli.Options.CurrentTrack;
+namespace SpotCli.Cli.Options.CurrentTrack.GetCurrentlyPlaying;
 
 [Verb("playing")]
 public class GetCurrentlyPlayingRequestOptions : IConsoleOptions

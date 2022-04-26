@@ -1,10 +1,8 @@
 ﻿using MediatR;
-using SpotCli.Application.Api;
-using SpotCli.Application.CurrentTrack.Commands;
-using SpotCli.Application.CurrentTrack.Responses;
+using SpotCli.Application.Apis;
 using SpotCli.Application.Exceptions;
 
-namespace SpotCli.Application.CurrentTrack.Handlers;
+namespace SpotCli.Application.CurrentTrack.PausePlayback;
 
 public class PausePlaybackCommandHandler : IRequestHandler<PausePlaybackRequest, PausePlaybackResponse>
 {

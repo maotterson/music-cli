@@ -1,4 +1,4 @@
-﻿namespace SpotCli.Application.CurrentTrack.Responses;
+﻿namespace SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 
 public class StartOrResumePlaybackResponse
 {

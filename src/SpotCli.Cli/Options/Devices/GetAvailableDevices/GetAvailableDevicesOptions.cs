@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace SpotCli.Cli.Options.Devices;
+namespace SpotCli.Cli.Options.Devices.GetAvailableDevices;
 
 [Verb("devices")]
 public class GetAvailableDevicesOptions

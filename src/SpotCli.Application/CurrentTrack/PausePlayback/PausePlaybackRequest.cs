@@ -1,9 +1,8 @@
 ﻿using MediatR;
 using Newtonsoft.Json;
-using SpotCli.Application.CurrentTrack.Responses;
 using SpotCli.Application.Interfaces;
 
-namespace SpotCli.Application.CurrentTrack.Commands;
+namespace SpotCli.Application.CurrentTrack.PausePlayback;
 
 public class PausePlaybackRequest : IRequest<PausePlaybackResponse>, IValidRequest
 {

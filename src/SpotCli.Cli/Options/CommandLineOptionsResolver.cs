@@ -1,16 +1,16 @@
 ﻿using CommandLine;
-using SpotCli.Application.CurrentTrack.Commands;
-using SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
-using SpotCli.Application.CurrentTrack.Queries;
-using SpotCli.Application.CurrentTrack.Requests;
-using SpotCli.Application.Devices.Commands;
+using SpotCli.Application.CurrentTrack.PausePlayback;
+using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
+using SpotCli.Application.Devices.GetAvailableDevices;
 using SpotCli.Application.Interfaces;
-using SpotCli.Application.OAuth.Commands;
-using SpotCli.Cli.Configuration;
-using SpotCli.Cli.Devices;
-using SpotCli.Cli.Options.CurrentTrack;
-using SpotCli.Cli.Options.Devices;
-using SpotCli.Cli.Options.OAuth;
+using SpotCli.Application.OAuth.GetNewAccessToken;
+using SpotCli.Cli.Devices.GetLocallyRegisteredDevices;
+using SpotCli.Cli.Options.CurrentTrack.GetCurrentlyPlaying;
+using SpotCli.Cli.Options.CurrentTrack.PausePlayback;
+using SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
+using SpotCli.Cli.Options.Devices.GetAvailableDevices;
+using SpotCli.Cli.Options.Interfaces;
+using SpotCli.Cli.Options.OAuth.GetNewAccessToken;
 using SpotCli.Cli.Services;
 
 namespace SpotCli.Cli.Factories;
@@ -20,6 +20,7 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
     private readonly ISpotifyApiConfiguration _configuration;
     private readonly ICommandQueue _commandQueue;
     private readonly GetCurrentlyPlayingOptionsMapper _getCurrentlyPlayingOptionsMapper;
+
     public CommandLineOptionsResolver(
         ISpotifyApiConfiguration configuration, 
         ICommandQueue commandQueue,

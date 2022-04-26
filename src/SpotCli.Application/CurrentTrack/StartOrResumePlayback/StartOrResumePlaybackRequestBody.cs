@@ -1,10 +1,7 @@
-﻿using MediatR;
-using Newtonsoft.Json;
-using SpotCli.Application.CurrentTrack.Responses;
-using SpotCli.Application.Interfaces;
+﻿using Newtonsoft.Json;
 using SpotCli.Application.ValueObjects;
 
-namespace SpotCli.Application.CurrentTrack.Commands;
+namespace SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 
 public record StartOrResumePlaybackRequestBody
 {

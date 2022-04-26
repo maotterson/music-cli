@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SpotCli.Application.Devices.Responses;
+namespace SpotCli.Application.Devices.GetAvailableDevices;
 
 public class GetAvailableDevicesResponse
 {

@@ -1,13 +1,7 @@
-﻿using SpotCli.Application.CurrentTrack.Commands;
-using SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
+﻿using SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
 using SpotCli.Cli.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SpotCli.Cli.Options.CurrentTrack;
+namespace SpotCli.Cli.Options.CurrentTrack.GetCurrentlyPlaying;
 
 public class GetCurrentlyPlayingOptionsMapper
 {

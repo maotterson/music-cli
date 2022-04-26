@@ -1,10 +1,10 @@
 ﻿using Refit;
-using SpotCli.Application.CurrentTrack.Commands;
-using SpotCli.Application.CurrentTrack.Queries;
-using SpotCli.Application.CurrentTrack.Responses;
-using SpotCli.Application.Devices.Responses;
+using SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
+using SpotCli.Application.CurrentTrack.PausePlayback;
+using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
+using SpotCli.Application.Devices.GetAvailableDevices;
 
-namespace SpotCli.Application.Api;
+namespace SpotCli.Application.Apis;
 
 public interface ISpotifyWebApi
 {

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using SpotCli.Application.Interfaces;
-using SpotCli.Cli.Factories;
+using SpotCli.Cli.Options.Interfaces;
 using SpotCli.Cli.Services;
 
 namespace SpotCli.Cli.App;

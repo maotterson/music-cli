@@ -1,10 +1,7 @@
 ﻿using MediatR;
-using SpotCli.Application.CurrentTrack.Commands;
-using SpotCli.Application.CurrentTrack.Queries;
-using SpotCli.Application.CurrentTrack.Responses;
 using SpotCli.Application.Interfaces;
 
-namespace SpotCli.Application.CurrentTrack.Requests;
+namespace SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 
 public class StartOrResumePlaybackRequest : IRequest<StartOrResumePlaybackResponse>, IValidRequest
 {

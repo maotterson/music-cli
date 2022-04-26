@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SpotCli.Application.CurrentTrack.Responses;
+namespace SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
 
 public record GetCurrentlyPlayingResponse
 {
