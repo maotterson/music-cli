@@ -24,4 +24,6 @@ public interface ISpotifyWebApi
     [Get("/me/player/devices")]
     Task<IApiResponse<GetAvailableDevicesResponse>> GetAvailableDevices();
 
+
+
 }
