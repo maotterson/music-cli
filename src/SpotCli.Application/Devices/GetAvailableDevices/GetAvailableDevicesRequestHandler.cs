@@ -4,14 +4,14 @@ using SpotCli.Application.Exceptions;
 
 namespace SpotCli.Application.Devices.GetAvailableDevices;
 
-public class GetAvailableDevicesCommandHandler : IRequestHandler<GetAvailableDevicesCommand, GetAvailableDevicesResponse>
+public class GetAvailableDevicesRequestHandler : IRequestHandler<GetAvailableDevicesRequest, GetAvailableDevicesResponse>
 {
     private readonly ISpotifyWebApi _api;
-    public GetAvailableDevicesCommandHandler(ISpotifyWebApi api)
+    public GetAvailableDevicesRequestHandler(ISpotifyWebApi api)
     {
         _api = api;
     }
-    public async Task<GetAvailableDevicesResponse> Handle(GetAvailableDevicesCommand request, CancellationToken cancellationToken)
+    public async Task<GetAvailableDevicesResponse> Handle(GetAvailableDevicesRequest request, CancellationToken cancellationToken)
     {
         var response = await _api.GetAvailableDevices();
         if(response is null)

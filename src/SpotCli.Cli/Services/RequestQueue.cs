@@ -2,7 +2,7 @@
 
 namespace SpotCli.Cli.Services;
 
-public class CommandQueue : ICommandQueue
+public class RequestQueue : IRequestQueue
 {
     private readonly Queue<IValidRequest> _queue = new();
 

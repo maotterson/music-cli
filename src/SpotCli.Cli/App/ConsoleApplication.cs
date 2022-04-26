@@ -9,13 +9,13 @@ public class ConsoleApplication : IConsoleApplication
 {
     private readonly ICommandLineOptionsResolver _commandLineOptionsResolver;
     private readonly IMediator _mediator;
-    private readonly ICommandQueue _commandQueue;
+    private readonly IRequestQueue _commandQueue;
     private readonly ISpotifyApiConfiguration _configuration;
 
     public ConsoleApplication(ICommandLineOptionsResolver commandLineOptionsResolver, 
         IMediator mediator, 
         ISpotifyApiConfiguration configuration,
-        ICommandQueue commandQueue)
+        IRequestQueue commandQueue)
     {
         _commandLineOptionsResolver = commandLineOptionsResolver;
         _mediator = mediator;

@@ -5,8 +5,8 @@ namespace SpotCli.Cli.Options.CurrentTrack.GetCurrentlyPlaying;
 
 public class GetCurrentlyPlayingOptionsMapper
 {
-    private readonly ICommandQueue _commandQueue;
-    public GetCurrentlyPlayingOptionsMapper(ICommandQueue commandQueue)
+    private readonly IRequestQueue _commandQueue;
+    public GetCurrentlyPlayingOptionsMapper(IRequestQueue commandQueue)
     {
         _commandQueue = commandQueue;
     }

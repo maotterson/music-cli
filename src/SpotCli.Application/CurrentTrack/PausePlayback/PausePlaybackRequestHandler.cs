@@ -4,10 +4,10 @@ using SpotCli.Application.Exceptions;
 
 namespace SpotCli.Application.CurrentTrack.PausePlayback;
 
-public class PausePlaybackCommandHandler : IRequestHandler<PausePlaybackRequest, PausePlaybackResponse>
+public class PausePlaybackRequestHandler : IRequestHandler<PausePlaybackRequest, PausePlaybackResponse>
 {
     private readonly ISpotifyWebApi _spotifyWebApi;
-    public PausePlaybackCommandHandler(ISpotifyWebApi spotifyWebApi)
+    public PausePlaybackRequestHandler(ISpotifyWebApi spotifyWebApi)
     {
         _spotifyWebApi = spotifyWebApi;
     }

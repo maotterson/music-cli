@@ -5,16 +5,16 @@ using SpotCli.Application.OAuth.Utils;
 
 namespace SpotCli.Application.OAuth.GetNewAccessToken;
 
-public class GetNewAccessTokenCommandHandler : IRequestHandler<GetNewAccessTokenCommand, GetNewAccessTokenResponse>
+public class GetNewAccessTokenRequestHandler : IRequestHandler<GetNewAccessTokenRequest, GetNewAccessTokenResponse>
 {
     private readonly ISpotifyOAuthApi _api;
     private readonly ISpotifyApiConfiguration _configuration;
-    public GetNewAccessTokenCommandHandler(ISpotifyOAuthApi api, ISpotifyApiConfiguration configuration)
+    public GetNewAccessTokenRequestHandler(ISpotifyOAuthApi api, ISpotifyApiConfiguration configuration)
     {
         _api = api;
         _configuration = configuration;
     }
-    public async Task<GetNewAccessTokenResponse> Handle(GetNewAccessTokenCommand request, CancellationToken cancellationToken)
+    public async Task<GetNewAccessTokenResponse> Handle(GetNewAccessTokenRequest request, CancellationToken cancellationToken)
     {
         var header = new Base64ClientSecretAuthHeader(_configuration.ClientSecret, _configuration.ClientId).Get();
         var response = await _api.GetNewAccessToken(header, request);

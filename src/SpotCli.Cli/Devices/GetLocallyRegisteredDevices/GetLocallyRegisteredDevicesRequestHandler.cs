@@ -4,14 +4,14 @@ using static SpotCli.Cli.Devices.GetLocallyRegisteredDevices.GetLocallyRegistere
 
 namespace SpotCli.Cli.Devices.GetLocallyRegisteredDevices;
 
-public class GetLocallyRegisteredDevicesCommandHandler : IRequestHandler<GetLocallyRegisteredDevicesCommand, GetLocallyRegisteredDevicesResponse>
+public class GetLocallyRegisteredDevicesRequestHandler : IRequestHandler<GetLocallyRegisteredDevicesRequest, GetLocallyRegisteredDevicesResponse>
 {
     private readonly ISpotifyApiConfiguration _configuration;
-    public GetLocallyRegisteredDevicesCommandHandler(ISpotifyApiConfiguration configuration)
+    public GetLocallyRegisteredDevicesRequestHandler(ISpotifyApiConfiguration configuration)
     {
         _configuration = configuration;
     }
-    public Task<GetLocallyRegisteredDevicesResponse> Handle(GetLocallyRegisteredDevicesCommand request, CancellationToken cancellationToken)
+    public Task<GetLocallyRegisteredDevicesResponse> Handle(GetLocallyRegisteredDevicesRequest request, CancellationToken cancellationToken)
     {
         var deviceDictionary = _configuration.SpotifyDeviceSettings;
         var response = new GetLocallyRegisteredDevicesResponse()

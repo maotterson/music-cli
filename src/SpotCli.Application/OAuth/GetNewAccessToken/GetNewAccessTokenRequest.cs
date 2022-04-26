@@ -4,9 +4,9 @@ using SpotCli.Application.Interfaces;
 
 namespace SpotCli.Application.OAuth.GetNewAccessToken;
 
-public record GetNewAccessTokenCommand : IRequest<GetNewAccessTokenResponse>, IValidRequest
+public record GetNewAccessTokenRequest : IRequest<GetNewAccessTokenResponse>, IValidRequest
 {
-    public GetNewAccessTokenCommand(string refreshToken)
+    public GetNewAccessTokenRequest(string refreshToken)
     {
         RefreshToken = refreshToken;
     }

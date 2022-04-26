@@ -4,7 +4,7 @@ using SpotCli.Application.OAuth.GetNewAccessToken;
 
 namespace SpotCli.Cli.OAuth;
 
-public class PostProcessGetNewAccessTokenCommand : IRequestPostProcessor<GetNewAccessTokenCommand, GetNewAccessTokenResponse>
+public class PostProcessGetNewAccessTokenCommand : IRequestPostProcessor<GetNewAccessTokenRequest, GetNewAccessTokenResponse>
 {
     private readonly ISaveTokenService _saveTokenService;
     public PostProcessGetNewAccessTokenCommand(ISaveTokenService saveTokenService)
@@ -13,7 +13,7 @@ public class PostProcessGetNewAccessTokenCommand : IRequestPostProcessor<GetNewA
     }
 
 
-    public Task Process(GetNewAccessTokenCommand request, GetNewAccessTokenResponse response, CancellationToken cancellationToken)
+    public Task Process(GetNewAccessTokenRequest request, GetNewAccessTokenResponse response, CancellationToken cancellationToken)
     {
         if(response.AccessToken is null)
         {

@@ -3,7 +3,7 @@ using SpotCli.Application.Interfaces;
 
 namespace SpotCli.Cli.Devices.GetLocallyRegisteredDevices;
 
-public class GetLocallyRegisteredDevicesCommand : IRequest<GetLocallyRegisteredDevicesResponse>, IValidRequest
+public class GetLocallyRegisteredDevicesRequest : IRequest<GetLocallyRegisteredDevicesResponse>, IValidRequest
 {
     public string Description => "Get locally registered devices";
 }

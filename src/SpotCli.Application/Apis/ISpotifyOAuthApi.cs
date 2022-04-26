@@ -9,5 +9,5 @@ public interface ISpotifyOAuthApi
     [Headers("Content-Type: application/x-www-form-urlencoded")]
     Task<IApiResponse<GetNewAccessTokenResponse>> GetNewAccessToken(
         [Header("Authorization")] string base64ClientSecretHeader, 
-        [Body(BodySerializationMethod.UrlEncoded)] GetNewAccessTokenCommand command);
+        [Body(BodySerializationMethod.UrlEncoded)] GetNewAccessTokenRequest command);
 }

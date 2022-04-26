@@ -18,12 +18,12 @@ namespace SpotCli.Cli.Factories;
 public class CommandLineOptionsResolver : ICommandLineOptionsResolver
 {
     private readonly ISpotifyApiConfiguration _configuration;
-    private readonly ICommandQueue _commandQueue;
+    private readonly IRequestQueue _commandQueue;
     private readonly GetCurrentlyPlayingOptionsMapper _getCurrentlyPlayingOptionsMapper;
 
     public CommandLineOptionsResolver(
         ISpotifyApiConfiguration configuration, 
-        ICommandQueue commandQueue,
+        IRequestQueue commandQueue,
         GetCurrentlyPlayingOptionsMapper getCurrentlyPlayingOptionsMapper)
     {
         _configuration = configuration;
@@ -56,7 +56,7 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
             .WithParsed<GetNewAccessTokenCommandOptions>(_ =>
             {
                 var refreshToken = _configuration.RefreshToken;
-                var request = new GetNewAccessTokenCommand(refreshToken);
+                var request = new GetNewAccessTokenRequest(refreshToken);
                 _commandQueue.Enqueue(request);
             })
             .WithParsed<StartOrResumePlaybackRequestOptions>(options =>
@@ -81,7 +81,7 @@ public class CommandLineOptionsResolver : ICommandLineOptionsResolver
             })
             .WithParsed<GetAvailableDevicesOptions>(options =>
             {
-                IValidRequest request = options.IsLocal ? new GetLocallyRegisteredDevicesCommand() : new GetAvailableDevicesCommand();
+                IValidRequest request = options.IsLocal ? new GetLocallyRegisteredDevicesRequest() : new GetAvailableDevicesRequest();
                 
                 _commandQueue.Enqueue(request);
             })

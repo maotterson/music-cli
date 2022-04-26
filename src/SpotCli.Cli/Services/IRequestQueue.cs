@@ -2,7 +2,7 @@
 
 namespace SpotCli.Cli.Services;
 
-public interface ICommandQueue
+public interface IRequestQueue
 {
     public void Enqueue(IValidRequest command);
     public IValidRequest Dequeue();
