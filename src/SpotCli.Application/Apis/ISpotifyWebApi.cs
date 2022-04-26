@@ -18,7 +18,7 @@ public interface ISpotifyWebApi
 
     [Put("/me/player/pause")]
     Task<IApiResponse<PausePlaybackResponse>> PausePlayback(
-        [Body(BodySerializationMethod.Serialized)] PausePlaybackRequest command);
+        [Body(BodySerializationMethod.Serialized)] PausePlaybackRequest body);
 
     [Get("/me/player/devices")]
     Task<IApiResponse<GetAvailableDevicesResponse>> GetAvailableDevices();

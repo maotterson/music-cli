@@ -17,49 +17,59 @@ namespace SpotCli.Cli.Factories;
 
 public class CommandLineOptionsResolver : ICommandLineOptionsResolver
 {
-    private readonly ISpotifyApiConfiguration _configuration;
     private readonly IRequestQueue _commandQueue;
+    private readonly ISpotifyApiConfiguration _configuration;
+
+    private readonly PausePlaybackOptionsMapper _pausePlaybackOptionsMapper;
+    private readonly GetNewAccessTokenOptionsMapper _getNewAccessTokenOptionsMapper;
+    private readonly GetAvailableDevicesOptionsMapper _getAvailableDevicesOptionsMapper;
     private readonly GetCurrentlyPlayingOptionsMapper _getCurrentlyPlayingOptionsMapper;
+    private readonly StartOrResumePlaybackOptionsMapper _startOrResumePlaybackOptionsMapper;
 
     public CommandLineOptionsResolver(
         ISpotifyApiConfiguration configuration, 
         IRequestQueue commandQueue,
-        GetCurrentlyPlayingOptionsMapper getCurrentlyPlayingOptionsMapper)
+        PausePlaybackOptionsMapper pausePlaybackOptionsMapper,
+        GetNewAccessTokenOptionsMapper getNewAccessTokenOptionsMapper,
+        GetAvailableDevicesOptionsMapper getAvailableDevicesOptionsMapper,
+        GetCurrentlyPlayingOptionsMapper getCurrentlyPlayingOptionsMapper,
+        StartOrResumePlaybackOptionsMapper startOrResumePlaybackOptionsMapper)
     {
         _configuration = configuration;
         _commandQueue = commandQueue;
+        _pausePlaybackOptionsMapper = pausePlaybackOptionsMapper;
+        _getNewAccessTokenOptionsMapper = getNewAccessTokenOptionsMapper;
+        _getAvailableDevicesOptionsMapper = getAvailableDevicesOptionsMapper;
         _getCurrentlyPlayingOptionsMapper = getCurrentlyPlayingOptionsMapper;
+        _startOrResumePlaybackOptionsMapper = startOrResumePlaybackOptionsMapper;
     }
 
     public void ParseOptions(string[] args)
     {
         Parser.Default
             .ParseArguments<
-                PausePlaybackRequestOptions,
-                GetNewAccessTokenCommandOptions,
-                GetCurrentlyPlayingRequestOptions,
-                StartOrResumePlaybackRequestOptions,
+                PausePlaybackOptions,
+                GetNewAccessTokenOptions,
+                GetCurrentlyPlayingOptions,
+                StartOrResumePlaybackOptions,
                 GetAvailableDevicesOptions>(args)
-            .WithParsed<PausePlaybackRequestOptions>(options =>
+            .WithParsed<PausePlaybackOptions>(options =>
             {
-                var request = new PausePlaybackRequest
-                {
-                    DeviceId = options.DeviceId ?? null
-                };
-                _commandQueue.Enqueue(request);
+                _pausePlaybackOptionsMapper.Map(options);
 
             })
-            .WithParsed<GetCurrentlyPlayingRequestOptions>(options =>
+            .WithParsed<GetCurrentlyPlayingOptions>(options =>
             {
                 _getCurrentlyPlayingOptionsMapper.Map(options);
             })
-            .WithParsed<GetNewAccessTokenCommandOptions>(_ =>
+            .WithParsed<GetNewAccessTokenOptions>(options =>
             {
+                _getNewAccessTokenOptionsMapper.Map(options);
                 var refreshToken = _configuration.RefreshToken;
                 var request = new GetNewAccessTokenRequest(refreshToken);
                 _commandQueue.Enqueue(request);
             })
-            .WithParsed<StartOrResumePlaybackRequestOptions>(options =>
+            .WithParsed<StartOrResumePlaybackOptions>(options =>
             {
                 //todo extract these resolver clauses into separate classses 
                 if(options.Query is not null)

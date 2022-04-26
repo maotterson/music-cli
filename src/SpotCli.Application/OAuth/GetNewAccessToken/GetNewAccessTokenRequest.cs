@@ -6,15 +6,11 @@ namespace SpotCli.Application.OAuth.GetNewAccessToken;
 
 public record GetNewAccessTokenRequest : IRequest<GetNewAccessTokenResponse>, IValidRequest
 {
-    public GetNewAccessTokenRequest(string refreshToken)
+    public GetNewAccessTokenRequest(GetNewAccessTokenRequestBody body)
     {
-        RefreshToken = refreshToken;
+        Body = body;
     }
-
-    [AliasAs("grant_type")]
-    public string GrantType { get; init; } = "refresh_token";
-    [AliasAs("refresh_token")]
-    public string RefreshToken { get; init; }
+    public GetNewAccessTokenRequestBody Body { get; set; }
 
     public string Description => "Get new access token";
 }

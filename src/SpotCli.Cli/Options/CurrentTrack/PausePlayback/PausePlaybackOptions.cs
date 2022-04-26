@@ -4,8 +4,8 @@ using SpotCli.Cli.Options.Interfaces;
 namespace SpotCli.Cli.Options.CurrentTrack.PausePlayback;
 
 [Verb("pause")]
-public class PausePlaybackRequestOptions : IConsoleOptions
+public class PausePlaybackOptions : IConsoleOptions
 {
-    [Option('d', "device", Required = false, HelpText = "Device id.")]
+    [Option('d', "device", Required = false, HelpText = "Device ID.")]
     public string? DeviceId { get; set; }
 }

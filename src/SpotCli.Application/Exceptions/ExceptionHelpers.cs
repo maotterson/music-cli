@@ -6,20 +6,20 @@ namespace SpotCli.Application.Exceptions;
 
 public static class ExceptionHelpers
 {
-    public static ResponseCodeException AsException(this HttpStatusCode code, IValidRequest command)
+    public static ResponseCodeException AsException(this HttpStatusCode code, IValidRequest request)
         => (int)code switch
     {
-        401 => new Response401Exception(command),
-        403 => new Response403Exception(command),
-        429 => new Response429Exception(command),
-        _ => new ResponseGeneralException(command)
+        401 => new Response401Exception(request),
+        403 => new Response403Exception(request),
+        429 => new Response429Exception(request),
+        _ => new ResponseGeneralException(request)
     };
 
-    public static void CheckForErrorStatusCode(this IApiResponse response, IValidRequest command)
+    public static void CheckForErrorStatusCode(this IApiResponse response, IValidRequest request)
     {
         if (!response.IsSuccessStatusCode)
         {
-            throw response.StatusCode.AsException(command);
+            throw response.StatusCode.AsException(request);
         }
     }
 }

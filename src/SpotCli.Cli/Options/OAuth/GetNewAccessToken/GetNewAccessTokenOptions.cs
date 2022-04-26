@@ -4,6 +4,6 @@ using SpotCli.Cli.Options.Interfaces;
 namespace SpotCli.Cli.Options.OAuth.GetNewAccessToken;
 
 [Verb("refresh")]
-public class GetNewAccessTokenCommandOptions : IConsoleOptions
+public class GetNewAccessTokenOptions : IConsoleOptions
 {
 }

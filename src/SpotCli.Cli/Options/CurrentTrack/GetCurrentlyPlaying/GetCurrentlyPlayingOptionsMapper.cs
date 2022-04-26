@@ -10,7 +10,7 @@ public class GetCurrentlyPlayingOptionsMapper
     {
         _commandQueue = commandQueue;
     }
-    public void Map(GetCurrentlyPlayingRequestOptions options)
+    public void Map(GetCurrentlyPlayingOptions options)
     {
         var query = new GetCurrentlyPlayingRequestQuery
         {
