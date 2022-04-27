@@ -27,7 +27,7 @@ public class StartOrResumePlaybackOptionsMapper
 
             var searchRequest = new SearchForItemRequest(searchQuery);
             _commandQueue.Enqueue(searchRequest);
-            // todo: register with the search bus to be notified when the id comes back
+            _search
             return;
         }
 

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotCli.Application.UnitTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotCli.Cli.UnitTests", "tests\SpotCli.Cli.UnitTests\SpotCli.Cli.UnitTests.csproj", "{87570122-297B-49B4-AEF2-34D8CF1934F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecoratedRequestsInMediatrPostprocessing", "samples\DecoratedRequestsInMediatrPostprocessing\DecoratedRequestsInMediatrPostprocessing.csproj", "{A4BBF300-F6B5-47C9-A605-48550F2ECC1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{87570122-297B-49B4-AEF2-34D8CF1934F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87570122-297B-49B4-AEF2-34D8CF1934F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87570122-297B-49B4-AEF2-34D8CF1934F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4BBF300-F6B5-47C9-A605-48550F2ECC1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4BBF300-F6B5-47C9-A605-48550F2ECC1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4BBF300-F6B5-47C9-A605-48550F2ECC1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4BBF300-F6B5-47C9-A605-48550F2ECC1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{478250E5-C1FA-4546-B00B-57CD077A7CC8} = {BC322B6A-ADC3-4050-8800-EBCEF0FD779F}
 		{B1942D80-E1CB-4E21-94F6-E3E48F3FE5B2} = {01A1DD6F-2073-4833-B996-77C56ACCFB66}
 		{87570122-297B-49B4-AEF2-34D8CF1934F2} = {01A1DD6F-2073-4833-B996-77C56ACCFB66}
+		{A4BBF300-F6B5-47C9-A605-48550F2ECC1E} = {E244A5C4-7770-4EEC-9214-20C98C0C207A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {561E3CCC-B027-4BFC-BA6C-4CE92A8FD14B}
