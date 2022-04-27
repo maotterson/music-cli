@@ -1,7 +1,8 @@
 {
   "profiles": {
     "SpotCli.Cli": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "play --id \"4EWCNWgDS8707fNSZ1oaA5\""
     }
   }
 }

@@ -12,9 +12,9 @@ public record SearchForItemResponse
             var primaryArtistName = item.Artists[0].Name;
             var albumName = item.Album.Name;
             var trackName = item.Name;
-            var uri = item.Uri;
+            var id = item.Id;
 
-            output += $"{primaryArtistName} - {trackName} (Album: {albumName})\nTrack URI: {uri}\n\n";
+            output += $"{primaryArtistName} - {trackName} (Album: {albumName})\nTrack Id: {id}\n\n";
         }
 
         return output;

@@ -11,19 +11,3 @@ e.g. "track,artist"
 - market (string)
 - offset (integer)
 
-### Response
-- tracks (object)
-- artists (object)
-- albums (object)
-- playlists (object)
-- shows (object)
-- episodes (object)
-
-Object schema:
-- href (string)
-- items (array of type of object above)
-- limit (integer)
-- next (string)
-- offset (integer)
-- previous (string)
-- total (integer)

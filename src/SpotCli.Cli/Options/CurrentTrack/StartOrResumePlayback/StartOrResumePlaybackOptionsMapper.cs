@@ -1,4 +1,5 @@
 ﻿using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
+using SpotCli.Application.Utils;
 using SpotCli.Cli.Services;
 
 namespace SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
@@ -24,6 +25,9 @@ public class StartOrResumePlaybackOptionsMapper
         var body = new StartOrResumePlaybackRequestBody
         {
             // todo receive potential body options
+            Uris = options.TrackId is not null ?
+                new[] { SpotifyContextUriBuilder.GetTrackContextUriFromId(options.TrackId) } :
+                null
         };
 
         var request = new StartOrResumePlaybackRequest(query, body);
