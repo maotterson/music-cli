@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using SpotCli.Application.Apis;
+using SpotCli.Application.Exceptions;
 
 namespace SpotCli.Application.Search.SearchForItem;
 
@@ -14,5 +15,14 @@ public class SearchForItemRequestHandler : IRequestHandler<SearchForItemRequest,
     public async Task<SearchForItemResponse> Handle(SearchForItemRequest request, CancellationToken cancellationToken)
     {
         var response = await _spotifyWebApi.SearchForItem(request.Query);
+
+        if (response is null)
+        {
+            throw new NullReferenceException();
+        }
+
+        response.CheckForErrorStatusCode(request);
+
+        return response.Content!;
     }
 }

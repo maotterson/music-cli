@@ -15,6 +15,7 @@ using SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Cli.Options.Devices.GetAvailableDevices;
 using SpotCli.Cli.Options.Interfaces;
 using SpotCli.Cli.Options.OAuth.GetNewAccessToken;
+using SpotCli.Cli.Options.Search;
 using SpotCli.Cli.Services;
 using System.Reflection;
 
@@ -96,5 +97,6 @@ public static partial class Helpers
         services.AddTransient<GetAvailableDevicesOptionsMapper>();
         services.AddTransient<GetCurrentlyPlayingOptionsMapper>();
         services.AddTransient<StartOrResumePlaybackOptionsMapper>();
+        services.AddTransient<SearchForItemOptionsMapper>();
     }
 }

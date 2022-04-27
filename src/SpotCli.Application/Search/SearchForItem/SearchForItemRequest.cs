@@ -1,8 +1,9 @@
-﻿using SpotCli.Application.Interfaces;
+﻿using MediatR;
+using SpotCli.Application.Interfaces;
 
 namespace SpotCli.Application.Search.SearchForItem;
 
-public class SearchForItemRequest : IValidRequest
+public class SearchForItemRequest : IRequest<SearchForItemResponse>, IValidRequest
 {
     public SearchForItemRequest(SearchForItemRequestQuery query)
     {

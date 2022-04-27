@@ -3,6 +3,7 @@ using SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
 using SpotCli.Application.CurrentTrack.PausePlayback;
 using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Application.Devices.GetAvailableDevices;
+using SpotCli.Application.Search.SearchForItem;
 
 namespace SpotCli.Application.Apis;
 
@@ -24,6 +25,8 @@ public interface ISpotifyWebApi
     [Get("/me/player/devices")]
     Task<IApiResponse<GetAvailableDevicesResponse>> GetAvailableDevices();
 
-
+    [Get("/search")]
+    Task<IApiResponse<SearchForItemResponse>> SearchForItem(
+        SearchForItemRequestQuery query);
 
 }

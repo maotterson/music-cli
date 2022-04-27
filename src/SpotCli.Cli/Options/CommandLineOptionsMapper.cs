@@ -5,6 +5,7 @@ using SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Cli.Options.Devices.GetAvailableDevices;
 using SpotCli.Cli.Options.Interfaces;
 using SpotCli.Cli.Options.OAuth.GetNewAccessToken;
+using SpotCli.Cli.Options.Search;
 
 namespace SpotCli.Cli.Factories;
 
@@ -15,19 +16,22 @@ public class CommandLineOptionsMapper : ICommandLineOptionsResolver
     private readonly GetAvailableDevicesOptionsMapper _getAvailableDevicesOptionsMapper;
     private readonly GetCurrentlyPlayingOptionsMapper _getCurrentlyPlayingOptionsMapper;
     private readonly StartOrResumePlaybackOptionsMapper _startOrResumePlaybackOptionsMapper;
+    private readonly SearchForItemOptionsMapper _searchForItemOptionsMapper;
 
     public CommandLineOptionsMapper(
         PausePlaybackOptionsMapper pausePlaybackOptionsMapper,
         GetNewAccessTokenOptionsMapper getNewAccessTokenOptionsMapper,
         GetAvailableDevicesOptionsMapper getAvailableDevicesOptionsMapper,
         GetCurrentlyPlayingOptionsMapper getCurrentlyPlayingOptionsMapper,
-        StartOrResumePlaybackOptionsMapper startOrResumePlaybackOptionsMapper)
+        StartOrResumePlaybackOptionsMapper startOrResumePlaybackOptionsMapper,
+        SearchForItemOptionsMapper searchForItemOptionsMapper)
     {
         _pausePlaybackOptionsMapper = pausePlaybackOptionsMapper;
         _getNewAccessTokenOptionsMapper = getNewAccessTokenOptionsMapper;
         _getAvailableDevicesOptionsMapper = getAvailableDevicesOptionsMapper;
         _getCurrentlyPlayingOptionsMapper = getCurrentlyPlayingOptionsMapper;
         _startOrResumePlaybackOptionsMapper = startOrResumePlaybackOptionsMapper;
+        _searchForItemOptionsMapper = searchForItemOptionsMapper;
     }
 
     public void ParseOptions(string[] args)
@@ -38,7 +42,8 @@ public class CommandLineOptionsMapper : ICommandLineOptionsResolver
                 GetNewAccessTokenOptions,
                 GetCurrentlyPlayingOptions,
                 StartOrResumePlaybackOptions,
-                GetAvailableDevicesOptions>(args)
+                GetAvailableDevicesOptions,
+                SearchForItemOptions>(args)
             .WithParsed<PausePlaybackOptions>(options =>
             {
                 _pausePlaybackOptionsMapper.Map(options);
@@ -58,7 +63,10 @@ public class CommandLineOptionsMapper : ICommandLineOptionsResolver
             .WithParsed<GetAvailableDevicesOptions>(options =>
             {
                 _getAvailableDevicesOptionsMapper.Map(options);
-                
+            })
+            .WithParsed<SearchForItemOptions>(options =>
+            {
+                _searchForItemOptionsMapper.Map(options);
             })
             .WithNotParsed(_ =>
             {

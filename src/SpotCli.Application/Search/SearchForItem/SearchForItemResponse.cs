@@ -4,6 +4,11 @@ namespace SpotCli.Application.Search.SearchForItem;
 
 public record SearchForItemResponse
 {
+    public override string ToString()
+    {
+        return $"{Tracks.Href}";
+    }
+
     [AliasAs("tracks")]
     public SearchObject Tracks { get; set; }
     [AliasAs("artists")]

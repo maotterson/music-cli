@@ -13,9 +13,9 @@ public class RequestQueue : IRequestQueue
         return _queue.Dequeue();
     }
 
-    public void Enqueue(IValidRequest command)
+    public void Enqueue(IValidRequest request)
     {
-        _queue.Enqueue(command);
+        _queue.Enqueue(request);
     }
 
     public IValidRequest Peek()
