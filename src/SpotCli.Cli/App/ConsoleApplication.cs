@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using SpotCli.Application.Interfaces;
 using SpotCli.Cli.Options.Interfaces;
 using SpotCli.Cli.Services;
 
@@ -9,18 +8,15 @@ public class ConsoleApplication : IConsoleApplication
 {
     private readonly ICommandLineOptionsResolver _commandLineOptionsResolver;
     private readonly IMediator _mediator;
-    private readonly IRequestQueue _commandQueue;
-    private readonly ISpotifyApiConfiguration _configuration;
+    private readonly IRequestQueue _requestQueue;
 
     public ConsoleApplication(ICommandLineOptionsResolver commandLineOptionsResolver, 
         IMediator mediator, 
-        ISpotifyApiConfiguration configuration,
-        IRequestQueue commandQueue)
+        IRequestQueue requestQueue)
     {
         _commandLineOptionsResolver = commandLineOptionsResolver;
         _mediator = mediator;
-        _configuration = configuration;
-        _commandQueue = commandQueue;
+        _requestQueue = requestQueue;
     }
 
     public async Task RunAsync(string[] args)
@@ -28,9 +24,9 @@ public class ConsoleApplication : IConsoleApplication
         try
         {
             _commandLineOptionsResolver.ParseOptions(args);
-            while (_commandQueue.Count > 0)
+            while (_requestQueue.Count > 0)
             {
-                var response = await ProcessCommand();
+                var response = await ProcessRequest();
                 Console.WriteLine(response);
             }
         }
@@ -40,13 +36,13 @@ public class ConsoleApplication : IConsoleApplication
         }
     }
 
-    private async Task<string> ProcessCommand()
+    private async Task<string> ProcessRequest()
     {
-        var command = _commandQueue.Dequeue();
-        var response = await _mediator.Send(command);
+        var request = _requestQueue.Dequeue();
+        var response = await _mediator.Send(request);
         if (response is null)
         {
-            return $"{command.Description} was unsuccessful. Please try again.";
+            return $"{request.Description} was unsuccessful. Please try again.";
         }
         return response.ToString()!;
     }
