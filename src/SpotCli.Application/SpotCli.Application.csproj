@@ -16,5 +16,9 @@
 		<PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
 		<PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\SpotCli.Core\SpotCli.Core.csproj" />
+	</ItemGroup>
 
 </Project>

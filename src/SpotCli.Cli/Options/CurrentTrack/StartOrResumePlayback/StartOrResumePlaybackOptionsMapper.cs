@@ -1,8 +1,8 @@
 ﻿using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Application.Search.SearchForItem;
-using SpotCli.Application.Utils;
 using SpotCli.Cli.Search.SearchForItem;
 using SpotCli.Cli.Services;
+using SpotCli.Core.Utils;
 
 namespace SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
 

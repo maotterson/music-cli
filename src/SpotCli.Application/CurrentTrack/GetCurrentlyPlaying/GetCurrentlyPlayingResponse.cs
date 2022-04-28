@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SpotCli.Core.ValueObjects;
 
 namespace SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
 
@@ -22,17 +23,4 @@ public record GetCurrentlyPlayingResponse
         [JsonProperty("track_number")]
         public int TrackNumber { get; set; }
     }
-    public struct Album
-    {
-        [JsonProperty("album_type")]
-        public string AlbumType { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-    }
-    public struct Artist
-    {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-    }
-
 }

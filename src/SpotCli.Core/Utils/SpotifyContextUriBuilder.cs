@@ -1,4 +1,4 @@
-﻿namespace SpotCli.Application.Utils;
+﻿namespace SpotCli.Core.Utils;
 
 public static class SpotifyContextUriBuilder
 {

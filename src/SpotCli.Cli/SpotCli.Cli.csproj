@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SpotCli.Application\SpotCli.Application.csproj" />
+    <ProjectReference Include="..\SpotCli.Core\SpotCli.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

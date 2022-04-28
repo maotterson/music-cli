@@ -1,4 +1,5 @@
 ﻿using Refit;
+using SpotCli.Core.ValueObjects;
 
 namespace SpotCli.Application.Search.SearchForItem;
 
@@ -54,10 +55,10 @@ public record SearchForItemResponse
     public struct TrackItem
     {
         [AliasAs("album")]
-        public AlbumItem Album { get; set; }
+        public Album Album { get; set; }
 
         [AliasAs("artist")]
-        public ArtistItem[] Artists { get; set; }
+        public Artist[] Artists { get; set; }
 
         [AliasAs("name")]
         public string Name { get; set; }
@@ -67,17 +68,6 @@ public record SearchForItemResponse
 
         [AliasAs("id")]
         public string Id { get; set; }
-    }
-    public struct AlbumItem
-    {
-        [AliasAs("name")]
-        public string Name { get; set; }
-    }
-
-    public struct ArtistItem
-    {
-        [AliasAs("name")]
-        public string Name { get; set; }
     }
 }
 
