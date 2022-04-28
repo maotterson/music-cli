@@ -20,12 +20,11 @@ public class StartOrResumePlaybackOptionsMapper
     }
     public void Map(StartOrResumePlaybackOptions options)
     {
-        if(options.Query is not null)
+        if (options.Query is not null)
         {
-            SearchForProvidedQuery(options.Query);
+            SearchForProvidedQuery(options);
             return;
         }
-
         var query = new StartOrResumePlaybackRequestQuery
         {
             DeviceId = options.DeviceId
@@ -41,16 +40,16 @@ public class StartOrResumePlaybackOptionsMapper
         var request = new StartOrResumePlaybackRequest(query, body);
         _commandQueue.Enqueue(request);
     }
-    private void SearchForProvidedQuery(string query)
+    private void SearchForProvidedQuery(StartOrResumePlaybackOptions options)
     {
         var searchQuery = new SearchForItemRequestQuery()
         {
-            Query = query,
+            Query = options.Query,
             Limit = SEARCH_RESULTS_LIMIT_FOR_PLAY_REQUEST,
             Types = SEARCH_RESULTS_TYPES_ACCEPTED_FOR_PLAY_REQUEST
         };
 
-        var searchRequest = new SearchForItemBeforeStartOrResumePlaybackRequest(searchQuery);
+        var searchRequest = new SearchForItemBeforeStartOrResumePlaybackRequest(searchQuery, options);
 
         _commandQueue.Enqueue(searchRequest);
     }

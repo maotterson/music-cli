@@ -19,7 +19,10 @@ public class PostProcessSearchForItemBeforeStartOrResumePlayback : IRequestPostP
     }
     public Task Process(SearchForItemBeforeStartOrResumePlaybackRequest request, SearchForItemResponse response, CancellationToken cancellationToken)
     {
-        var query = new StartOrResumePlaybackRequestQuery();
+        var query = new StartOrResumePlaybackRequestQuery()
+        {
+            DeviceId = request.StartOrResumePlaybackOptions!.DeviceId
+        };
         var body = new StartOrResumePlaybackRequestBody()
         {
             Uris = new[] { response.Tracks.Items[0].Uri }
