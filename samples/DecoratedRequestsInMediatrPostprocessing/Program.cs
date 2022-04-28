@@ -7,7 +7,7 @@ var assembly = typeof(Program);
 services.AddMediatR(assembly);
 
 var mediatr = services.BuildServiceProvider().GetService<IMediator>();
-await mediatr.Send(new Request("regular request"));
+await mediatr!.Send(new Request("regular request"));
 await mediatr.Send(new DecoratedRequest("decorated request"));
 
 public class Request : IRequest<Response>

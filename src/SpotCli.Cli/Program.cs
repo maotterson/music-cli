@@ -74,7 +74,6 @@ public static partial class Helpers
     {
 
         services.AddSingleton<IRequestQueue, RequestQueue>();
-        services.AddSingleton<ISearchQueryBus, SearchQueryBus>();
         services.AddSingleton<ISaveTokenService, SaveTokenService>();
         services.AddSingleton<ISaveDevicesService, SaveDevicesService>();
         services.AddSingleton<IConsoleApplication, ConsoleApplication>();

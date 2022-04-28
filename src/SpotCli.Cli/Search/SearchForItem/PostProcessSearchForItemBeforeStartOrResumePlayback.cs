@@ -2,11 +2,6 @@
 using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Application.Search.SearchForItem;
 using SpotCli.Cli.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpotCli.Cli.Search.SearchForItem;
 

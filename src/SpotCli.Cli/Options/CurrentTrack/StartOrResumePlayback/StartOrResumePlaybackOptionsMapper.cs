@@ -12,11 +12,9 @@ public class StartOrResumePlaybackOptionsMapper
     private readonly static string SEARCH_RESULTS_TYPES_ACCEPTED_FOR_PLAY_REQUEST = "track";
 
     private readonly IRequestQueue _commandQueue;
-    private readonly ISearchQueryBus _searchQueryBus;
-    public StartOrResumePlaybackOptionsMapper(IRequestQueue commandQueue, ISearchQueryBus searchQueryBus)
+    public StartOrResumePlaybackOptionsMapper(IRequestQueue commandQueue)
     {
         _commandQueue = commandQueue;
-        _searchQueryBus = searchQueryBus;
     }
     public void Map(StartOrResumePlaybackOptions options)
     {
