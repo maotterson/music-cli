@@ -87,8 +87,8 @@ public static partial class Helpers
     public static void AddHandlers(this IServiceCollection services)
     {
         var applicationAssembly = Assembly.GetAssembly(typeof(ISpotifyWebApi))!;
-        var assembly = Assembly.GetExecutingAssembly();
-        services.AddMediatR(assembly, applicationAssembly);
+        var cliAssembly = Assembly.GetExecutingAssembly();
+        services.AddMediatR(applicationAssembly, cliAssembly);
     }
 
     public static void AddOptionsMappers(this IServiceCollection services)
