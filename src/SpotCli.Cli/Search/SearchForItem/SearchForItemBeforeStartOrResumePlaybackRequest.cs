@@ -1,5 +1,6 @@
 ﻿using SpotCli.Application.Search.SearchForItem;
 using SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
+using SpotCli.Cli.Search.Enums;
 
 namespace SpotCli.Cli.Search.SearchForItem;
 
@@ -9,6 +10,6 @@ public class SearchForItemBeforeStartOrResumePlaybackRequest : SearchForItemRequ
     {
         StartOrResumePlaybackOptions = playbackOptions;
     }
-
+    internal SearchMethod SearchMethod { get; init; }
     public StartOrResumePlaybackOptions? StartOrResumePlaybackOptions { get; init; }
 }

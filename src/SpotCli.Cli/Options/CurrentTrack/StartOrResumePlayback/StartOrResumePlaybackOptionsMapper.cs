@@ -18,7 +18,7 @@ public class StartOrResumePlaybackOptionsMapper
     }
     public void Map(StartOrResumePlaybackOptions options)
     {
-        if (options.Query is not null)
+        if (options.SongQuery is not null)
         {
             SearchForProvidedQuery(options);
             return;
@@ -42,7 +42,7 @@ public class StartOrResumePlaybackOptionsMapper
     {
         var searchQuery = new SearchForItemRequestQuery()
         {
-            Query = options.Query,
+            Query = options.SongQuery,
             Limit = SEARCH_RESULTS_LIMIT_FOR_PLAY_REQUEST,
             Types = SEARCH_RESULTS_TYPES_ACCEPTED_FOR_PLAY_REQUEST
         };

@@ -18,10 +18,23 @@ public class PostProcessSearchForItemBeforeStartOrResumePlayback : IRequestPostP
         {
             DeviceId = request.StartOrResumePlaybackOptions!.DeviceId
         };
-        var body = new StartOrResumePlaybackRequestBody()
+        var body = request.SearchMethod switch
         {
-            Uris = new[] { response.Tracks.Items[0].Uri }
+            Enums.SearchMethod.Track => new StartOrResumePlaybackRequestBody()
+            {
+                Uris = new[] {response.Tracks.Items[0].Uri}
+            },
+            Enums.SearchMethod.Album => new StartOrResumePlaybackRequestBody()
+            {
+                ContextUri = response.Albums // todo implement return object contexturi
+            },
+            Enums.SearchMethod.Artist => new StartOrResumePlaybackRequestBody()
+            {
+                ContextUri = response.Artists // todo implement return object contexturi
+            },
+            _ => throw new NotImplementedException()
         };
+
         var playRequest = new StartOrResumePlaybackRequest(query, body);
         _requestQueue.Enqueue(playRequest);
         return Task.CompletedTask;

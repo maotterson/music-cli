@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SpotCli.Application.ValueObjects;
+using SpotCli.Core.ValueObjects;
 
 namespace SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 
