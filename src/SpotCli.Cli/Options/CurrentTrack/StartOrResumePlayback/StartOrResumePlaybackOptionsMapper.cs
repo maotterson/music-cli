@@ -1,5 +1,8 @@
-﻿using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
+﻿using OneOf;
+using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Application.Search.SearchForItem;
+using SpotCli.Cli.Options.Utils;
+using SpotCli.Cli.Search.Enums;
 using SpotCli.Cli.Search.SearchForItem;
 using SpotCli.Cli.Services;
 using SpotCli.Core.Utils;
@@ -8,8 +11,6 @@ namespace SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
 
 public class StartOrResumePlaybackOptionsMapper
 {
-    private readonly static int SEARCH_RESULTS_LIMIT_FOR_PLAY_REQUEST = 1;
-    private readonly static string SEARCH_RESULTS_TYPES_ACCEPTED_FOR_PLAY_REQUEST = "track";
 
     private readonly IRequestQueue _commandQueue;
     public StartOrResumePlaybackOptionsMapper(IRequestQueue commandQueue)
@@ -18,11 +19,18 @@ public class StartOrResumePlaybackOptionsMapper
     }
     public void Map(StartOrResumePlaybackOptions options)
     {
-        if (options.SongQuery is not null)
+        var (preSearchMethod, searchQuery) = GetSearchTypeBeforePlayback(options);
+        if (preSearchMethod is not null && searchQuery is not null)
         {
-            SearchForProvidedQuery(options);
+            CreatePrePlaybackSearchRequest((SearchMethod)preSearchMethod, searchQuery, options);
             return;
         }
+
+        CreateStartOrResumePlaybackRequest(options);
+    }
+
+    private void CreateStartOrResumePlaybackRequest(StartOrResumePlaybackOptions options)
+    {
         var query = new StartOrResumePlaybackRequestQuery
         {
             DeviceId = options.DeviceId
@@ -38,16 +46,27 @@ public class StartOrResumePlaybackOptionsMapper
         var request = new StartOrResumePlaybackRequest(query, body);
         _commandQueue.Enqueue(request);
     }
-    private void SearchForProvidedQuery(StartOrResumePlaybackOptions options)
-    {
-        var searchQuery = new SearchForItemRequestQuery()
-        {
-            Query = options.SongQuery,
-            Limit = SEARCH_RESULTS_LIMIT_FOR_PLAY_REQUEST,
-            Types = SEARCH_RESULTS_TYPES_ACCEPTED_FOR_PLAY_REQUEST
-        };
 
-        var searchRequest = new SearchForItemBeforeStartOrResumePlaybackRequest(searchQuery, options);
+    private (SearchMethod? Method,string? Query) GetSearchTypeBeforePlayback(StartOrResumePlaybackOptions options)
+    {
+        if(options.SongQuery is not null)
+        {
+            return (SearchMethod.Track, options.SongQuery);
+        }
+        else if(options.AlbumQuery is not null)
+        {
+            return (SearchMethod.Album, options.AlbumQuery);
+        }
+        else if(options.ArtistQuery is not null)
+        {
+            return (SearchMethod.Artist, options.ArtistQuery);
+        }
+        return (null,null);
+    }
+    private void CreatePrePlaybackSearchRequest(SearchMethod searchMethod, string search, StartOrResumePlaybackOptions options)
+    {
+        var query = SearchMethodToQueryDictionary.GetQuery(searchMethod, search);
+        var searchRequest = new SearchForItemBeforeStartOrResumePlaybackRequest(query, options);
 
         _commandQueue.Enqueue(searchRequest);
     }
