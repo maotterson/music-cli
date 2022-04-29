@@ -13,5 +13,7 @@ public interface ISpotifyApiConfiguration
     public string OAuthBaseAddress { get; }
     public string ClientId { get; }
     public string ClientSecret { get; }
+
+    public string SpotifyId { get; }
     public Dictionary<string, string> SpotifyDeviceSettings { get; }
 }

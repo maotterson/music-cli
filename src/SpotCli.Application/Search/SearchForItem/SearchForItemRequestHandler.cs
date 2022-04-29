@@ -18,7 +18,7 @@ public class SearchForItemRequestHandler : IRequestHandler<SearchForItemRequest,
 
         if (response is null)
         {
-            throw new NullReferenceException();
+            throw new NullReferenceException(nameof(request));
         }
 
         response.CheckForErrorStatusCode(request);
