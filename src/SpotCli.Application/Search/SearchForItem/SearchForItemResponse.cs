@@ -22,11 +22,11 @@ public record SearchForItemResponse
     }
 
     [AliasAs("tracks")]
-    public TrackObject Tracks { get; set; } // currently implemented
+    public ItemResponseObject<TrackItem> Tracks { get; set; } // currently implemented
     [AliasAs("artists")]
-    public string? Artists { get; set; }
+    public ItemResponseObject<ArtistItem>? Artists { get; set; }
     [AliasAs("albums")]
-    public string? Albums { get; set; }
+    public ItemResponseObject<AlbumItem>? Albums { get; set; }
     [AliasAs("playlists")]
     public string? Playlists { get; set; }
     [AliasAs("shows")]
@@ -34,12 +34,12 @@ public record SearchForItemResponse
     [AliasAs("episodes")]
     public string? Episodes { get; set; }
 
-    public struct TrackObject
+    public struct ItemResponseObject<T>
     {
         [AliasAs("href")]
         public string Href { get; set; }
         [AliasAs("items")]
-        public TrackItem[] Items { get; set; }
+        public T[] Items { get; set; }
         [AliasAs("limit")]
         public int Limit { get; set; }
         [AliasAs("next")]

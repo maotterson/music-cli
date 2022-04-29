@@ -12,7 +12,10 @@ public class PostProcessSearchForItemBeforeStartOrResumePlayback : IRequestPostP
     {
         _requestQueue = requestQueue;
     }
-    public Task Process(SearchForItemBeforeStartOrResumePlaybackRequest request, SearchForItemResponse response, CancellationToken cancellationToken)
+    public Task Process(
+        SearchForItemBeforeStartOrResumePlaybackRequest request,
+        SearchForItemResponse response,
+        CancellationToken cancellationToken)
     {
         var query = new StartOrResumePlaybackRequestQuery()
         {
@@ -22,7 +25,7 @@ public class PostProcessSearchForItemBeforeStartOrResumePlayback : IRequestPostP
         {
             Enums.SearchMethod.Track => new StartOrResumePlaybackRequestBody()
             {
-                Uris = new[] {response.Tracks.Items[0].Uri}
+                Uris = new[] { response.Tracks.Items[0].Uri }
             },
             Enums.SearchMethod.Album => new StartOrResumePlaybackRequestBody()
             {
@@ -34,7 +37,6 @@ public class PostProcessSearchForItemBeforeStartOrResumePlayback : IRequestPostP
             },
             _ => throw new NotImplementedException()
         };
-
         var playRequest = new StartOrResumePlaybackRequest(query, body);
         _requestQueue.Enqueue(playRequest);
         return Task.CompletedTask;
