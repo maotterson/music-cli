@@ -29,11 +29,11 @@ public class PostProcessSearchForItemBeforeStartOrResumePlayback : IRequestPostP
             },
             Enums.SearchMethod.Album => new StartOrResumePlaybackRequestBody()
             {
-                ContextUri = response.Albums // todo implement return object contexturi
+                ContextUri = response.Albums.Items[0].Uri
             },
             Enums.SearchMethod.Artist => new StartOrResumePlaybackRequestBody()
             {
-                ContextUri = response.Artists // todo implement return object contexturi
+                ContextUri = response.Artists.Items[0].Uri
             },
             _ => throw new NotImplementedException()
         };

@@ -66,7 +66,7 @@ public class StartOrResumePlaybackOptionsMapper
     private void CreatePrePlaybackSearchRequest(SearchMethod searchMethod, string search, StartOrResumePlaybackOptions options)
     {
         var query = SearchMethodToQueryDictionary.GetQuery(searchMethod, search);
-        var searchRequest = new SearchForItemBeforeStartOrResumePlaybackRequest(query, options);
+        var searchRequest = new SearchForItemBeforeStartOrResumePlaybackRequest(searchMethod, query, options);
 
         _commandQueue.Enqueue(searchRequest);
     }

@@ -1,6 +1,6 @@
 ﻿namespace SpotCli.Cli.Search.Enums;
 
-internal enum SearchMethod
+public enum SearchMethod
 {
     Track,
     Album,

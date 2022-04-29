@@ -6,10 +6,11 @@ namespace SpotCli.Cli.Search.SearchForItem;
 
 public class SearchForItemBeforeStartOrResumePlaybackRequest : SearchForItemRequest, IRequestBeforeStartOrResumePlayback
 {
-    public SearchForItemBeforeStartOrResumePlaybackRequest(SearchForItemRequestQuery query, StartOrResumePlaybackOptions playbackOptions) : base(query)
+    public SearchForItemBeforeStartOrResumePlaybackRequest(SearchMethod method, SearchForItemRequestQuery query, StartOrResumePlaybackOptions playbackOptions) : base(query)
     {
+        SearchMethod = method;
         StartOrResumePlaybackOptions = playbackOptions;
     }
-    internal SearchMethod SearchMethod { get; init; }
+    public SearchMethod SearchMethod { get; init; }
     public StartOrResumePlaybackOptions? StartOrResumePlaybackOptions { get; init; }
 }

@@ -8,6 +8,7 @@ public record SearchForItemResponse
     public override string ToString()
     {
         string output = "Search Results:\n=============================\n";
+        if (Tracks.Items is null) return output; // todo implement different output for artist/album search
         foreach(var item in Tracks.Items)
         {
             var primaryArtistName = item.Artists[0].Name;
@@ -22,11 +23,11 @@ public record SearchForItemResponse
     }
 
     [AliasAs("tracks")]
-    public ItemResponseObject<TrackItem> Tracks { get; set; } // currently implemented
+    public ItemResponseObject<TrackItem> Tracks { get; set; }
     [AliasAs("artists")]
-    public ItemResponseObject<ArtistItem>? Artists { get; set; }
+    public ItemResponseObject<ArtistItem> Artists { get; set; }
     [AliasAs("albums")]
-    public ItemResponseObject<AlbumItem>? Albums { get; set; }
+    public ItemResponseObject<AlbumItem> Albums { get; set; }
     [AliasAs("playlists")]
     public string? Playlists { get; set; }
     [AliasAs("shows")]
@@ -53,6 +54,42 @@ public record SearchForItemResponse
     }
 
     public struct TrackItem
+    {
+        [AliasAs("album")]
+        public Album Album { get; set; }
+
+        [AliasAs("artist")]
+        public Artist[] Artists { get; set; }
+
+        [AliasAs("name")]
+        public string Name { get; set; }
+
+        [AliasAs("uri")]
+        public string Uri { get; set; }
+
+        [AliasAs("id")]
+        public string Id { get; set; }
+    }
+
+    public struct ArtistItem
+    {
+        [AliasAs("album")]
+        public Album Album { get; set; }
+
+        [AliasAs("artist")]
+        public Artist[] Artists { get; set; }
+
+        [AliasAs("name")]
+        public string Name { get; set; }
+
+        [AliasAs("uri")]
+        public string Uri { get; set; }
+
+        [AliasAs("id")]
+        public string Id { get; set; }
+    }
+
+    public struct AlbumItem
     {
         [AliasAs("album")]
         public Album Album { get; set; }
