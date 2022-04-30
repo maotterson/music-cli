@@ -1,6 +1,7 @@
 ﻿using SpotCli.Application.Interfaces;
 using SpotCli.Application.Playlists.CreatePlaylist;
 using SpotCli.Cli.Exceptions;
+using SpotCli.Cli.Playlists.CreatePlaylist;
 using SpotCli.Cli.Services;
 using SpotCli.Cli.Services.Playlist;
 
@@ -11,26 +12,20 @@ public class CreatePlaylistOptionsMapper
     private readonly IRequestQueue _requestQueue;
     private readonly ISpotifyApiConfiguration _configuration;
     private readonly IPlaylistFileParser _playlistFileParser;
+    private readonly IPlaylistCreatorService _playlistCreatorService;
 
-    public CreatePlaylistOptionsMapper(ISpotifyApiConfiguration configuration, IRequestQueue requestQueue, IPlaylistFileParser playlistFileParser)
+    public CreatePlaylistOptionsMapper(ISpotifyApiConfiguration configuration, 
+        IRequestQueue requestQueue, 
+        IPlaylistFileParser playlistFileParser
+        IPlaylistCreatorService playlistCreatorService)
     {
         _requestQueue = requestQueue;
         _configuration = configuration;
         _playlistFileParser = playlistFileParser;
+        _playlistCreatorService = playlistCreatorService;
     }
     public void Map(CreatePlaylistOptions options)
     {
-        if(options.Tracklist is not null)
-        {
-            var tracklist = _playlistFileParser.ParseFile("sample-playlist.txt");
-            foreach(var track in tracklist)
-            {
-                Console.WriteLine(track.ToSearchQuery());
-            }
-            return;
-            throw new InvalidTracklistPathException();
-        }
-
         var playlistName = options.Name;
         var userId = _configuration.SpotifyId;
 
@@ -40,6 +35,17 @@ public class CreatePlaylistOptionsMapper
             // todo add additional params
         };
         var request = new CreatePlaylistRequest(userId, requestBody);
+
+        if (options.Tracklist is not null)
+        {
+            var tracklist = _playlistFileParser.ParseFile("sample-playlist.txt");
+            _playlistCreatorService.SetTracklist(tracklist);
+            _playlistCreatorService.SetName(options.Name!);
+
+            var decoratedRequest = new CreatePlaylistBeforeAddingTracksRequest(request);
+            _requestQueue.Enqueue(decoratedRequest);
+            return;
+        }
 
         _requestQueue.Enqueue(request);
     }
