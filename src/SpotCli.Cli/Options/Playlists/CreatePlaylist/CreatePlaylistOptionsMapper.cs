@@ -22,8 +22,12 @@ public class CreatePlaylistOptionsMapper
     {
         if(options.Tracklist is not null)
         {
-            _playlistFileParser.ParseFile("sample-playlist.txt");
-
+            var tracklist = _playlistFileParser.ParseFile("sample-playlist.txt");
+            foreach(var track in tracklist)
+            {
+                Console.WriteLine(track.ToSearchQuery());
+            }
+            return;
             throw new InvalidTracklistPathException();
         }
 

@@ -8,12 +8,46 @@ namespace SpotCli.Cli.Services.Playlist;
 
 public class PlaylistFileParser : IPlaylistFileParser
 {
-    public void ParseFile(string filePath)
+    private delegate string[] ParsingMethod(string raw);
+    public IList<ParsedTrack> ParseFile(string filePath)
     {
+        IList<ParsedTrack> tracklist = new List<ParsedTrack>();
+        ParsingMethod parsingMethod = GetParsingMethod(filePath);
+
         using (StreamReader sr = new StreamReader(File.OpenRead(filePath)))
         {
-            string file = sr.ReadToEnd();
-            Console.WriteLine(file);
+            while (!sr.EndOfStream)
+            {
+                string line = sr.ReadLine()!;
+                var track = ParseTrack(line, parsingMethod);
+                tracklist.Add(track);
+            }
         }
+
+        return tracklist;
     }
+    
+    private ParsingMethod GetParsingMethod(string filePath)
+    {
+        var fileExtension = filePath.Split(".")[1];
+        if(fileExtension is "csv")
+        {
+            return (raw) => raw.Split(",");
+        }
+        return (raw) => raw.Split(" - ");
+    }
+
+
+    private ParsedTrack ParseTrack(string raw, ParsingMethod method)
+    {
+        var split = method(raw);
+        var track = new ParsedTrack()
+        {
+            Artist = split[0],
+            Name = split[1],
+        };
+        return track;
+    }
+
+    
 }
