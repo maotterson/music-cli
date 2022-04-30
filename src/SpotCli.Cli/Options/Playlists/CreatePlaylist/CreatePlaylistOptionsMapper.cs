@@ -14,9 +14,10 @@ public class CreatePlaylistOptionsMapper
     private readonly IPlaylistFileParser _playlistFileParser;
     private readonly IPlaylistCreatorService _playlistCreatorService;
 
-    public CreatePlaylistOptionsMapper(ISpotifyApiConfiguration configuration, 
+    public CreatePlaylistOptionsMapper(
+        ISpotifyApiConfiguration configuration, 
         IRequestQueue requestQueue, 
-        IPlaylistFileParser playlistFileParser
+        IPlaylistFileParser playlistFileParser,
         IPlaylistCreatorService playlistCreatorService)
     {
         _requestQueue = requestQueue;

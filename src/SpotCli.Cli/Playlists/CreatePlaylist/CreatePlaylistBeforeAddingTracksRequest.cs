@@ -1,4 +1,5 @@
 ﻿using SpotCli.Application.Playlists.CreatePlaylist;
+using SpotCli.Cli.Playlists.Decorators;
 
 namespace SpotCli.Cli.Playlists.CreatePlaylist;
 
