@@ -9,9 +9,9 @@ namespace SpotCli.Cli.Services.Playlist;
 public class PlaylistFileParser : IPlaylistFileParser
 {
     private delegate string[] ParsingMethod(string raw);
-    public IList<ParsedTrack> ParseFile(string filePath)
+    public Queue<ParsedTrack> ParseFile(string filePath)
     {
-        IList<ParsedTrack> tracklist = new List<ParsedTrack>();
+        Queue<ParsedTrack> tracklist = new Queue<ParsedTrack>();
         ParsingMethod parsingMethod = GetParsingMethod(filePath);
 
         using (StreamReader sr = new StreamReader(File.OpenRead(filePath)))
@@ -20,7 +20,7 @@ public class PlaylistFileParser : IPlaylistFileParser
             {
                 string line = sr.ReadLine()!;
                 var track = ParseTrack(line, parsingMethod);
-                tracklist.Add(track);
+                tracklist.Enqueue(track);
             }
         }
 

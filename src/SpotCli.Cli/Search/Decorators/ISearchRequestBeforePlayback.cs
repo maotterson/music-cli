@@ -2,7 +2,7 @@
 
 namespace SpotCli.Cli.Search.Decorators;
 
-public interface IRequestBeforeStartOrResumePlayback
+public interface ISearchRequestBeforePlayback
 {
     public StartOrResumePlaybackOptions? StartOrResumePlaybackOptions { get; }
 }

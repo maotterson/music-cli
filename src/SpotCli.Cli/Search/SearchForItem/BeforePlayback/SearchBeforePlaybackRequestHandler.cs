@@ -5,15 +5,15 @@ using SpotCli.Application.Search.SearchForItem;
 
 namespace SpotCli.Cli.Search.SearchForItem;
 
-public class SearchForItemRequestExtendedHandler : IRequestHandler<SearchForItemBeforeStartOrResumePlaybackRequest, SearchForItemResponse>
+public class SearchBeforePlaybackRequestHandler : IRequestHandler<SearchBeforePlaybackRequest, SearchForItemResponse>
 {
     private readonly ISpotifyWebApi _spotifyWebApi;
-    public SearchForItemRequestExtendedHandler(ISpotifyWebApi spotifyWebApi)
+    public SearchBeforePlaybackRequestHandler(ISpotifyWebApi spotifyWebApi)
     {
         _spotifyWebApi = spotifyWebApi;
     }
 
-    public async Task<SearchForItemResponse> Handle(SearchForItemBeforeStartOrResumePlaybackRequest request, CancellationToken cancellationToken)
+    public async Task<SearchForItemResponse> Handle(SearchBeforePlaybackRequest request, CancellationToken cancellationToken)
     {
         var response = await _spotifyWebApi.SearchForItem(request.Query);
 

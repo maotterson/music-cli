@@ -5,15 +5,15 @@ using SpotCli.Cli.Services;
 
 namespace SpotCli.Cli.Search.SearchForItem;
 
-public class PostProcessSearchForItemBeforeStartOrResumePlayback : IRequestPostProcessor<SearchForItemBeforeStartOrResumePlaybackRequest, SearchForItemResponse>
+public class PostProcessSearchBeforePlayback : IRequestPostProcessor<SearchBeforePlaybackRequest, SearchForItemResponse>
 {
     private readonly IRequestQueue _requestQueue;
-    public PostProcessSearchForItemBeforeStartOrResumePlayback(IRequestQueue requestQueue)
+    public PostProcessSearchBeforePlayback(IRequestQueue requestQueue)
     {
         _requestQueue = requestQueue;
     }
     public Task Process(
-        SearchForItemBeforeStartOrResumePlaybackRequest request,
+        SearchBeforePlaybackRequest request,
         SearchForItemResponse response,
         CancellationToken cancellationToken)
     {

@@ -2,23 +2,32 @@
 
 public class PlaylistCreatorService
 {
-    private IList<ParsedTrack>? _tracklist;
+    private IList<string> _trackUriList = new List<string>();
     private string? _playlistName;
-    private string? _playlistId;
+    private int numberOfTracks = 0;
 
-    public void SetTracklist(IList<ParsedTrack> tracklist)
-    {
-        _tracklist = tracklist;
-    }
+    public string? PlaylistId { get; set; }
 
     public void SetName(string _playlistName)
     {
         this._playlistName = _playlistName;
     }
-
-    public void SetId(string _playlistName)
+    public bool HasSearchedForAllTracks()
     {
-        this._playlistName = _playlistName;
+        return _trackUriList.Count >= numberOfTracks;
+    }
+    public void AddTrackUri(string uri)
+    {
+        _trackUriList.Add(uri);
     }
 
+    public void SetPlaylistSize(int size)
+    {
+        numberOfTracks = size;
+    }
+
+    public string[] UriArray()
+    {
+        return _trackUriList.ToArray();
+    }
 }

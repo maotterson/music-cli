@@ -1,7 +1,9 @@
 ﻿using SpotCli.Application.Interfaces;
 using SpotCli.Application.Playlists.CreatePlaylist;
+using SpotCli.Application.Search.SearchForItem;
 using SpotCli.Cli.Exceptions;
 using SpotCli.Cli.Playlists.CreatePlaylist;
+using SpotCli.Cli.Search.SearchForItem.BeforeAddToPlaylist;
 using SpotCli.Cli.Services;
 using SpotCli.Cli.Services.Playlist;
 
@@ -40,15 +42,36 @@ public class CreatePlaylistOptionsMapper
         if (options.Tracklist is not null)
         {
             var tracklist = _playlistFileParser.ParseFile("sample-playlist.txt");
-            _playlistCreatorService.SetTracklist(tracklist);
             _playlistCreatorService.SetName(options.Name!);
 
             var decoratedRequest = new CreatePlaylistBeforeAddingTracksRequest(request);
             _requestQueue.Enqueue(decoratedRequest);
+            EnqueueTrackSearches(tracklist);
             return;
         }
 
         _requestQueue.Enqueue(request);
+    }
+    private void EnqueueTrackSearches(Queue<ParsedTrack> tracklist)
+    {
+        var playlistSize = 0;
+        while(tracklist.Count > 0)
+        {
+            var track = tracklist.Dequeue();
+
+            var search = track.ToSearchQuery();
+            var query = new SearchForItemRequestQuery()
+            {
+                Limit = 1,
+                Types = "track",
+                Query = search
+            };
+            var request = new SearchForItemRequest(query);
+            var decoratedRequest = new SearchBeforeAddToPlaylistRequest(request);
+            _requestQueue.Enqueue(decoratedRequest);
+            playlistSize++;
+        }
+        _playlistCreatorService.SetPlaylistSize(playlistSize);
     }
 
 }

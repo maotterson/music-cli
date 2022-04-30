@@ -2,7 +2,10 @@
 
 public interface IPlaylistCreatorService
 {
-    public void SetTracklist(IList<ParsedTrack> tracklist);
+    public void SetPlaylistSize(int size);
+    public void AddTrackUri(string uri);
     public void SetName(string name);
-    public void SetId(string id);
+    public bool HasSearchedForAllTracks();
+    public string[] UriArray();
+    public string? PlaylistId { get; set; }
 }

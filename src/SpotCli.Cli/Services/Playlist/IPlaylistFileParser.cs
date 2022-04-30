@@ -2,5 +2,5 @@
 
 public interface IPlaylistFileParser
 {
-    public IList<ParsedTrack> ParseFile(string file);
+    public Queue<ParsedTrack> ParseFile(string file);
 }

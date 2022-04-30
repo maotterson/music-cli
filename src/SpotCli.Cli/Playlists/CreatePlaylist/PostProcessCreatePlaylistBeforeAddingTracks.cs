@@ -18,7 +18,7 @@ public class PostProcessCreatePlaylistBeforeAddingTracks : IRequestPostProcessor
         {
             throw new NullReferenceException(nameof(response));
         }
-        _playlistCreatorService.SetId(response.Playlist.Id);
+        _playlistCreatorService.PlaylistId = response.Playlist.Id;
 
         return Task.CompletedTask;
     }
