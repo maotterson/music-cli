@@ -26,7 +26,7 @@ public class CommandLineOptionsMapper : ICommandLineOptionsResolver
         GetAvailableDevicesOptionsMapper getAvailableDevicesOptionsMapper,
         GetCurrentlyPlayingOptionsMapper getCurrentlyPlayingOptionsMapper,
         StartOrResumePlaybackOptionsMapper startOrResumePlaybackOptionsMapper,
-        SearchForItemOptionsMapper searchForItemOptionsMapper
+        SearchForItemOptionsMapper searchForItemOptionsMapper,
         CreatePlaylistOptionsMapper createPlaylistOptionsMapper)
     {
         _pausePlaybackOptionsMapper = pausePlaybackOptionsMapper;

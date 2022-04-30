@@ -15,8 +15,10 @@ using SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Cli.Options.Devices.GetAvailableDevices;
 using SpotCli.Cli.Options.Interfaces;
 using SpotCli.Cli.Options.OAuth.GetNewAccessToken;
+using SpotCli.Cli.Options.Playlists.CreatePlaylist;
 using SpotCli.Cli.Options.Search;
 using SpotCli.Cli.Services;
+using SpotCli.Cli.Services.Playlist;
 using System.Reflection;
 
 var appDataDirectory = GetAppDataDirectoryFromSettings();
@@ -75,6 +77,7 @@ public static partial class Helpers
 
         services.AddSingleton<IRequestQueue, RequestQueue>();
         services.AddSingleton<ISaveTokenService, SaveTokenService>();
+        services.AddSingleton<IPlaylistFileParser, PlaylistFileParser>();
         services.AddSingleton<ISaveDevicesService, SaveDevicesService>();
         services.AddSingleton<IConsoleApplication, ConsoleApplication>();
         services.AddSingleton<ISpotifyApiConfiguration, SpotifyApiConfiguration>(_ =>
@@ -98,5 +101,6 @@ public static partial class Helpers
         services.AddTransient<GetCurrentlyPlayingOptionsMapper>();
         services.AddTransient<StartOrResumePlaybackOptionsMapper>();
         services.AddTransient<SearchForItemOptionsMapper>();
+        services.AddTransient<CreatePlaylistOptionsMapper>();
     }
 }

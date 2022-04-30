@@ -1,6 +1,4 @@
-﻿using OneOf;
-using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
-using SpotCli.Application.Search.SearchForItem;
+﻿using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Cli.Options.Utils;
 using SpotCli.Cli.Search.Enums;
 using SpotCli.Cli.Search.SearchForItem;

@@ -5,9 +5,9 @@ namespace SpotCli.Core.Entities;
 public record Playlist
 {
     [JsonProperty("id")]
-    public string Id { get; set; }
+    public string? Id { get; set; }
     [JsonProperty("name")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
     [JsonProperty("uri")]
-    public string Uri { get; set; }
+    public string? Uri { get; set; }
 }
