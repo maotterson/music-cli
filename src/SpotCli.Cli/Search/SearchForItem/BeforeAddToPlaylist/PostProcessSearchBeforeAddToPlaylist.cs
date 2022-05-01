@@ -1,4 +1,5 @@
 ﻿using MediatR.Pipeline;
+using SpotCli.Application.Playlists.AddToPlaylist;
 using SpotCli.Application.Search.SearchForItem;
 using SpotCli.Cli.Services;
 using SpotCli.Cli.Services.Playlist;
@@ -23,14 +24,13 @@ public class PostProcessSearchBeforeAddToPlaylist : IRequestPostProcessor<Search
 
         if (_playlistCreatorService.HasSearchedForAllTracks())
         {
-            var playlistId = _playlistCreatorService.PlaylistId;
+            var playlistId = _playlistCreatorService.PlaylistId ?? throw new NullReferenceException();
             var body = new AddToPlaylistRequestBody()
             {
                 //todo
                 Uris = _playlistCreatorService.UriArray()
             };
-            var bulkAddRequest = new AddToPlaylistRequest(playlistId, body)
-            // todo enqueue bulk add request in requestqueue
+            var bulkAddRequest = new AddToPlaylistRequest(playlistId, body);
             _requestQueue.Enqueue(bulkAddRequest);
         }
 
