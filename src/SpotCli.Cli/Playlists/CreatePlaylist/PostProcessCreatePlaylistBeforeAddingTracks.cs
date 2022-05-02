@@ -14,11 +14,11 @@ public class PostProcessCreatePlaylistBeforeAddingTracks : IRequestPostProcessor
 
     public Task Process(CreatePlaylistBeforeAddingTracksRequest request, CreatePlaylistResponse response, CancellationToken cancellationToken)
     {
-        if(response.Playlist!.Id is null)
+        if(response.Id is null)
         {
             throw new NullReferenceException(nameof(response));
         }
-        _playlistCreatorService.PlaylistId = response.Playlist.Id;
+        _playlistCreatorService.PlaylistId = response.Id;
 
         return Task.CompletedTask;
     }

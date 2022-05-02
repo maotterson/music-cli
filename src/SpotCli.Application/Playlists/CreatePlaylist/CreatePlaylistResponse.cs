@@ -1,4 +1,5 @@
-﻿using SpotCli.Core.Entities;
+﻿using Refit;
+using SpotCli.Core.Entities;
 
 namespace SpotCli.Application.Playlists.CreatePlaylist;
 
@@ -6,9 +7,11 @@ public class CreatePlaylistResponse
 {
     public override string ToString()
     {
-        if (Playlist is null) throw new NullReferenceException(nameof(CreatePlaylistResponse));
-        return $"Playlist \"{Playlist.Name}\" created (Id: {Playlist.Id}.";
+        if (Id is null) throw new NullReferenceException(nameof(CreatePlaylistResponse));
+        return $"Playlist \"{Name}\" created (Id: {Id}.";
     }
-    public Playlist? Playlist { get; set; }
-
+    [AliasAs("id")]
+    public string? Id { get; set; }
+    [AliasAs("name")]
+    public string? Name { get; set; }
 }

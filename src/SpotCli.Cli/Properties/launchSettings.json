@@ -2,7 +2,7 @@
   "profiles": {
     "SpotCli.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "play --a \"kanye\""
+      "commandLineArgs": "playlist -n \"test\" -t \"test'.txt\""
     }
   }
 }
