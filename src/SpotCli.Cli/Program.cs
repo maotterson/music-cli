@@ -78,6 +78,7 @@ public static partial class Helpers
         services.AddSingleton<IRequestQueue, RequestQueue>();
         services.AddSingleton<ISaveTokenService, SaveTokenService>();
         services.AddSingleton<IPlaylistFileParser, PlaylistFileParser>();
+        services.AddSingleton<IPlaylistCreatorService, PlaylistCreatorService>();
         services.AddSingleton<ISaveDevicesService, SaveDevicesService>();
         services.AddSingleton<IConsoleApplication, ConsoleApplication>();
         services.AddSingleton<ISpotifyApiConfiguration, SpotifyApiConfiguration>(_ =>

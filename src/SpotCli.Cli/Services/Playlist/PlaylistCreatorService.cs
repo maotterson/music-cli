@@ -1,6 +1,6 @@
 ﻿namespace SpotCli.Cli.Services.Playlist;
 
-public class PlaylistCreatorService
+public class PlaylistCreatorService : IPlaylistCreatorService
 {
     private IList<string> _trackUriList = new List<string>();
     private string? _playlistName;
