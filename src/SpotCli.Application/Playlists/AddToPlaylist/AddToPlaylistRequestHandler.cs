@@ -1,12 +1,29 @@
 ﻿using MediatR;
+using SpotCli.Application.Apis;
+using SpotCli.Application.Exceptions;
 
 namespace SpotCli.Application.Playlists.AddToPlaylist;
 
 public class AddToPlaylistRequestHandler : IRequestHandler<AddToPlaylistRequest, AddToPlaylistResponse>
 {
-    public Task<AddToPlaylistResponse> Handle(AddToPlaylistRequest request, CancellationToken cancellationToken)
+    private readonly ISpotifyWebApi _api;
+
+    public AddToPlaylistRequestHandler(ISpotifyWebApi api)
     {
-        // call to api
-        return Task.FromResult(new AddToPlaylistResponse());
+        _api = api;
+    }
+
+    public async Task<AddToPlaylistResponse> Handle(AddToPlaylistRequest request, CancellationToken cancellationToken)
+    {
+        var response = await _api.AddToPlaylist(request.PlaylistId, request.Body);
+
+        if (response is null)
+        {
+            throw new NullReferenceException(nameof(request));
+        }
+
+        response.CheckForErrorStatusCode(request);
+
+        return response.Content!;
     }
 }

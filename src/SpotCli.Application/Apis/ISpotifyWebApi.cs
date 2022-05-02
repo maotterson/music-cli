@@ -3,6 +3,7 @@ using SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
 using SpotCli.Application.CurrentTrack.PausePlayback;
 using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Application.Devices.GetAvailableDevices;
+using SpotCli.Application.Playlists.AddToPlaylist;
 using SpotCli.Application.Playlists.CreatePlaylist;
 using SpotCli.Application.Search.SearchForItem;
 
@@ -34,4 +35,9 @@ public interface ISpotifyWebApi
     Task<IApiResponse<CreatePlaylistResponse>> CreatePlaylist(
         string id,
         [Body(BodySerializationMethod.Serialized)] CreatePlaylistRequestBody body);
+
+    [Post("/playlists/{id}/tracks")]
+    Task<IApiResponse<AddToPlaylistResponse>> AddToPlaylist(
+        string id,
+        [Body(BodySerializationMethod.Serialized)] AddToPlaylistRequestBody body);
 }
