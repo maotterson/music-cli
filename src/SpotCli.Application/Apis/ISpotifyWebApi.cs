@@ -2,6 +2,7 @@
 using SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
 using SpotCli.Application.CurrentTrack.NextTrack;
 using SpotCli.Application.CurrentTrack.PausePlayback;
+using SpotCli.Application.CurrentTrack.PreviousTrack;
 using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Application.Devices.GetAvailableDevices;
 using SpotCli.Application.Playlists.AddToPlaylist;
@@ -44,4 +45,7 @@ public interface ISpotifyWebApi
 
     [Post("/me/player/next")]
     Task<IApiResponse<NextTrackResponse>> NextTrack();
+
+    [Post("/me/player/previous")]
+    Task<IApiResponse<PreviousTrackResponse>> PreviousTrack();
 }
