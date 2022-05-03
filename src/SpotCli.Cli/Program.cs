@@ -10,6 +10,7 @@ using SpotCli.Cli.App;
 using SpotCli.Cli.Configuration;
 using SpotCli.Cli.Factories;
 using SpotCli.Cli.Options.CurrentTrack.GetCurrentlyPlaying;
+using SpotCli.Cli.Options.CurrentTrack.NextTrack;
 using SpotCli.Cli.Options.CurrentTrack.PausePlayback;
 using SpotCli.Cli.Options.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Cli.Options.Devices.GetAvailableDevices;
@@ -103,5 +104,6 @@ public static partial class Helpers
         services.AddTransient<StartOrResumePlaybackOptionsMapper>();
         services.AddTransient<SearchForItemOptionsMapper>();
         services.AddTransient<CreatePlaylistOptionsMapper>();
+        services.AddTransient<NextTrackOptionsMapper>();
     }
 }
