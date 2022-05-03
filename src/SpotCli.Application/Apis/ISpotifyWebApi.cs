@@ -1,5 +1,6 @@
 ﻿using Refit;
 using SpotCli.Application.CurrentTrack.GetCurrentlyPlaying;
+using SpotCli.Application.CurrentTrack.NextTrack;
 using SpotCli.Application.CurrentTrack.PausePlayback;
 using SpotCli.Application.CurrentTrack.StartOrResumePlayback;
 using SpotCli.Application.Devices.GetAvailableDevices;
@@ -40,4 +41,7 @@ public interface ISpotifyWebApi
     Task<IApiResponse<AddToPlaylistResponse>> AddToPlaylist(
         string id,
         [Body(BodySerializationMethod.Serialized)] AddToPlaylistRequestBody body);
+
+    [Post("/me/player/next")]
+    Task<IApiResponse<NextTrackResponse>> NextTrack();
 }
