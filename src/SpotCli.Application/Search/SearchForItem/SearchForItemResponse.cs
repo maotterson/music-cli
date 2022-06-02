@@ -1,5 +1,5 @@
 ﻿using Refit;
-using SpotCli.Core.ValueObjects;
+using SpotCli.Application.Dto;
 
 namespace SpotCli.Application.Search.SearchForItem;
 

@@ -1,5 +1,5 @@
 ﻿using Refit;
-using SpotCli.Core.Entities;
+using SpotCli.Application.Dto;
 
 namespace SpotCli.Application.Playlists.CreatePlaylist;
 

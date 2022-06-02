@@ -1,4 +1,4 @@
-﻿namespace SpotCli.Core.ValueObjects;
+﻿namespace SpotCli.Application.Dto;
 
 public record AdditionalProperties
 {

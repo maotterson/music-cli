@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SpotCli.Core.Entities;
+namespace SpotCli.Application.Dto;
 
 public record Playlist
 {

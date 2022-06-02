@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SpotCli.Core.ValueObjects;
+namespace SpotCli.Application.Dto;
 
 public record Artist
 {
