@@ -15,9 +15,9 @@ public record GetCurrentlyPlayingResponse
     public struct ResponseItem
     {
         [JsonProperty("album")]
-        public Album Album { get; set; }
+        public AlbumDto Album { get; set; }
         [JsonProperty("artists")]
-        public Artist[] Artists { get; set; }
+        public ArtistDto[] Artists { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("track_number")]

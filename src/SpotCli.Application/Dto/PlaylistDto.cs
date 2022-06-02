@@ -2,7 +2,7 @@
 
 namespace SpotCli.Application.Dto;
 
-public record Playlist
+public record PlaylistDto
 {
     [JsonProperty("id")]
     public string? Id { get; set; }

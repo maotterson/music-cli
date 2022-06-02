@@ -2,7 +2,7 @@
 
 namespace SpotCli.Application.Dto;
 
-public record Album
+public record AlbumDto
 {
     [JsonProperty("album_type")]
     public string? AlbumType { get; set; }

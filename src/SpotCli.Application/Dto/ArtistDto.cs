@@ -2,7 +2,7 @@
 
 namespace SpotCli.Application.Dto;
 
-public record Artist
+public record ArtistDto
 {
     [JsonProperty("name")]
     public string? Name { get; init; }

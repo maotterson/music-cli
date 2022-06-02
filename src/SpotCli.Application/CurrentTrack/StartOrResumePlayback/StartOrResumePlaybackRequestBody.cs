@@ -12,7 +12,7 @@ public record StartOrResumePlaybackRequestBody
     public string[]? Uris { get; init; }
 
     [JsonProperty("offset")]
-    public AdditionalProperties? Offset { get; init; }
+    public AdditionalPropertiesDto? Offset { get; init; }
 
     [JsonProperty("position_ms")]
     public int? PositionMs { get; init; }

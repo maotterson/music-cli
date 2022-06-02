@@ -56,10 +56,10 @@ public record SearchForItemResponse
     public struct TrackItem
     {
         [AliasAs("album")]
-        public Album Album { get; set; }
+        public AlbumDto Album { get; set; }
 
         [AliasAs("artist")]
-        public Artist[] Artists { get; set; }
+        public ArtistDto[] Artists { get; set; }
 
         [AliasAs("name")]
         public string Name { get; set; }
@@ -74,10 +74,10 @@ public record SearchForItemResponse
     public struct ArtistItem
     {
         [AliasAs("album")]
-        public Album Album { get; set; }
+        public AlbumDto Album { get; set; }
 
         [AliasAs("artist")]
-        public Artist[] Artists { get; set; }
+        public ArtistDto[] Artists { get; set; }
 
         [AliasAs("name")]
         public string Name { get; set; }
@@ -92,10 +92,10 @@ public record SearchForItemResponse
     public struct AlbumItem
     {
         [AliasAs("album")]
-        public Album Album { get; set; }
+        public AlbumDto Album { get; set; }
 
         [AliasAs("artist")]
-        public Artist[] Artists { get; set; }
+        public ArtistDto[] Artists { get; set; }
 
         [AliasAs("name")]
         public string Name { get; set; }
