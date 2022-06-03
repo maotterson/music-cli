@@ -365,3 +365,4 @@ FodyWeavers.xsd
 /src/SpotCli.Cli/AppData/secrets.json
 /src/SpotCli.Cli/AppData/devices.json
 /src/SpotCli.Cli/token.json
+/SpotCli.WebApi.Lambda/src/SpotCli.WebApi.Lambda/serverless.template.ignored
