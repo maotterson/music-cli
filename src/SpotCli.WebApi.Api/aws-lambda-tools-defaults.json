@@ -11,5 +11,6 @@
   "function-runtime": "dotnet6",
   "function-memory-size": 256,
   "function-timeout": 30,
-  "function-handler": "SpotCli.WebApi.Lambda::SpotCli.WebApi.Lambda.Functions::Get"
+  "function-handler": "SpotCli.WebApi.Api",
+  "function-url-enable": true
 }
