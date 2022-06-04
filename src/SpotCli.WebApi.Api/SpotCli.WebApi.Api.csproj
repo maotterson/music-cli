@@ -20,4 +20,8 @@
     <None Include="aws-lambda-tools-defaults.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpotCli.Core\SpotCli.Core.csproj" />
+  </ItemGroup>
+
 </Project>
