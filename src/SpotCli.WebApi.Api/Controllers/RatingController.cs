@@ -22,6 +22,12 @@ public class RatingController : ControllerBase
         var trackRatings = await _ratingRepository.GetAll();
         return Ok(JsonSerializer.Serialize(trackRatings));
     }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(string id)
+    {
+        var trackRating = await _ratingRepository.GetById(id);
+        return Ok(JsonSerializer.Serialize(trackRating));
+    }
     [HttpPost]
     public async Task<IActionResult> Post()
     {
