@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace SpotCli.WebApi.Api.Dto;
+namespace SpotCli.WebApi.Api.Data.Requests;
 
-public class CreateTrackRatingDto
+public class CreateTrackRatingRequest
 {
     [JsonProperty("spotify_id")]
     public string SpotifyId { get; init; }

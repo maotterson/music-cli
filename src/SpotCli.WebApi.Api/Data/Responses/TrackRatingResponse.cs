@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace SpotCli.WebApi.Api.Dto;
+namespace SpotCli.WebApi.Api.Data.Responses;
 
-public class TrackRatingDto
+public class TrackRatingResponse
 {
     [JsonProperty("id")]
     public Guid Id { get; set; }

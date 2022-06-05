@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+using SpotCli.Core.Exceptions;
+using SpotCli.WebApi.Api.Common;
+using SpotCli.WebApi.Api.Data.Requests;
 using SpotCli.WebApi.Api.Repositories;
 using System.Text.Json;
 
@@ -20,17 +22,74 @@ public class RatingController : ControllerBase
     public async Task<IActionResult> GetAll()
     {
         var trackRatings = await _ratingRepository.GetAll();
-        return Ok(JsonSerializer.Serialize(trackRatings));
+        var response = trackRatings.Select(rating =>
+        {
+            return rating.AsTrackRatingResponse();
+        });
+        return Ok(JsonSerializer.Serialize(response));
     }
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(string id)
     {
-        var trackRating = await _ratingRepository.GetById(id);
-        return Ok(JsonSerializer.Serialize(trackRating));
+        try
+        {
+            var trackRating = await _ratingRepository.GetById(id);
+            return Ok(JsonSerializer.Serialize(trackRating.AsTrackRatingResponse()));
+        }
+        catch (TrackNotFoundException ex)
+        {
+            return NotFound(JsonSerializer.Serialize(ex.Message));
+        }
+        catch
+        {
+            return BadRequest();
+        }
+    }
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(string id, ModifyTrackRatingRequest request)
+    {
+        try
+        {
+            await _ratingRepository.Modify(request, id);
+            return Ok();
+        }
+        catch (TrackNotFoundException ex)
+        {
+            return NotFound(JsonSerializer.Serialize(ex.Message));
+        }
+        catch
+        {
+            return BadRequest();
+        }
+    }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(string id)
+    {
+        try
+        {
+            await _ratingRepository.Delete(id);
+            return Ok();
+        }
+        catch(TrackNotFoundException ex)
+        {
+            return NotFound(ex.Message);
+        }
+        catch
+        {
+            return BadRequest();
+        }
     }
     [HttpPost]
-    public async Task<IActionResult> Post()
+    public async Task<IActionResult> Post(CreateTrackRatingRequest request)
     {
-        return Ok("hello world");
+        try
+        {
+            await _ratingRepository.Create(request);
+            return Ok();
+        }
+        catch
+        {
+            return BadRequest();
+        }
     }
 }
