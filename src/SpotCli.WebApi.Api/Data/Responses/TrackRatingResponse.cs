@@ -1,20 +1,20 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace SpotCli.WebApi.Api.Data.Responses;
 
 public class TrackRatingResponse
 {
-    [JsonProperty("id")]
+    [JsonPropertyName("id")]
     public Guid Id { get; set; }
-    [JsonProperty("spotify_id")]
+    [JsonPropertyName("spotify_id")]
     public string SpotifyId { get; init; }
-    [JsonProperty("track")]
+    [JsonPropertyName("track")]
     public string Track { get; init; }
-    [JsonProperty("artist")]
+    [JsonPropertyName("artist")]
     public string Artist { get; init; }
-    [JsonProperty("album")]
+    [JsonPropertyName("album")]
     public string Album { get; init; }
-    [JsonProperty("rating")]
+    [JsonPropertyName("rating")]
     public int Rating { get; init; }
 
 }

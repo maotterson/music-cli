@@ -1,17 +1,23 @@
-﻿using Newtonsoft.Json;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SpotCli.WebApi.Api.Data.Requests;
 
 public class CreateTrackRatingRequest
 {
-    [JsonProperty("spotify_id")]
+    [Required]
+    [JsonPropertyName("spotify_id")]
     public string SpotifyId { get; init; }
-    [JsonProperty("track")]
+    [Required]
+    [JsonPropertyName("track")]
     public string Track { get; init; }
-    [JsonProperty("artist")]
+    [Required]
+    [JsonPropertyName("artist")]
     public string Artist { get; init; }
-    [JsonProperty("album")]
+    [Required]
+    [JsonPropertyName("album")]
     public string Album { get; init; }
-    [JsonProperty("rating")]
+    [Required]
+    [JsonPropertyName("rating")]
     public int Rating { get; init; }
 }
