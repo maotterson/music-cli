@@ -61,7 +61,6 @@ public static partial class Helpers
         .ConfigureHttpClient(client =>
         {
             client.BaseAddress = new Uri(configuration.BaseAddress);
-            client.DefaultRequestHeaders.Add("Authorization", configuration.BearerTokenHeader);
         });
         services.AddRefitClient<ISpotifyOAuthApi>(
             new RefitSettings(
