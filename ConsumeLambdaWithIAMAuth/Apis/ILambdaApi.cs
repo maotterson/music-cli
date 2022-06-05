@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace ConsumeLambdaWithIAMAuth.Apis;
 public interface ILambdaApi
 {
+
     [Get("/")]
     Task<IApiResponse<ICollection<RatingDto>>> GetRatings();
 }
