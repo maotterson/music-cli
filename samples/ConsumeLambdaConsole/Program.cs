@@ -18,6 +18,7 @@ var config = new AmazonLambdaConfig
 {
 	RegionEndpoint = RegionEndpoint.USEast1
 };
+var client = new AmazonLambdaClient(credentials, config);
 
 var function = new InvokeRequest
 {
@@ -25,10 +26,22 @@ var function = new InvokeRequest
 	InvocationType = InvocationType.RequestResponse,
 	Payload = JsonSerializer.Serialize("hello world")
 };
-using (var client = new AmazonLambdaClient(credentials, config))
-{
 
+try
+{
 	InvokeResponse response = await client.InvokeAsync(function);
-	Console.WriteLine(response);
-};
-Console.ReadLine();
+	var payload = response.Payload; ;
+	using(var streamReader = new StreamReader(payload))
+    {
+        while (!streamReader.EndOfStream)
+        {
+			var line = streamReader.ReadLine();
+			Console.WriteLine(line);
+        }
+    }
+	Console.ReadLine();
+}
+catch(Exception ex)
+{
+	Console.WriteLine(ex.Message);
+}
