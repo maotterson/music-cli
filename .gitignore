@@ -368,3 +368,4 @@ FodyWeavers.xsd
 /src/SpotCli.WebApi.Lambda/serverless.template.ignored
 /ConsumeLambdaWithIAMAuth/appsettings.Development.json
 /ConsumeLambdaWithIAMAuth/Token
+/samples/ConsumeLambdaConsole/appsettings.development.json
