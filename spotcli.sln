@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotCli.WebApi.Lambda.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpotCli.WebApi.Api", "src\SpotCli.WebApi.Api\SpotCli.WebApi.Api.csproj", "{35B61A02-7183-4731-9B1B-E5FF3E8F1018}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumeLambdaConsole", "samples\ConsumeLambdaConsole\ConsumeLambdaConsole.csproj", "{1E5FE120-B991-413A-A22F-20E4625EEF59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsumeLambdaConsole", "samples\ConsumeLambdaConsole\ConsumeLambdaConsole.csproj", "{1E5FE120-B991-413A-A22F-20E4625EEF59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

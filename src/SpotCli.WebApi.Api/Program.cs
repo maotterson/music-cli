@@ -1,9 +1,15 @@
+using SpotCli.WebApi.Api.Auth;
+using SpotCli.WebApi.Api.Common;
 using SpotCli.WebApi.Api.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<IRatingRepository, LocalRatingRepository>();
+builder.Services.AddSingleton<ILambdaAuthenticator, LambdaAuthenticator>(_ =>
+{
+    return new LambdaAuthenticator(builder.Configuration["SecretKey"]);
+});
 
 builder.Services.AddControllers();
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
@@ -22,6 +28,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseLambdaAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -30,7 +30,7 @@ var function = new InvokeRequest
 try
 {
 	InvokeResponse response = await client.InvokeAsync(function);
-	var payload = response.Payload; ;
+	var payload = response.Payload;
 	using(var streamReader = new StreamReader(payload))
     {
         while (!streamReader.EndOfStream)
