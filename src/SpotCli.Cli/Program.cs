@@ -49,29 +49,47 @@ string GetAppDataDirectoryFromSettings()
 
 public static partial class Helpers
 {
-    public static void AddRefitApis(this IServiceCollection services, ISpotifyApiConfiguration configuration)
+    public static void AddRefitApis(this IServiceCollection services, SpotifyApiConfiguration configuration)
     {
-        services.AddRefitClient<ISpotifyWebApi>(
-            new RefitSettings(
-                new NewtonsoftJsonContentSerializer(
-                    new JsonSerializerSettings
-                    {
-                        ContractResolver = new CamelCasePropertyNamesContractResolver()
-                    })))
-        .ConfigureHttpClient(client =>
-        {
-            client.BaseAddress = new Uri(configuration.BaseAddress);
-        });
-        services.AddRefitClient<ISpotifyOAuthApi>(
-            new RefitSettings(
-                new NewtonsoftJsonContentSerializer(
-                    new JsonSerializerSettings {
-                        ContractResolver = new CamelCasePropertyNamesContractResolver()
-                    })))
-        .ConfigureHttpClient(client =>
-        {
-            client.BaseAddress = new Uri(configuration.OAuthBaseAddress);
-        });
+        services
+            .AddRefitClient<ISpotifyWebApi>(
+                new RefitSettings(
+                    new NewtonsoftJsonContentSerializer(
+                        new JsonSerializerSettings
+                        {
+                            ContractResolver = new CamelCasePropertyNamesContractResolver()
+                        })))
+            .ConfigureHttpClient(client =>
+            {
+                client.BaseAddress = new Uri(configuration.BaseAddress);
+                client.DefaultRequestHeaders.Add("Authorization", configuration.BearerTokenHeader);
+            });
+
+        services
+            .AddRefitClient<ISpotifyOAuthApi>(
+                new RefitSettings(
+                    new NewtonsoftJsonContentSerializer(
+                        new JsonSerializerSettings {
+                            ContractResolver = new CamelCasePropertyNamesContractResolver()
+                        })))
+            .ConfigureHttpClient(client =>
+            {
+                client.BaseAddress = new Uri(configuration.OAuthBaseAddress);
+            });
+
+        services
+            .AddRefitClient<ILambdaRatingsApi>(
+                new RefitSettings(
+                    new NewtonsoftJsonContentSerializer(
+                        new JsonSerializerSettings
+                        {
+                            ContractResolver = new CamelCasePropertyNamesContractResolver()
+                        })))
+            .ConfigureHttpClient(client =>
+            {
+                client.BaseAddress = new Uri(configuration.WebApiRatingsEndpoint);
+                client.DefaultRequestHeaders.Add("Authorization", configuration.WebApiAuthorizationKey);
+            });
     }
     public static void AddSingletonServices(this IServiceCollection services, ISpotifyApiConfiguration configuration)
     {

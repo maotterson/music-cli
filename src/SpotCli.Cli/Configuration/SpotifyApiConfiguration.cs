@@ -19,5 +19,7 @@ public class SpotifyApiConfiguration : ISpotifyApiConfiguration
     public string ClientId => Configuration["ClientId"];
     public string ClientSecret => Configuration["ClientSecret"];
     public string SpotifyId => Configuration["SpotifyId"];
+    public string WebApiRatingsEndpoint => Configuration["WebApi:RatingsEndpoint"];
+    public string WebApiAuthorizationKey => Configuration["WebApi:AuthorizationKey"];
     public Dictionary<string, string> SpotifyDeviceSettings => Configuration.GetSection("Devices").Get<Dictionary<string, string>>();
 }
