@@ -3,6 +3,7 @@ using SpotCli.Core.Exceptions;
 using SpotCli.WebApi.Api.Common;
 using SpotCli.WebApi.Api.Data.Requests;
 using SpotCli.WebApi.Api.Repositories;
+using SpotCli.WebApi.Api.Services;
 using System.Text.Json;
 
 namespace SpotCli.WebApi.Api.Controllers;
@@ -11,17 +12,17 @@ namespace SpotCli.WebApi.Api.Controllers;
 [Route("/")]
 public class RatingController : ControllerBase
 {
-    private readonly IRatingRepository _ratingRepository;
+    private readonly IRatingService _ratingService;
 
-    public RatingController(IRatingRepository ratingRepository)
+    public RatingController(IRatingService ratingService)
     {
-        _ratingRepository = ratingRepository;
+        _ratingService = ratingService;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
-        var trackRatings = await _ratingRepository.GetAll();
+        var trackRatings = await _ratingService.GetAll();
         var response = trackRatings.Select(rating =>
         {
             return rating.AsTrackRatingResponse();
@@ -33,7 +34,7 @@ public class RatingController : ControllerBase
     {
         try
         {
-            var trackRating = await _ratingRepository.GetById(id);
+            var trackRating = await _ratingService.GetById(id);
             return Ok(JsonSerializer.Serialize(trackRating.AsTrackRatingResponse()));
         }
         catch (TrackNotFoundException ex)
@@ -50,7 +51,7 @@ public class RatingController : ControllerBase
     {
         try
         {
-            await _ratingRepository.Modify(request, id);
+            await _ratingService.Modify(request, id);
             return Ok();
         }
         catch (TrackNotFoundException ex)
@@ -67,7 +68,7 @@ public class RatingController : ControllerBase
     {
         try
         {
-            await _ratingRepository.Delete(id);
+            await _ratingService.Delete(id);
             return Ok();
         }
         catch(TrackNotFoundException ex)
@@ -84,7 +85,7 @@ public class RatingController : ControllerBase
     {
         try
         {
-            await _ratingRepository.Create(request);
+            await _ratingService.Create(request);
             return Ok();
         }
         catch

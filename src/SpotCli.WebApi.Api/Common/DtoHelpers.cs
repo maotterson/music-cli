@@ -1,5 +1,7 @@
-﻿using SpotCli.Core.Entities;
+﻿using MongoDB.Bson;
+using SpotCli.Core.Entities;
 using SpotCli.Core.ValueObjects;
+using SpotCli.WebApi.Api.Data;
 using SpotCli.WebApi.Api.Data.Requests;
 using SpotCli.WebApi.Api.Data.Responses;
 
@@ -21,17 +23,41 @@ public static class DtoHelpers
         return response;
     }
 
-    public static TrackRating AsTrackRating(this CreateTrackRatingRequest trackRatingRequest)
+    public static TrackRating AsTrackRating(this TrackRatingDto trackRatingDto)
     {
         var trackRating = new TrackRating
         {
-            Id = Guid.NewGuid(),
-            SpotifyId = new SpotifyIdVO(trackRatingRequest.SpotifyId),
-            Artist = new ArtistVO(trackRatingRequest.Artist),
-            Album = new AlbumVO(trackRatingRequest.Album),
-            Track = new TrackVO(trackRatingRequest.Track),
-            Rating = new RatingVO(trackRatingRequest.Rating)
+            Id = trackRatingDto.Id!,
+            SpotifyId = new SpotifyIdVO(trackRatingDto.SpotifyId),
+            Artist = new ArtistVO(trackRatingDto.Artist),
+            Album = new AlbumVO(trackRatingDto.Album),
+            Track = new TrackVO(trackRatingDto.Track),
+            Rating = new RatingVO(trackRatingDto.Rating)
         };
         return trackRating;
+    }
+    public static TrackRatingDto AsRatingDto(this CreateTrackRatingRequest trackRatingRequest)
+    {
+        var dto = new TrackRatingDto
+        {
+            SpotifyId = trackRatingRequest.SpotifyId,
+            Artist = trackRatingRequest.Artist,
+            Album = trackRatingRequest.Album,
+            Track = trackRatingRequest.Track,
+            Rating = trackRatingRequest.Rating
+        };
+        return dto;
+    }
+    public static TrackRatingDto AsRatingDto(this ModifyTrackRatingRequest trackRatingRequest)
+    {
+        var dto = new TrackRatingDto
+        {
+            SpotifyId = trackRatingRequest.SpotifyId,
+            Artist = trackRatingRequest.Artist,
+            Album = trackRatingRequest.Album,
+            Track = trackRatingRequest.Track,
+            Rating = trackRatingRequest.Rating
+        };
+        return dto;
     }
 }

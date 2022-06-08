@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SpotCli.Core.Entities;
 public class TrackRating
 {
-    public Guid Id { get; init; } // todo required keyword in c#11
+    public string Id { get; init; } // todo required keyword in c#11
     public RatingVO? Rating { get; init; }
     public SpotifyIdVO? SpotifyId { get; init; }
     public ArtistVO? Artist { get; init; }
