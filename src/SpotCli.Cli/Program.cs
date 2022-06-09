@@ -19,6 +19,7 @@ using SpotCli.Cli.Options.Interfaces;
 using SpotCli.Cli.Options.OAuth.GetNewAccessToken;
 using SpotCli.Cli.Options.Playlists.CreatePlaylist;
 using SpotCli.Cli.Options.Search;
+using SpotCli.Cli.Ratings;
 using SpotCli.Cli.Services;
 using SpotCli.Cli.Services.Playlist;
 using System.Reflection;
@@ -37,6 +38,8 @@ services.AddRefitApis(configuration);
 services.AddSingletonServices(configuration);
 services.AddOptionsMappers();
 services.AddHandlers();
+
+services.AddSingleton<IRatingCurrentTrackState, RatingCurrentTrackState>();
 
 var app = services.BuildServiceProvider()
     .GetRequiredService<IConsoleApplication>();

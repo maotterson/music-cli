@@ -18,6 +18,8 @@ public record GetCurrentlyPlayingResponse
         public AlbumDto Album { get; set; }
         [JsonProperty("artists")]
         public ArtistDto[] Artists { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("track_number")]
